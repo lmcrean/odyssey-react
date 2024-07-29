@@ -22,6 +22,7 @@
   },
   "scripts": {
     "heroku-prebuild": "npm install -g serve",
+    "heroku-postbuild": "NODE_OPTIONS=--openssl-legacy-provider npm run build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
