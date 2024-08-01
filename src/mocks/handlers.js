@@ -1,3 +1,5 @@
+// src/mocks/handlers.js
+
 import { rest } from "msw";
 
 const baseURL = "https://odyssey-api-f3455553b29d.herokuapp.com/";
