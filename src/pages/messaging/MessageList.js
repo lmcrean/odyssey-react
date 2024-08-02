@@ -17,7 +17,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import MessageDetail from "./MessageDetail";
 
 function MessageList({ message, filter = "" }) {
-  const [conversations, setConversations] = useState({ results: [] });
+  const [conversations, setConversations] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
@@ -26,9 +26,17 @@ function MessageList({ message, filter = "" }) {
   useEffect(() => {
     const fetchConversations = async () => {
       try {
+        console.log("Fetching conversations...");
         const { data } = await axiosReq.get(`/conversations/?${filter}search=${query}`);
         console.log("Fetched conversations data:", data);
-        setConversations(data);
+
+        // Directly set the data as conversations since it doesn't contain a 'results' array
+        if (Array.isArray(data)) {
+          setConversations(data);
+        } else {
+          console.error("API response is not an array:", data);
+          setConversations([]); // Ensure it's always an array
+        }
         setHasLoaded(true);
       } catch (err) {
         console.error("Failed to fetch conversations:", err);
@@ -46,13 +54,11 @@ function MessageList({ message, filter = "" }) {
     };
   }, [filter, query, pathname, currentUser]);
 
-  // testing here:
   console.log("Conversations state before check:", conversations);
   console.log("HasLoaded state before check:", hasLoaded);
   console.log("Type of conversations:", typeof conversations);
-  console.log("Type of conversations.results:", typeof conversations.results);
 
-  if (!conversations || !Array.isArray(conversations.results)) {
+  if (!Array.isArray(conversations)) {
     console.error("Invalid conversations state:", conversations);
     return (
       <Container className={appStyles.Content}>
@@ -82,14 +88,14 @@ function MessageList({ message, filter = "" }) {
 
         {hasLoaded ? (
           <>
-            {conversations.results.length > 0 ? (
+            {conversations.length > 0 ? (
               <InfiniteScroll
-                dataLength={conversations.results.length}
+                dataLength={conversations.length}
                 loader={<Asset spinner />}
-                hasMore={!!conversations.next}
+                hasMore={false}
                 next={() => fetchMoreData(conversations, setConversations)}
               >
-                {conversations.results.map((conversation) => (
+                {conversations.map((conversation) => (
                   <MessageDetail key={conversation.id} {...conversation} />
                 ))}
               </InfiniteScroll>

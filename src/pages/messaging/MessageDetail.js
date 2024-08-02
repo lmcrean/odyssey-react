@@ -1,4 +1,4 @@
-// pages/messaging/MessageDetail.js
+// src/pages/messaging/MessageDetail.js
 
 import React from "react";
 import styles from "../../styles/MessageDetail.module.css";
