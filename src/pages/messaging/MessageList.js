@@ -1,65 +1,126 @@
-// pages/messaging/MessageList.js
+// src/pages/messaging/MessageList.js
 
+import React, { useEffect, useState } from "react";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import { useLocation } from "react-router";
+import { axiosReq } from "../../api/axiosDefaults";
+import Asset from "../../components/Asset";
+import appStyles from "../../App.module.css";
+import styles from "../../styles/MessageList.module.css";
+import NoResults from "../../assets/no-results.png";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-import React, { useEffect, useState, useContext } from 'react';
-import { axiosReq } from '../../api/axiosDefaults';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-
-const MessageList = () => {
-  const [conversations, setConversations] = useState([]);
-  const { currentUser } = useContext(CurrentUserContext);
+function MessageList({ message, filter = "" }) {
+  const [conversations, setConversations] = useState({ results: [] });
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const { pathname } = useLocation();
+  const [query, setQuery] = useState("");
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
+    console.log("useEffect triggered");
+
     const fetchConversations = async () => {
-      if (!currentUser || !currentUser.token) {
-        console.error('Token is missing or current user is not set'); // Not registering
+      console.log("fetchConversations called");
+
+      if (!currentUser) {
+        console.log("No current user, aborting fetch");
         return;
       }
 
-      console.log('Current user (MessageList):', currentUser); // FAIL. Not registering
-      console.log('Current user token (MessageList):', currentUser.token); // FAIL. Not registering
+      console.log("Fetching conversations for user:", currentUser);
 
       try {
-        const response = await axiosReq.get('/conversations/', {
-          headers: {
-            Authorization: `Token ${currentUser.token}`,
-            'Content-Type': 'application/json', // Specify Content-Type for this request
-          },
-        });
-        console.log('Fetched conversations:', response.data); // FAIL. Not registering
-        setConversations(response.data);
-      } catch (error) {
-        console.error('Failed to fetch conversations:', error); // FAIL. Not registering
+        const { data } = await axiosReq.get(`/conversations/?${filter}search=${query}`);
+        console.log("Fetched conversations data:", data); //pass
+        setConversations(data);
+        setHasLoaded(true);
+      } catch (err) {
+        console.error("Failed to fetch conversations:", err);
+        setHasLoaded(true); // Ensure we update loading state even on error
       }
     };
 
-    if (currentUser && currentUser.token) {
-      console.log('Fetching conversations...'); // FAIL. Not registering
+    setHasLoaded(false);
+    const timer = setTimeout(() => {
       fetchConversations();
-    } else {
-      console.log('Current user or token is missing:', currentUser); // Current user or token is missing: undefined
-    }
-  }, [currentUser]);
+    }, 1000);
 
-  console.log('Conversations state:', conversations); // Conversations state: []
+    return () => {
+      clearTimeout(timer);
+      console.log("Timer cleared");
+    };
+  }, [filter, query, pathname, currentUser]);
+
+  console.log("Conversations state:", conversations); //pass
+  console.log("HasLoaded state:", hasLoaded); // false
+
+  if (!conversations || !conversations.results) {
+    return (
+      <Container className={appStyles.Content}>
+        <p>Unable to load conversations.</p>
+      </Container>
+    );
+  }
 
   return (
-    <div>
-      <h1>Conversations</h1>
-      <ul>
-        {conversations.length > 0 ? (
-          conversations.map((conversation) => (
-            <li key={conversation.id}>{conversation.username}</li>
-          ))
+    <Row className="h-100">
+      <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <i className={`fas fa-search ${styles.SearchIcon}`} />
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <Form.Control
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search conversations"
+          />
+        </Form>
+
+        {hasLoaded ? (
+          <>
+            {Array.isArray(conversations.results) && conversations.results.length > 0 ? (
+              <InfiniteScroll
+                children={conversations.results.map((conversation) => (
+                  <div key={conversation.id}>
+                    <p>{conversation.username}</p>
+                  </div>
+                ))}
+                dataLength={conversations.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!conversations.next}
+                next={() => fetchMoreData(conversations, setConversations)}
+              />
+            ) : (
+              <Container className={appStyles.Content}>
+                <Asset src={NoResults} message={message} />
+              </Container>
+            )}
+          </>
         ) : (
-          <p>No conversations found.</p>
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
         )}
-      </ul>
-    </div>
+      </Col>
+    </Row>
   );
-};
+}
 
 export default MessageList;
+
+
+
+
+
 
 // test notes: trying to call this array from GET https://odyssey-api-f3455553b29d.herokuapp.com/conversations/?Authorization=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNDUwNjE1LCJqdGkiOiI2MTVjMTJkOTU3YmM0ZGRhOTg3NTU5NThlYzJlMjhkNyIsInVzZXJfaWQiOjEzfQ.p4oUHv2TsWiaF79NWkkOk-uzXxafRm9epqKW94dfdEk
 // [{"id": 15,"username": "user3" }, {"id": 14,"username": "user2"},{"id": 16,"username": "user4"}]
