@@ -10,20 +10,24 @@ const MessageList = () => {
   useEffect(() => {
     const fetchConversations = async () => {
       if (!currentUser?.token) {
-        console.error('Token is missing'); // doesn't appear
+        console.error('Token is missing');
         return;
       }
+
+      console.log('Current user:', currentUser);
+      console.log('Current user token:', currentUser.token);
 
       try {
         const response = await axiosReq.get('/conversations/', {
           headers: {
             Authorization: `Token ${currentUser.token}`,
+            'Content-Type': 'application/json', // Specify Content-Type for this request
           },
         });
-        console.log('Fetched conversations:', response.data); // doesn't appear
+        console.log('Fetched conversations:', response.data);
         setConversations(response.data);
       } catch (error) {
-        console.error('Failed to fetch conversations:', error); // doesn't appear
+        console.error('Failed to fetch conversations:', error);
       }
     };
 
@@ -32,7 +36,7 @@ const MessageList = () => {
     }
   }, [currentUser]);
 
-  console.log('Conversations state:', conversations); // "conversation state, array 0"
+  console.log('Conversations state:', conversations);
 
   return (
     <div>
@@ -40,10 +44,10 @@ const MessageList = () => {
       <ul>
         {conversations.length > 0 ? (
           conversations.map((conversation) => (
-            <li key={conversation.id}>{conversation.username}</li> // when this feature is fully, working, for user1, it should return an array of 3 users.
+            <li key={conversation.id}>{conversation.username}</li>
           ))
         ) : (
-          <p>No conversations found.</p> // this currently appears
+          <p>No conversations found.</p>
         )}
       </ul>
     </div>
@@ -51,6 +55,8 @@ const MessageList = () => {
 };
 
 export default MessageList;
+
+
 
 
 // test notes: trying to call this array from GET https://odyssey-api-f3455553b29d.herokuapp.com/conversations/?Authorization=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyNDUwNjE1LCJqdGkiOiI2MTVjMTJkOTU3YmM0ZGRhOTg3NTU5NThlYzJlMjhkNyIsInVzZXJfaWQiOjEzfQ.p4oUHv2TsWiaF79NWkkOk-uzXxafRm9epqKW94dfdEk
