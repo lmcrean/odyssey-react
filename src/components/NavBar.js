@@ -58,7 +58,7 @@ const NavBar = () => {
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/messagelist"
+        to="/conversations"
       >
         <i className="fas fa-envelope"></i>Message List
       </NavLink>

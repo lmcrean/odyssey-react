@@ -1,3 +1,5 @@
+// src/pages/posts/PostPage.js
+
 import React, { useEffect, useState } from "react";
 
 import Col from "react-bootstrap/Col";

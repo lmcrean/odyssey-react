@@ -1,3 +1,5 @@
+// src/pages/posts/Post.js
+
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";

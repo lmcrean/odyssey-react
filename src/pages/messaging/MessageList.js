@@ -5,7 +5,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import { useLocation } from "react-router";
+import Media from "react-bootstrap/Media";  // Import Media from react-bootstrap
+import { useLocation, Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
@@ -14,10 +15,10 @@ import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import MessageDetail from "./MessageDetail";
+import Avatar from "../../components/Avatar";
 
 function MessageList({ message, filter = "" }) {
-  const [conversations, setConversations] = useState([]);
+  const [conversations, setConversations] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
@@ -30,13 +31,8 @@ function MessageList({ message, filter = "" }) {
         const { data } = await axiosReq.get(`/conversations/?${filter}search=${query}`);
         console.log("Fetched conversations data:", data);
 
-        // Directly set the data as conversations since it doesn't contain a 'results' array
-        if (Array.isArray(data)) {
-          setConversations(data);
-        } else {
-          console.error("API response is not an array:", data);
-          setConversations([]); // Ensure it's always an array
-        }
+        // Ensure results is always an array
+        setConversations({ results: Array.isArray(data) ? data : [] });
         setHasLoaded(true);
       } catch (err) {
         console.error("Failed to fetch conversations:", err);
@@ -58,17 +54,6 @@ function MessageList({ message, filter = "" }) {
   console.log("HasLoaded state before check:", hasLoaded);
   console.log("Type of conversations:", typeof conversations);
 
-  if (!Array.isArray(conversations)) {
-    console.error("Invalid conversations state:", conversations);
-    return (
-      <Container className={appStyles.Content}>
-        <p>Unable to load conversations.</p>
-      </Container>
-    );
-  }
-
-  console.log("Valid conversations state:", conversations);
-
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
@@ -88,15 +73,24 @@ function MessageList({ message, filter = "" }) {
 
         {hasLoaded ? (
           <>
-            {conversations.length > 0 ? (
+            {conversations.results.length > 0 ? (
               <InfiniteScroll
-                dataLength={conversations.length}
+                dataLength={conversations.results.length}
                 loader={<Asset spinner />}
-                hasMore={false}
+                hasMore={!!conversations.next}
                 next={() => fetchMoreData(conversations, setConversations)}
               >
-                {conversations.map((conversation) => (
-                  <MessageDetail key={conversation.id} {...conversation} />
+                {conversations.results.map((conversation) => (
+                  <div key={conversation.id} className={styles.ConversationItem}>
+                    <Link to={`/conversations/${conversation.id}`}>
+                      <Media className="align-items-center">
+                        <Avatar src={conversation.profile_image} height={55} />
+                        <div className="ml-3">
+                          <p className={styles.ConversationUsername}>{conversation.username}</p>
+                        </div>
+                      </Media>
+                    </Link>
+                  </div>
                 ))}
               </InfiniteScroll>
             ) : (
