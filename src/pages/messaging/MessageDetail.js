@@ -1,12 +1,13 @@
 // src/pages/messaging/MessageDetail.js
 
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/MessageDetail.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -65,6 +66,11 @@ function MessageDetail() {
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         {/* Add any additional components like PopularProfiles here */}
+        <Link to="/conversations">
+            <Button variant="primary">
+              <i className="fas fa-arrow-left"></i> Back to Conversations
+            </Button>
+        </Link>
       </Col>
     </Row>
   );
