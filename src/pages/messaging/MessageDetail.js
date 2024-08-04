@@ -14,6 +14,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import Message from "./Message";
 import NoResults from "../../assets/no-results.png";
+import MessageDetailSendForm from "./MessageDetailSendForm";
 
 function MessageDetail() {
   const { id } = useParams();
@@ -23,9 +24,9 @@ function MessageDetail() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        console.log("Fetching messages...");
+        
         const { data } = await axiosReq.get(`/messages/${id}/`);
-        console.log("Fetched messages data:", data);
+        
         setMessages({ results: data.results });
         setHasLoaded(true);
       } catch (err) {
@@ -63,13 +64,13 @@ function MessageDetail() {
             <Asset spinner />
           </Container>
         )}
+        <MessageDetailSendForm setMessages={setMessages} />
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        {/* Add any additional components like PopularProfiles here */}
         <Link to="/messages">
-            <Button variant="primary">
-              <i className="fas fa-arrow-left"></i> Back to Messages
-            </Button>
+          <Button variant="primary">
+            <i className="fas fa-arrow-left"></i> Back to Messages
+          </Button>
         </Link>
       </Col>
     </Row>

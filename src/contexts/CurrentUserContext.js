@@ -20,7 +20,7 @@ export const CurrentUserProvider = ({ children }) => {
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
       setCurrentUser(data);
-      console.log('Current user data:', data); // PASS. Current user data: { pk: 13, username: "user1", email: "", first_name: "", last_name: "", ... }
+       // PASS. Current user data: { pk: 13, username: "user1", email: "", first_name: "", last_name: "", ... }
     } catch (err) {
       console.error('Failed to fetch current user data:', err); // Not registering
     }
@@ -36,7 +36,7 @@ export const CurrentUserProvider = ({ children }) => {
         if (shouldRefreshToken()) {
           try {
             const response = await axios.post("/dj-rest-auth/token/refresh/");
-            console.log('Token refreshed:', response.data); // PASS. Token refreshed: { access: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...', ... }
+             // PASS. Token refreshed: { access: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...', ... }
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
@@ -61,7 +61,7 @@ export const CurrentUserProvider = ({ children }) => {
         if (err.response?.status === 401) {
           try {
             const response = await axios.post("/dj-rest-auth/token/refresh/");
-            console.log('Token refreshed after 401:', response.data); // Token refreshed after 401: { access: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...', ... }
+             // Token refreshed after 401: { access: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...', ... }
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {

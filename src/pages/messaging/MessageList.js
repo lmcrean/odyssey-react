@@ -27,9 +27,9 @@ function MessageList({ message, filter = "" }) {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        console.log("Fetching messages...");
+        
         const { data } = await axiosReq.get(`/messages/?${filter}search=${query}`);
-        console.log("Fetched messages data:", data);
+        
 
         // Ensure results is always an array
         setMessages({ results: Array.isArray(data) ? data : [] });
@@ -50,9 +50,9 @@ function MessageList({ message, filter = "" }) {
     };
   }, [filter, query, pathname, currentUser]);
 
-  console.log("Messages state before check:", messages);
-  console.log("HasLoaded state before check:", hasLoaded);
-  console.log("Type of messages:", typeof messages);
+  
+  
+  
 
   return (
     <Row className="h-100">
