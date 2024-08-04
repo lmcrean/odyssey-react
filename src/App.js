@@ -77,8 +77,8 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
-          <Route exact path="/conversations/" render={() => <MessageList />} /> 
-          <Route exact path="/conversations/:id" component={MessageDetail} />
+          <Route exact path="/messages/" render={() => <MessageList />} /> 
+          <Route exact path="/messages/:id" component={MessageDetail} />
 
           <Route render={() => <NotFound />} />
         </Switch>

@@ -24,7 +24,7 @@ function MessageDetail() {
     const fetchMessages = async () => {
       try {
         console.log("Fetching messages...");
-        const { data } = await axiosReq.get(`/conversations/${id}/`);
+        const { data } = await axiosReq.get(`/messages/${id}/`);
         console.log("Fetched messages data:", data);
         setMessages({ results: data.results });
         setHasLoaded(true);
@@ -66,9 +66,9 @@ function MessageDetail() {
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         {/* Add any additional components like PopularProfiles here */}
-        <Link to="/conversations">
+        <Link to="/messages">
             <Button variant="primary">
-              <i className="fas fa-arrow-left"></i> Back to Conversations
+              <i className="fas fa-arrow-left"></i> Back to Messages
             </Button>
         </Link>
       </Col>

@@ -20,7 +20,7 @@ const Message = (props) => {
     sender_profile_image,
     content,
     timestamp,
-    setConversations,
+    setMessages,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -29,10 +29,10 @@ const Message = (props) => {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/conversations/${id}/`);
-      setConversations((prevConversations) => ({
-        ...prevConversations,
-        results: prevConversations.results.filter((conversation) => conversation.id !== id),
+      await axiosRes.delete(`/messages/${id}/`);
+      setMessages((prevMessages) => ({
+        ...prevMessages,
+        results: prevMessages.results.filter((message) => message.id !== id),
       }));
     } catch (err) {
       console.error(err);

@@ -18,31 +18,31 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
 
 function MessageList({ message, filter = "" }) {
-  const [conversations, setConversations] = useState({ results: [] });
+  const [messages, setMessages] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
   const currentUser = useCurrentUser();
 
   useEffect(() => {
-    const fetchConversations = async () => {
+    const fetchMessages = async () => {
       try {
-        console.log("Fetching conversations...");
-        const { data } = await axiosReq.get(`/conversations/?${filter}search=${query}`);
-        console.log("Fetched conversations data:", data);
+        console.log("Fetching messages...");
+        const { data } = await axiosReq.get(`/messages/?${filter}search=${query}`);
+        console.log("Fetched messages data:", data);
 
         // Ensure results is always an array
-        setConversations({ results: Array.isArray(data) ? data : [] });
+        setMessages({ results: Array.isArray(data) ? data : [] });
         setHasLoaded(true);
       } catch (err) {
-        console.error("Failed to fetch conversations:", err);
+        console.error("Failed to fetch messages:", err);
         setHasLoaded(true);
       }
     };
 
     setHasLoaded(false);
     const timer = setTimeout(() => {
-      fetchConversations();
+      fetchMessages();
     }, 1000);
 
     return () => {
@@ -50,9 +50,9 @@ function MessageList({ message, filter = "" }) {
     };
   }, [filter, query, pathname, currentUser]);
 
-  console.log("Conversations state before check:", conversations);
+  console.log("Messages state before check:", messages);
   console.log("HasLoaded state before check:", hasLoaded);
-  console.log("Type of conversations:", typeof conversations);
+  console.log("Type of messages:", typeof messages);
 
   return (
     <Row className="h-100">
@@ -67,26 +67,26 @@ function MessageList({ message, filter = "" }) {
             onChange={(event) => setQuery(event.target.value)}
             type="text"
             className="mr-sm-2"
-            placeholder="Search conversations"
+            placeholder="Search messages"
           />
         </Form>
 
         {hasLoaded ? (
           <>
-            {conversations.results.length > 0 ? (
+            {messages.results.length > 0 ? (
               <InfiniteScroll
-                dataLength={conversations.results.length}
+                dataLength={messages.results.length}
                 loader={<Asset spinner />}
-                hasMore={!!conversations.next}
-                next={() => fetchMoreData(conversations, setConversations)}
+                hasMore={!!messages.next}
+                next={() => fetchMoreData(messages, setMessages)}
               >
-                {conversations.results.map((conversation) => (
-                  <div key={conversation.id} className={styles.ConversationItem}>
-                    <Link to={`/conversations/${conversation.id}`}>
+                {messages.results.map((message) => (
+                  <div key={message.id} className={styles.MessageItem}>
+                    <Link to={`/messages/${message.id}`}>
                       <Media className="align-items-center">
-                        <Avatar src={conversation.profile_image} height={55} />
+                        <Avatar src={message.profile_image} height={55} />
                         <div className="ml-3">
-                          <p className={styles.ConversationUsername}>{conversation.username}</p>
+                          <p className={styles.MessageUsername}>{message.username}</p>
                         </div>
                       </Media>
                     </Link>
