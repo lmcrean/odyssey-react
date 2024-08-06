@@ -18,6 +18,7 @@ import MessageDetailSendForm from "./MessageDetailSendForm";
 
 function MessageDetail() {
   const { id } = useParams();
+  const [recipientUsername, setRecipientUsername] = useState("");
   const [messages, setMessages] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -37,6 +38,21 @@ function MessageDetail() {
 
     fetchMessages();
   }, [id]);
+
+  useEffect(() => {
+    const fetchRecipientUsername = async () => {
+        try {
+            console.log(`Fetching username for recipient ID: ${id}`); // Logging the recipient ID
+            const { data } = await axiosReq.get(`/users/${id}/`);
+            setRecipientUsername(data.username);
+            console.log("Recipient username fetched successfully:", data.username);
+        } catch (err) {
+            console.log("Error fetching recipient username:", err);
+        }
+    };
+
+    fetchRecipientUsername();
+}, [id]);
 
   return (
     <Row className="h-100">
@@ -66,7 +82,8 @@ function MessageDetail() {
         )}
         <MessageDetailSendForm setMessages={setMessages} />
       </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2"> {/*Col currently only displaying in Large, fix later*/}
+        <h2>Chat with {recipientUsername}</h2>
         <Link to="/messages">
           <Button variant="primary">
             <i className="fas fa-arrow-left"></i> Back to Messages
