@@ -53,7 +53,7 @@ function MessageListStartNewForm() {
       console.log(`Message content: ${content}`);
       const { data } = await axiosReq.post(`/messages/${id}/start/`, { content });
       console.log("Message sent successfully:", data);
-      history.push(`/messages/${data.id}`); // Redirect to the message detail page for the recipient.  Redirect incorrectly sends to id not recipient value.
+      history.push(`/messages/${id}/`); // Redirect to the message detail page for the recipient.  Redirect incorrectly sends to id not recipient value.
     } catch (err) {
       console.log("Error sending message:", err);
       if (err.response) {
