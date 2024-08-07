@@ -1,15 +1,14 @@
 // src/pages/messaging/Message.js
 
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../../styles/Message.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-
-import { Link, useHistory } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -24,12 +23,13 @@ const Message = (props) => {
   } = props;
 
   const currentUser = useCurrentUser();
-  const is_sender = currentUser?.username === sender;
-  const history = useHistory();
+  useEffect(() => [currentUser]);
+
+  const is_sender = currentUser?.profile_id === sender;
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/messages/${id}/`);
+      await axiosRes.delete(`/messages/${id}/delete/`);
       setMessages((prevMessages) => ({
         ...prevMessages,
         results: prevMessages.results.filter((message) => message.id !== id),
@@ -54,7 +54,14 @@ const Message = (props) => {
                 placement="top"
                 overlay={<Tooltip>Delete</Tooltip>}
               >
-                <i className="far fa-trash-alt" onClick={handleDelete} />
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={handleDelete}
+                  style={{ marginLeft: "10px" }}
+                >
+                  Delete
+                </Button>
               </OverlayTrigger>
             )}
           </div>

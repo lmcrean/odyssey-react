@@ -9,7 +9,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import appStyles from "../../App.module.css";
-import styles from "../../styles/MessageDetail.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import Message from "./Message";
@@ -25,9 +24,7 @@ function MessageDetail() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        
         const { data } = await axiosReq.get(`/messages/${id}/`);
-        
         setMessages({ results: data.results });
         setHasLoaded(true);
       } catch (err) {
@@ -41,18 +38,16 @@ function MessageDetail() {
 
   useEffect(() => {
     const fetchRecipientUsername = async () => {
-        try {
-            console.log(`Fetching username for recipient ID: ${id}`); // Logging the recipient ID
-            const { data } = await axiosReq.get(`/users/${id}/`);
-            setRecipientUsername(data.username);
-            console.log("Recipient username fetched successfully:", data.username);
-        } catch (err) {
-            console.log("Error fetching recipient username:", err);
-        }
+      try {
+        const { data } = await axiosReq.get(`/users/${id}/`);
+        setRecipientUsername(data.username);
+      } catch (err) {
+        console.log("Error fetching recipient username:", err);
+      }
     };
 
     fetchRecipientUsername();
-}, [id]);
+  }, [id]);
 
   return (
     <Row className="h-100">
