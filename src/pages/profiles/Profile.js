@@ -21,10 +21,8 @@ const Profile = (props) => {
   const { handleFollow, handleUnfollow } = useSetProfileData();
 
   const checkIfChatExists = async () => {
-    console.log("checkIfChatExists called"); // Debugging log
     try {
       const { data } = await axiosReq.get(`/messages/${id}/`);
-      console.log("Messages data:", data); // Debugging log
       if (data.results.length > 0) {
         // If chat exists, redirect to the existing chat
         history.push(`/messages/${id}`);
