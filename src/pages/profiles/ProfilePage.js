@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from "react";
+// src/pages/profiles/ProfilePage.js
 
+import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
 import Asset from "../../components/Asset";
-
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router";
+import { useParams, Link, useHistory } from "react-router-dom"; // Updated import statement
 import { axiosReq } from "../../api/axiosDefaults";
 import {
   useProfileData,
@@ -32,6 +30,7 @@ function ProfilePage() {
 
   const currentUser = useCurrentUser();
   const { id } = useParams();
+  const history = useHistory();
 
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
   const { pageProfile } = useProfileData();
@@ -54,11 +53,26 @@ function ProfilePage() {
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
-        
+        console.error(err);
       }
     };
     fetchData();
   }, [id, setProfileData]);
+
+  const checkIfChatExists = async () => {
+    try {
+      const { data } = await axiosReq.get(`/messages/${id}/`);
+      if (data.results.length > 0) {
+        // If chat exists, redirect to the existing chat
+        history.push(`/messages/${id}`);
+      } else {
+        // If no chat exists, redirect to start a new chat
+        history.push(`/messages/create/${id}`);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const mainProfile = (
     <>
@@ -90,22 +104,31 @@ function ProfilePage() {
         </Col>
         <Col lg={3} className="text-lg-right">
           {currentUser &&
-            !is_owner &&
-            (profile?.following_id ? (
-              <Button
-                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-                onClick={() => handleUnfollow(profile)}
-              >
-                unfollow
-              </Button>
-            ) : (
-              <Button
-                className={`${btnStyles.Button} ${btnStyles.Black}`}
-                onClick={() => handleFollow(profile)}
-              >
-                follow
-              </Button>
-            ))}
+            !is_owner && (
+              <>
+                {profile?.following_id ? (
+                  <Button
+                    className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                    onClick={() => handleUnfollow(profile)}
+                  >
+                    unfollow
+                  </Button>
+                ) : (
+                  <Button
+                    className={`${btnStyles.Button} ${btnStyles.Black}`}
+                    onClick={() => handleFollow(profile)}
+                  >
+                    follow
+                  </Button>
+                )}
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                  onClick={checkIfChatExists}
+                >
+                  Message
+                </Button>
+              </>
+            )}
         </Col>
         {profile?.content && <Col className="p-3">{profile.content}</Col>}
       </Row>
