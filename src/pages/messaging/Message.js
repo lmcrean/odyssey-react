@@ -1,6 +1,6 @@
 // src/pages/messaging/Message.js
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/Message.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Card from "react-bootstrap/Card";
@@ -24,6 +24,8 @@ const Message = (props) => {
   } = props;
 
   const currentUser = useCurrentUser();
+  const [showFullTimestamp, setShowFullTimestamp] = useState(false);
+
   useEffect(() => [currentUser]);
 
   const is_sender = currentUser?.profile_id === sender;
@@ -40,6 +42,9 @@ const Message = (props) => {
     }
   };
 
+  const handleMouseEnter = () => setShowFullTimestamp(true);
+  const handleMouseLeave = () => setShowFullTimestamp(false);
+
   return (
     <Card className={styles.Message}>
       <Card.Body>
@@ -49,8 +54,14 @@ const Message = (props) => {
             {sender}
           </Link>
           <div className="d-flex align-items-center">
-            <span>{date},</span>
-            <span>{time}</span>
+            <span
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              {showFullTimestamp
+                ? `${date} ${time}`
+                : time}
+            </span>
             {is_sender && (
               <OverlayTrigger
                 placement="top"
