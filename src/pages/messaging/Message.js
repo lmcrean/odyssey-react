@@ -18,7 +18,8 @@ const Message = (props) => {
     sender,
     sender_profile_image,
     content,
-    timestamp,
+    date,
+    time,
     setMessages,
   } = props;
 
@@ -48,7 +49,8 @@ const Message = (props) => {
             {sender}
           </Link>
           <div className="d-flex align-items-center">
-            <span>{timestamp}</span>
+            <span>{date},</span>
+            <span>{time}</span>
             {is_sender && (
               <OverlayTrigger
                 placement="top"
