@@ -64,6 +64,20 @@ function MessageDetail() {
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+  const groupMessagesByDate = (messages) => {
+    const groupedMessages = {};
+    messages.forEach((message) => {
+      const date = message.date;
+      if (!groupedMessages[date]) {
+        groupedMessages[date] = [];
+      }
+      groupedMessages[date].push(message);
+    });
+    return groupedMessages;
+  };
+
+  const groupedMessages = groupMessagesByDate(messages.results);
+
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
@@ -71,8 +85,13 @@ function MessageDetail() {
           <>
             {messages.results.length ? (
               <InfiniteScroll
-                children={messages.results.map((message) => (
-                  <Message key={message.id} {...message} setMessages={setMessages} />
+                children={Object.entries(groupedMessages).map(([date, msgs]) => (
+                  <div key={date}>
+                    <div className="date-separator">{date}</div>
+                    {msgs.map((message) => (
+                      <Message key={message.id} {...message} setMessages={setMessages} />
+                    ))}
+                  </div>
                 ))}
                 dataLength={messages.results.length}
                 loader={<Asset spinner />}
