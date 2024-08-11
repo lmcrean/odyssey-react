@@ -15,7 +15,7 @@ export const handlers = [
         last_name: "",
         profile_id: 2,
         profile_image:
-          "https://res.cloudinary.com/dgjrrvdbl/image/upload/v1/media/../default_profile_qdjgyp",
+          "https://res.cloudinary.com/dgjrrvdbl/image/upload/v1/media/../default_profile_dqcubz",
       })
     );
   }),
