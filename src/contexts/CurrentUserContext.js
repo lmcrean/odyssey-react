@@ -17,12 +17,20 @@ export const CurrentUserProvider = ({ children }) => {
   const history = useHistory();
 
   const handleMount = async () => {
+    const accessToken = localStorage.getItem('access_token');
+    
+    // If there's no access token, don't attempt to fetch user data
+    if (!accessToken) {
+      console.log("No access token found. User is not signed in.");
+      return;
+    }
+
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
       setCurrentUser(data);
-       // PASS. Current user data: { pk: 13, username: "user1", email: "", first_name: "", last_name: "", ... }
+      console.log("PASS. Current user data:", data);
     } catch (err) {
-      console.error('Failed to fetch current user data:', err); // Not registering
+      console.error("Failed to fetch current user data:", err.response?.data || err.message);
     }
   };
 
@@ -33,11 +41,19 @@ export const CurrentUserProvider = ({ children }) => {
   useMemo(() => {
     axiosReq.interceptors.request.use(
       async (config) => {
-        if (shouldRefreshToken()) {
+        const refreshToken = localStorage.getItem('refresh_token');
+        
+        // Check if refresh token exists before attempting to refresh
+        if (shouldRefreshToken() && refreshToken) {
           try {
-            const response = await axios.post("/dj-rest-auth/token/refresh/");
-             // PASS. Token refreshed: { access: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...', ... }
+            const response = await axios.post("/dj-rest-auth/token/refresh/", {
+              refresh: refreshToken,
+            });
+            config.headers["Authorization"] = `Bearer ${response.data.access}`;
+            localStorage.setItem('access_token', response.data.access);
+            console.log("PASS. Token refreshed:", response.data);
           } catch (err) {
+            console.error("Token refresh failed:", err.response?.data || err.message);
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
                 history.push("/signin");
@@ -45,9 +61,14 @@ export const CurrentUserProvider = ({ children }) => {
               return null;
             });
             removeTokenTimestamp();
-            return config;
+          }
+        } else {
+          const accessToken = localStorage.getItem('access_token');
+          if (accessToken) {
+            config.headers["Authorization"] = `Bearer ${accessToken}`;
           }
         }
+
         return config;
       },
       (err) => {
@@ -59,21 +80,32 @@ export const CurrentUserProvider = ({ children }) => {
       (response) => response,
       async (err) => {
         if (err.response?.status === 401) {
-          try {
-            const response = await axios.post("/dj-rest-auth/token/refresh/");
-             // Token refreshed after 401: { access: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...', ... }
-          } catch (err) {
-            setCurrentUser((prevCurrentUser) => {
-              if (prevCurrentUser) {
-                history.push("/signin");
-              }
-              return null;
-            });
-            removeTokenTimestamp();
+          const refreshToken = localStorage.getItem('refresh_token');
+
+          // Ensure refresh token exists before trying to refresh it
+          if (refreshToken) {
+            try {
+              const response = await axios.post("/dj-rest-auth/token/refresh/", {
+                refresh: refreshToken,
+              });
+              axios.defaults.headers["Authorization"] = `Bearer ${response.data.access}`;
+              localStorage.setItem('access_token', response.data.access);
+              console.log("Token refreshed after 401:", response.data);
+              return axios(err.config);
+            } catch (err) {
+              console.error("Token refresh failed after 401:", err.response?.data || err.message);
+              setCurrentUser((prevCurrentUser) => {
+                if (prevCurrentUser) {
+                  history.push("/signin");
+                }
+                return null;
+              });
+              removeTokenTimestamp();
+            }
+            return axios(err.config);
           }
-          return axios(err.config);
+          return Promise.reject(err);
         }
-        return Promise.reject(err);
       }
     );
   }, [history]);
