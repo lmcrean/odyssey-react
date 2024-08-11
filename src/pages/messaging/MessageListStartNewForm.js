@@ -25,8 +25,8 @@ function MessageListStartNewForm() {
     // Fetch recipient username. Tested as WORKING. Do not change.
     const fetchRecipientUsername = async () => {
       try {
-        const { data } = await axiosReq.get(`/users/${id}/`);
-        setRecipientUsername(data.username);
+        const response = await axiosReq.get(`/users/${id}/`);
+        setRecipientUsername(response.data.username);
       } catch (err) {
         setErrors(err.response?.data);
       }
@@ -42,12 +42,11 @@ function MessageListStartNewForm() {
     });
   };
 
-  // POST message Tested as WORKING. Redirect incorrectly sends to id not recipient value.
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axiosReq.post(`/messages/${id}/start/`, { content });
-      history.push(`/messages/${id}/`); // Redirect to the message detail page for the recipient.  Redirect incorrectly sends to id not recipient value.
+      await axiosReq.post(`/messages/${id}/start/`, { content });
+      history.push(`/messages/${id}/`); // Redirect to the message detail page for the recipient.
     } catch (err) {
       setErrors(err.response?.data);
     }

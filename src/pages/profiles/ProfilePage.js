@@ -10,7 +10,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams, Link, useHistory } from "react-router-dom"; // Updated import statement
+import { useParams, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import {
   useProfileData,
