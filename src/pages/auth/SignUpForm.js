@@ -79,6 +79,7 @@ const SignUpForm = () => {
                 name="password1"
                 value={password1}
                 onChange={handleChange}
+                autocomplete="new-password"
               />
             </Form.Group>
             {errors.password1?.map((message, idx) => (
@@ -96,6 +97,7 @@ const SignUpForm = () => {
                 name="password2"
                 value={password2}
                 onChange={handleChange}
+                autocomplete="new-password"
               />
             </Form.Group>
             {errors.password2?.map((message, idx) => (
