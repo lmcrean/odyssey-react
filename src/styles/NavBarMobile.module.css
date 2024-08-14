@@ -1,12 +1,34 @@
-.NavBar {
-  background-color: #ffffff;
-  border: 1px solid #dadadf;
+.NavBarMobile {
+  background-color: #fff;
+  border-top: 1px solid #e2e8f0; /* light gray border */
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
 }
 
 .NavLink {
-  padding: 5px;
+  color: #555; /* dark gray */
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  width: 60px; /* width for each nav item */
 }
 
-.Active i {
-  color: #2142b2;
+.NavText {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #555; /* same dark gray */
+}
+
+.NavLink i {
+  font-size: 20px;
+}
+
+.NavLink:hover {
+  color: #007bff; /* bootstrap primary color */
+}
+
+.Active {
+  color: #007bff;
 }
