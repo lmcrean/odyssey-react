@@ -30,15 +30,6 @@ const NavBarMobile = () => {
     }
   };
 
-  const addPostIcon = (
-    <NavLink
-      className={styles.NavLink}
-      activeClassName={styles.Active}
-      to="/posts/create"
-    >
-      <i className="far fa-plus-square"></i>Add post
-    </NavLink>
-  );
   const loggedInIcons = (
     <>
       <NavLink
@@ -71,10 +62,6 @@ const NavBarMobile = () => {
       >
         <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
       </NavLink>
-      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <i className="fas fa-sign-out-alt"></i>
-        <div>Sign out</div>
-      </NavLink>
     </>
   );
 
@@ -102,7 +89,6 @@ const NavBarMobile = () => {
   return (
     <Navbar expanded={expanded} className={styles.NavBarMobile} fixed="bottom">
       <Container className="justify-content-around">
-        {currentUser && addPostIcon}
         <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
@@ -110,16 +96,6 @@ const NavBarMobile = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="w-100 d-flex justify-content-between">
-            <NavLink
-              exact
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/"
-            >
-              <i className="fas fa-home"></i>
-              <span className={styles.NavText}>Home</span>
-            </NavLink>
-
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
