@@ -1,0 +1,63 @@
+/* src/styles/NavBarDesktop.module.css */
+
+.NavBarDesktop {
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between; /* Space between top and bottom */
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 80px;
+  background-color: #fff;
+  border-right: 1px solid #e0e0e0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  z-index: 1000;
+}
+
+.NavLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.ProfileLink {
+  margin-top: auto; /* Push profile link to the bottom */
+}
+
+.NavLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+  width: 100%;
+  color: #555;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.NavLink:hover {
+  background-color: #f0f0f0;
+}
+
+.NavLink:hover .NavText {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.NavText {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #555;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease-in-out;
+}
+
+.Active {
+  color: #007bff;
+}

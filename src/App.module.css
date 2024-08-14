@@ -4,6 +4,16 @@
   min-height: 100vh;
 }
 
+.App {
+  display: flex; /*desktop view*/
+
+}
+
+.Main { /*desktop view only*/
+  flex: 1;
+  margin-left: 60px;
+}
+
 .Main {
   padding-top: 81px;
 }
