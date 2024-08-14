@@ -23,6 +23,8 @@ import NotFound from "./components/NotFound";
 import MessageList from "./pages/messaging/MessageList"; 
 import MessageDetail from "./pages/messaging/MessageDetail";
 import MessageListStartNewForm from "./pages/messaging/MessageListStartNewForm";
+import 'tailwindcss/tailwind.css';
+import NavBarMobile from "./components/NavBarMobile"; 
 
 function App() {
   const currentUser = useCurrentUser();
@@ -30,7 +32,7 @@ function App() {
 
   return (
     <div className={styles.App}>
-      <NavBar />
+      <NavBarMobile />
       <Container className={styles.Main}>
       <Switch>
         <Route exact path="/" render={() => <PostsPage message="No results found. Adjust the search keyword." />} />
