@@ -4,7 +4,6 @@
 
 import React from "react";
 import styles from "./App.module.css";
-import NavBar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
@@ -26,15 +25,18 @@ import MessageListStartNewForm from "./pages/messaging/MessageListStartNewForm";
 import 'tailwindcss/tailwind.css';
 import NavBarMobile from "./components/NavBarMobile"; 
 import NavBarDesktop from "./components/NavBarDesktop";
+import useWindowSize from "./hooks/useWindowSize";
 
 
 function App() {
   const currentUser = useCurrentUser();
+  const size = useWindowSize();
   const profile_id = currentUser?.profile_id || "";
 
   return (
     <div className={styles.App}>
-      <NavBarDesktop />
+      {/* Conditionally render Navbar based on window width */}
+      {size.width <= 768 ? <NavBarMobile /> : <NavBarDesktop />}
       <Container className={styles.Main}>
       <Switch>
         <Route exact path="/" render={() => <PostsPage message="No results found. Adjust the search keyword." />} />
