@@ -2,20 +2,20 @@
   font-family: "DM Sans", sans-serif;
   background-color: #f8f8f8;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
-.App {
-  display: flex; /*desktop view*/
-
-}
-
-.Main { /*desktop view only*/
-  flex: 1;
-  margin-left: 60px;
+@media screen and (min-width: 769px) {
+  .Main {
+    flex: 1;
+    margin-left: 80px;
+  }
 }
 
 .Main {
-  padding-top: 81px;
+  padding: 81px 10px auto;
+  margin: auto 10px;
 }
 
 .Content {
