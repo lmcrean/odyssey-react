@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Media from "react-bootstrap/Media";  // Import Media from react-bootstrap
+import Media from "react-bootstrap/Media";
 import { useLocation, Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
@@ -77,7 +77,7 @@ function MessageList({ message, filter = "" }) {
                   <div key={message.id} className={styles.MessageItem}>
                     <Link to={`/messages/${message.id}`}>
                       <Media className="align-items-center">
-                        <Avatar src={message.sender_profile_image} height={55} /> {/* Ensure sender_profile_image is correctly passed */}
+                        <Avatar src={message.recipient_profile_image} height={55} />
                         <div className="ml-3">
                           <p className={styles.MessageUsername}>{message.username}</p>
                         </div>

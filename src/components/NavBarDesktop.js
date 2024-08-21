@@ -1,18 +1,8 @@
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import logo from "../assets/logo.png";
 import styles from "../styles/NavBarDesktop.module.css";
 import { NavLink } from "react-router-dom";
-import {
-  useCurrentUser,
-  useSetCurrentUser,
-} from "../contexts/CurrentUserContext";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
-import axios from "axios";
-import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
-import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBarDesktop = () => {
   const currentUser = useCurrentUser();
@@ -78,7 +68,6 @@ const NavBarDesktop = () => {
       </NavLink>
     </>
   );
-
 
   return (
     <nav className={styles.NavBarDesktop}>
