@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 
 const Message = (props) => {
   const {
@@ -75,7 +75,6 @@ const Message = (props) => {
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${sender}`}>
             <Avatar src={sender_profile_image} height={55} />
-            {sender}
           </Link>
           <div className="d-flex align-items-center">
             <span

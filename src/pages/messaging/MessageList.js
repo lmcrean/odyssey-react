@@ -27,11 +27,8 @@ function MessageList({ message, filter = "" }) {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        
         const { data } = await axiosReq.get(`/messages/?${filter}search=${query}`);
-        
-
-        // Ensure results is always an array
+        console.log(data); // Log fetched messages to verify structure
         setMessages({ results: Array.isArray(data) ? data : [] });
         setHasLoaded(true);
       } catch (err) {
@@ -49,10 +46,6 @@ function MessageList({ message, filter = "" }) {
       clearTimeout(timer);
     };
   }, [filter, query, pathname, currentUser]);
-
-  
-  
-  
 
   return (
     <Row className="h-100">
@@ -84,7 +77,7 @@ function MessageList({ message, filter = "" }) {
                   <div key={message.id} className={styles.MessageItem}>
                     <Link to={`/messages/${message.id}`}>
                       <Media className="align-items-center">
-                        <Avatar src={message.profile_image} height={55} />
+                        <Avatar src={message.sender_profile_image} height={55} /> {/* Ensure sender_profile_image is correctly passed */}
                         <div className="ml-3">
                           <p className={styles.MessageUsername}>{message.username}</p>
                         </div>
