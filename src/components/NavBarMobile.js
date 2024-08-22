@@ -34,10 +34,10 @@ const NavBarMobile = () => {
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/feed"
+        to="/"
       >
-        <i className="fas fa-stream"></i>
-        <div>Feed</div>
+        <i className="fas fa-home"></i>
+        <span className={styles.NavText}>Home Feed</span>
       </NavLink>
       <NavLink
       className={styles.NavLink}
