@@ -1,11 +1,27 @@
 import React from "react";
 import styles from "../styles/NavBarDesktop.module.css";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
-import Avatar from "./Avatar";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";import Avatar from "./Avatar";
+import { removeTokenTimestamp } from "../utils/utils";
+import axios from "axios";
+
 
 const NavBarDesktop = () => {
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+      removeTokenTimestamp();
+    } catch (err) {
+      // Handle error
+    }
+  };
 
   const loggedInIcons = (
     <>
@@ -32,6 +48,10 @@ const NavBarDesktop = () => {
       >
         <i className="fas fa-envelope"></i>
         <span className={styles.NavText}>Messages</span>
+      </NavLink>
+      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+        <i className="fas fa-sign-out-alt"></i>
+        <span className={styles.NavText}>Sign out</span>
       </NavLink>
     </>
   );

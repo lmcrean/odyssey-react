@@ -6,28 +6,30 @@ import styles from "../styles/NavBarMobile.module.css";
 import { NavLink } from "react-router-dom";
 import {
   useCurrentUser,
-  // useSetCurrentUser,
+  useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 // import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
-// import { removeTokenTimestamp } from "../utils/utils";
+import { removeTokenTimestamp } from "../utils/utils";
+import axios from "axios";
+
 
 const NavBarMobile = () => {
   const currentUser = useCurrentUser();
-  // const setCurrentUser = useSetCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
 
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
-  // const handleSignOut = async () => {
-  //   try {
-  //     await axios.post("dj-rest-auth/logout/");
-  //     setCurrentUser(null);
-  //     removeTokenTimestamp();
-  //   } catch (err) {
-  //     // Handle error
-  //   }
-  // };
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+      removeTokenTimestamp();
+    } catch (err) {
+      // Handle error
+    }
+  };
 
   const loggedInIcons = (
     <>
@@ -60,6 +62,9 @@ const NavBarMobile = () => {
         to={`/profiles/${currentUser?.profile_id}`}
       >
         <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+      </NavLink>
+      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+        <i className="fas fa-sign-out-alt"></i>Sign out
       </NavLink>
     </>
   );
