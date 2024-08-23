@@ -1,12 +1,13 @@
 .Row {
   height: calc(100vh - 81px);
 }
+
 .Input {
-  background: #ffffff;
-  border: 1px solid #f0f1f9;
+  background: var(--color-primary-text);
+  border: 1px solid var(--color-secondary-text);
   box-sizing: border-box;
   border-radius: 2px;
-  color: #7177a1;
+  color: var(--color-secondary-text);
   text-align: center;
   padding: 10px;
 }
@@ -19,7 +20,7 @@
   text-align: center;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #2142b2;
+  color: var(--color-info);
 }
 
 .Link {
@@ -30,7 +31,7 @@
 }
 
 .Link span {
-  color: #ff9254;
+  color: var(--color-error);
 }
 
 .Container {

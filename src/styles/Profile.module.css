@@ -1,3 +1,4 @@
 .WordBreak {
+  color: var(--color-primary-text) !important; /* Force profile text color */
   word-break: break-all;
 }

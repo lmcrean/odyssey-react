@@ -1,0 +1,13 @@
+.MessageDetail {
+    background-color: var(--color-secondary-background);
+    color: var(--color-primary-text);
+  }
+  
+  .MessageUsername {
+    color: var(--color-primary-text);
+  }
+  
+  .date-separator {
+    color: var(--color-secondary-text);
+  }
+  

@@ -1,24 +1,24 @@
 .NavBarMobile {
-  background-color: #fff;
-  border-top: 1px solid #e2e8f0; /* light gray border */
+  background-color: var(--color-primary-text);
+  border-top: 1px solid var(--color-secondary-text);
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
 }
 
 .NavLink {
-  color: #555; /* dark gray */
+  color: var(--color-secondary-text);
   text-decoration: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 10px 0;
-  width: 60px; /* width for each nav item */
+  width: 60px;
 }
 
 .NavText {
   font-size: 12px;
   margin-top: 5px;
-  color: #555; /* same dark gray */
+  color: var(--color-secondary-text);
 }
 
 .NavLink i {
@@ -26,9 +26,9 @@
 }
 
 .NavLink:hover {
-  color: #007bff; /* bootstrap primary color */
+  color: var(--color-info);
 }
 
 .Active {
-  color: #007bff;
+  color: var(--color-info);
 }

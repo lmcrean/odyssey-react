@@ -1,6 +1,6 @@
 .NavBar {
-  background-color: #ffffff;
-  border: 1px solid #dadadf;
+  background-color: var(--color-primary-text);
+  border: 1px solid var(--color-secondary-text);
 }
 
 .NavLink {
@@ -8,5 +8,5 @@
 }
 
 .Active i {
-  color: #2142b2;
+  color: var(--color-info);
 }

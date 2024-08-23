@@ -1,0 +1,18 @@
+.MessageItem {
+    background-color: var(--color-secondary-background);
+    color: var(--color-primary-text);
+  }
+  
+  .MessageUsername {
+    color: var(--color-primary-text);
+  }
+  
+  .SearchIcon {
+    color: var(--color-secondary-text);
+  }
+  
+  .SearchBar {
+    background-color: var(--color-secondary-background);
+    color: var(--color-primary-text);
+  }
+  

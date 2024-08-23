@@ -1,0 +1,10 @@
+.Message {
+    background-color: var(--color-secondary-background);
+    color: var(--color-primary-text);
+  }
+  
+  .EditTextarea {
+    background-color: var(--color-secondary-background);
+    color: var(--color-primary-text);
+  }
+  
