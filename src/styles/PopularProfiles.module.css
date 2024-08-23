@@ -37,9 +37,3 @@
     color: var(--color-primary-text) !important;
   }
   
-  /* Specific fix for Profile_WordBreak */
-  .WordBreak {
-    color: var(--color-primary-text) !important; /* Force profile text color */
-    word-break: break-all;
-  }
-  
