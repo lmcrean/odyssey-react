@@ -86,18 +86,18 @@ function ProfilePage() {
           />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{profile?.owner}</h3>
-          <Row className="justify-content-center no-gutters">
+          <h3 className={styles.ProfileOwner}>{profile?.owner}</h3>
+          <Row className={`${styles.ProfileStatsSection} justify-content-center no-gutters`}>
             <Col xs={3} className="my-2">
-              <div>{profile?.posts_count}</div>
+              <div className={styles.ProfileStats}>{profile?.posts_count}</div>
               <div>posts</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>{profile?.followers_count}</div>
+              <div className={styles.ProfileStats}>{profile?.followers_count}</div>
               <div>followers</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>{profile?.following_count}</div>
+              <div className={styles.ProfileStats}>{profile?.following_count}</div>
               <div>following</div>
             </Col>
           </Row>
@@ -138,7 +138,7 @@ function ProfilePage() {
   const mainProfilePosts = (
     <>
       <hr />
-      <p className="text-center">{profile?.owner}'s posts</p>
+      <p className={styles.ProfileOwnerPosts}>{profile?.owner}'s posts</p>
       <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
