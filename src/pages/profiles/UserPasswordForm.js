@@ -25,7 +25,7 @@ const UserPasswordForm = () => {
   });
   const { new_password1, new_password2 } = userData;
 
-  const [errors, setErrors] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (event) => {
     setUserData({
@@ -43,12 +43,31 @@ const UserPasswordForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Clear previous error message
+    setErrorMessage("");
+
+    // Client-side validation
+    if (new_password1 !== new_password2) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
+
+    if (new_password1.length < 8) {
+      setErrorMessage("Password must be at least 8 characters long.");
+      return;
+    }
+
+    // Proceed with form submission if validation passed
     try {
-      await axiosRes.post("/dj-rest-auth/password/change/", userData);
-      history.goBack();
+      const response = await axiosRes.post("/dj-rest-auth/password/change/", userData);
+
+      // Redirect only if the password change is successful
+      if (response.status === 200) {
+        history.goBack();  // Only redirect if the request was successful
+      }
     } catch (err) {
-      
-      setErrors(err.response?.data);
+      setErrorMessage("Password change failed. Please try again.");
     }
   };
 
@@ -67,11 +86,6 @@ const UserPasswordForm = () => {
                 name="new_password1"
               />
             </Form.Group>
-            {errors?.new_password1?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
             <Form.Group>
               <Form.Label>Confirm password</Form.Label>
               <Form.Control
@@ -82,11 +96,14 @@ const UserPasswordForm = () => {
                 name="new_password2"
               />
             </Form.Group>
-            {errors?.new_password2?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
+
+            {/* Custom error message */}
+            {errorMessage && (
+              <Alert variant="warning">
+                {errorMessage}
               </Alert>
-            ))}
+            )}
+
             <Button
               className={`${btnStyles.Button} ${btnStyles.Blue}`}
               onClick={() => history.goBack()}
