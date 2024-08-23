@@ -9,3 +9,7 @@
 .AssetSpinner {
   filter: brightness(4); /* Increase brightness */
 }
+
+.AssetUpload {
+  color: var(--color-secondary-text) !important;
+}

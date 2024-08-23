@@ -90,3 +90,19 @@ figure {
 *::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary-text);
 }
+
+form input, textarea {
+  background-color: var(--color-background) !important;
+}
+
+button {
+  background-color: var(--color-info);
+}
+
+label {
+  color: var(--color-secondary-text) ;
+}
+
+span {
+  color: var(--color-info) !important;
+}

@@ -22,8 +22,13 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
       <Dropdown.Toggle as={ThreeDots} />
 
       <Dropdown.Menu
-        className="text-center"
+        className={`text-center ${styles.CustomDropdownMenu}`}
         popperConfig={{ strategy: "fixed" }}
+        style={{
+          backgroundColor: "var(--color-secondary-background)",
+          color: "var(--color-primary-text)",
+          border: "1px solid var(--color-secondary-text)"
+        }}
       >
         <Dropdown.Item
           className={styles.DropdownItem}
