@@ -20,6 +20,7 @@ import appStyles from "../../App.module.css";
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
+  const [customError, setCustomError] = useState("");
 
   const history = useHistory();
   const { id } = useParams();
@@ -38,17 +39,28 @@ const UsernameForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosRes.put("/dj-rest-auth/user/", {
+      // Attempt to update the username
+      const response = await axiosRes.put("/dj-rest-auth/user/", {
         username,
       });
-      setCurrentUser((prevUser) => ({
-        ...prevUser,
-        username,
-      }));
-      history.goBack();
+  
+      // Check if the response status is 200 (success)
+      if (response.status === 200) {
+        setCurrentUser((prevUser) => ({
+          ...prevUser,
+          username,
+        }));
+  
+        // Only redirect if the update was successful
+        history.goBack();
+      }
     } catch (err) {
-      
+      // Handle the error case
       setErrors(err.response?.data);
+      setCustomError("Please try another username"); // Custom error message
+  
+      // Log the error for debugging (optional)
+      console.log(err.response);
     }
   };
 
@@ -66,6 +78,13 @@ const UsernameForm = () => {
                 onChange={(event) => setUsername(event.target.value)}
               />
             </Form.Group>
+            {/* Custom Error Alert */}
+            {customError && (
+              <Alert variant="warning">
+                {customError}
+              </Alert>
+            )}
+            {/* Backend Error Alert */}
             {errors?.username?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
