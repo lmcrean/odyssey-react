@@ -9,8 +9,8 @@
     --color-secondary-text: #B3B3B3;
   
     --color-error: #FF5252;
-    --color-success: #4CAF50;
-    --color-info: #2196F3;
+    --color-success: #27c62c;
+    --color-info: #019641;
 
      /* Button Colors */
      --color-button-primary: var(--color-accent); 
@@ -27,68 +27,3 @@
      --font-primary: 'Core Sans C', sans-serif;
      --font-secondary: 'Serifa', sans-serif;
  }
-
- /* Define Core Sans C Font Faces */
-@font-face {
-    font-family: 'Core Sans C';
-    src: url('./fonts/Fontspring-DEMO-coresansc15.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Core Sans C';
-    src: url('./fonts/Fontspring-DEMO-coresansc25.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Core Sans C';
-    src: url('./fonts/Fontspring-DEMO-coresansc35.otf') format('opentype');
-    font-weight: 500;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Core Sans C';
-    src: url('./fonts/Fontspring-DEMO-coresansc75.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Core Sans C';
-    src: url('./fonts/Fontspring-DEMO-coresansc85.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-  }
-  
-  /* Define Serifa Font Faces */
-  @font-face {
-    font-family: 'Serifa';
-    src: url('./fonts/SerifaStd-Black.otf') format('opentype');
-    font-weight: 900;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Serifa';
-    src: url('./fonts/SerifaStd-Light.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Serifa';
-    src: url('./fonts/SerifaStd-Italic.otf') format('opentype');
-    font-weight: 400;
-    font-style: italic;
-  }
-  
-  @font-face {
-    font-family: 'Serifa';
-    src: url('./fonts/SerifaStd-LightItalic.otf') format('opentype');
-    font-weight: 300;
-    font-style: italic;
-  }
