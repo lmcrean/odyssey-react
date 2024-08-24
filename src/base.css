@@ -67,3 +67,18 @@ body {
   .green-filter {
     filter: hue-rotate(-60deg);
 }
+
+.dropdown-menu {
+  background-color: var(--color-secondary-background);
+  filter: brightness(110%);
+}
+
+.dropdown-item {
+  color: var(--color-secondary-text);
+}
+
+.dropdown-item:hover {
+  background-color: var(--color-secondary-background);
+  filter: brightness(120%);
+  color: var(--color-secondary-text);
+}
