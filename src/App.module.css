@@ -59,7 +59,6 @@ input[type="file"] {
 }
 
 i {
-  color: var(--color-secondary-text);
   font-size: 1.6rem;
   padding: 7px;
   vertical-align: middle;
@@ -68,7 +67,6 @@ i {
 i:hover {
   cursor: pointer;
   transition: color ease-in-out 0.3s;
-  color: var(--color-accent);
 }
 
 figure {

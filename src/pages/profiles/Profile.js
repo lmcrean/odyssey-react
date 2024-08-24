@@ -9,6 +9,9 @@ import Avatar from "../../components/Avatar";
 import Button from "react-bootstrap/Button";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+
 
 const Profile = (props) => {
   const { profile, mobile, imageSize = 55 } = props;
@@ -47,32 +50,47 @@ const Profile = (props) => {
       <div className={`mx-2 ${styles.WordBreak}`}>
         <strong>{owner}</strong>
       </div>
-      <div className={`text-right ${!mobile && "ml-auto"}`}>
+      <div className={`d-flex text-right ${!mobile && "ml-auto"}`}>
         {!mobile &&
           currentUser &&
           !is_owner && (
             <>
               {following_id ? (
+                <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>{"Unfollow"}</Tooltip>}
+              >
                 <Button
-                  className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                  className={`${btnStyles.Button}`}
                   onClick={() => handleUnfollow(profile)}
+                  variant="secondary"
                 >
-                  unfollow
+                  <i className="fas fa-user-minus"></i> {/* Unfollow Icon */}
                 </Button>
+                </OverlayTrigger>
               ) : (
+                <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>{"Follow"}</Tooltip>}
+              >
                 <Button
-                  className={`${btnStyles.Button} ${btnStyles.Black}`}
+                  className={`${btnStyles.Button}`}
                   onClick={() => handleFollow(profile)}
                 >
-                  follow
+                  <i className="fas fa-user-plus"></i> {/* Follow Icon */}
                 </Button>
+                </OverlayTrigger>
               )}
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>{"Message"}</Tooltip>}>
               <Button
                 className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
                 onClick={checkIfChatExists}
               >
-                Message
+                <i className="fas fa-envelope"></i> {/* Message Icon */}
               </Button>
+              </OverlayTrigger>
             </>
           )}
       </div>
