@@ -7,9 +7,12 @@ import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
 import styles from "../../styles/PopularProfiles.module.css";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
+  const currentUser = useCurrentUser();
+
 
   return (
     <Container
@@ -22,23 +25,28 @@ const PopularProfiles = ({ mobile }) => {
           <p className={styles.PopularProfilesTitle}>Most followed profiles.</p>
           {mobile ? (
             <div className="d-flex justify-content-around">
-              {popularProfiles.results.slice(0, 4).map((profile) => (
+              {popularProfiles.results
+                .filter((profile) => profile.id !== currentUser?.profile_id) // Filter out the current user
+                .slice(0, 4)
+                .map((profile) => (
+                  <Profile
+                    key={profile.id}
+                    profile={profile}
+                    mobile
+                    className={styles.ProfileItem}
+                  />
+                ))}
+            </div>
+          ) : (
+            popularProfiles.results
+              .filter((profile) => profile.id !== currentUser?.profile_id)
+              .map((profile) => (
                 <Profile
                   key={profile.id}
                   profile={profile}
-                  mobile
                   className={styles.ProfileItem}
                 />
-              ))}
-            </div>
-          ) : (
-            popularProfiles.results.map((profile) => (
-              <Profile
-                key={profile.id}
-                profile={profile}
-                className={styles.ProfileItem}
-              />
-            ))
+              ))
           )}
         </>
       ) : (
