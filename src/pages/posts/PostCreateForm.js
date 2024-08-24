@@ -124,6 +124,7 @@ function PostCreateForm() {
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
+            <h2 className="text-center mb-4">Share your goal in progress</h2>
             <Form.Group className="text-center">
               {image ? (
                 <>

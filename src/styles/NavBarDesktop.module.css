@@ -58,3 +58,9 @@
 .Active {
   color: var(--color-info);
 }
+
+.Logo {
+  width: 50px; 
+  height: auto;
+  margin-bottom: 20px; /* Add spacing between logo and first nav link */
+}

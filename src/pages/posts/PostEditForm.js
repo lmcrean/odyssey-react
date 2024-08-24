@@ -135,6 +135,7 @@ function PostEditForm() {
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
+            <h2 className="text-center mb-4">Edit your goal in progress</h2>
             <Form.Group className="text-center">
               <figure>
                 <Image className={appStyles.Image} src={image} rounded />

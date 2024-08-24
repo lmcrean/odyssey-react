@@ -12,6 +12,7 @@ import axios from "axios";
 const NavBarDesktop = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const logoURL = "https://res.cloudinary.com/dh5lpihx1/image/upload/v1724410546/media/images/logo_buvyq3.png";
 
   const handleSignOut = async () => {
     try {
@@ -91,6 +92,7 @@ const NavBarDesktop = () => {
 
   return (
     <nav className={styles.NavBarDesktop}>
+      <img src={logoURL} alt="Logo" className={styles.Logo} />
       {currentUser ? (
         <>
           {loggedInIcons}

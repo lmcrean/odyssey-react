@@ -3,6 +3,7 @@
 // This file defines the main application component, setting up routes and rendering different pages based on the current URL.
 
 import React from "react";
+import './fonts.css';
 import './variables.css';
 import './base.css'; 
 import styles from "./App.module.css";
