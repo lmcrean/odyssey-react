@@ -3,11 +3,9 @@
 }
 
 .Input {
-  background: var(--color-primary-text);
   border: 1px solid var(--color-secondary-text);
   box-sizing: border-box;
   border-radius: 2px;
-  color: var(--color-secondary-text);
   text-align: center;
   padding: 10px;
 }

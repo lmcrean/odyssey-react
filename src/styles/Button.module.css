@@ -15,43 +15,8 @@
   cursor: pointer;
 }
 
-.Button:hover:active,
-.Button:active,
-.Button:focus {
-  background-color: var(--color-accent) !important;
-}
 
 .Wide {
   padding: 10px 50px;
   width: 100%;
-}
-
-.Blue,
-.BlueOutline:hover,
-.Bright:hover {
-  background-color: var(--color-accent);
-  color: var(--color-primary-text);
-}
-
-.BlueOutline,
-.Blue:hover {
-  background-color: var(--color-primary-text);
-  color: var(--color-accent);
-}
-
-.Black,
-.BlackOutline:hover {
-  background-color: var(--color-secondary-background);
-  color: var(--color-primary-text);
-}
-
-.Black:hover,
-.BlackOutline {
-  background-color: var(--color-primary-text);
-  color: var(--color-secondary-background);
-}
-
-.Bright {
-  background-color: var(--color-info);
-  color: var(--color-accent);
 }

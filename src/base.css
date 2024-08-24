@@ -1,0 +1,66 @@
+
+/* base.css */
+/* This file does generic styling for colors and typefaces */
+
+/* Body and Typography */
+body {
+    background-color: var(--color-background);
+    color: var(--color-primary-text);
+    font-family: var(--font-secondary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    color: var(--color-primary-text);
+  }
+  
+  p, span, div {
+    color: var(--color-primary-text);
+  }
+  
+  /* Links */
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: var(--color-info);
+  }
+  
+  /* Buttons */
+  button, .btn-primary {
+    background-color: var(--color-button-primary) !important;
+    color: var(--color-primary-text);
+    font-family: var(--font-primary);
+    border: 0px;
+  }
+
+  .Button:hover:active,
+.Button:active,
+.Button:focus {
+  background-color: var(--color-accent) !important;
+}
+
+  .btn-secondary {
+    background-color: var(--color-button-secondary) !important;
+ }
+
+  /* Inputs */
+  input, textarea {
+    background-color: var(--color-textarea-secondary) !important;
+    color: var(--color-textarea-primary) !important;
+    font-family: var(--font-primary);
+  }
+
+  span {
+    color: var(--color-info) !important;
+  }
+
+  label {
+    color: var(--color-secondary-text) ;
+  }
+  

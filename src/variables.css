@@ -1,0 +1,27 @@
+:root {
+    /* Dark Theme Colors */
+    --color-background: #121212;
+    --color-secondary-background: #1F1F1F;
+    --color-accent: #1DB954;
+    --color-primary-text: #f0e7e7;
+    --color-secondary-text: #B3B3B3;
+  
+    --color-error: #FF5252;
+    --color-success: #4CAF50;
+    --color-info: #2196F3;
+
+     /* Button Colors */
+     --color-button-primary: var(--color-accent); 
+     --color-button-secondary: var(--color-secondary-background); 
+     --color-button-ignore: var(--color-secondary-background); 
+     --color-button-danger: var(--color-error); 
+ 
+     /* Text Input Colors */
+     --color-textarea-primary: var(--color-primary-text); 
+     --color-textarea-secondary: var(--color-secondary-background);
+     --color-textinput-text: var(--color-secondary-background);
+   
+     /* Fonts */
+     --font-primary: 'Arial', sans-serif;
+     --font-secondary: 'Helvetica', sans-serif;
+ }
