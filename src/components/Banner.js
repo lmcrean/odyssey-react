@@ -15,7 +15,7 @@ const Banner = () => {
             src="https://res.cloudinary.com/dh5lpihx1/image/upload/v1724521404/media/images/logo_mainpage.png"
             alt="Website Logo"
             fluid
-            className="w-100"
+            className="w-100 green-filter"
           />
         </Col>
         <Col xs={12} lg={6}>

@@ -92,7 +92,7 @@ const NavBarDesktop = () => {
 
   return (
     <nav className={styles.NavBarDesktop}>
-      <img src={logoURL} alt="Logo" className={styles.Logo} />
+      <img src={logoURL} alt="Logo" className={`${styles.Logo} green-filter`} />
       {currentUser ? (
         <>
           {loggedInIcons}

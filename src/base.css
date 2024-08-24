@@ -64,3 +64,6 @@ body {
     color: var(--color-secondary-text) ;
   }
   
+  .green-filter {
+    filter: hue-rotate(-60deg);
+}
