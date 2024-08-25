@@ -29,22 +29,34 @@ const Message = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newContent, setNewContent] = useState(content);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [senderUsername, setSenderUsername] = useState(""); // State to store the sender's username
+  const [senderUsername, setSenderUsername] = useState("");
+  const [loadingUsername, setLoadingUsername] = useState(true);
+
+  // Reset newContent if content prop changes
+  useEffect(() => {
+    setNewContent(content);
+  }, [content]);
 
   // Fetch the sender's username
   useEffect(() => {
     const fetchSenderUsername = async () => {
       try {
-        const { data } = await axiosRes.get(`/users/${sender}/`);
-        setSenderUsername(data.username); // Set the sender's username
-        console.log('Fetched Sender Username:', data.username);
+        const response = await axiosRes.get(`/users/${sender}/`);
+        if (response && response.data && response.data.username) {
+          setSenderUsername(response.data.username);
+          console.log('Fetched Sender Username:', response.data.username);
+        } else {
+          throw new Error('Invalid response data');
+        }
       } catch (err) {
         console.error("Failed to fetch sender username:", err);
+      } finally {
+        setLoadingUsername(false);
       }
     };
-
+  
     if (showAvatar) {
-      fetchSenderUsername(); // Fetch the username only if the avatar is displayed
+      fetchSenderUsername();
     }
   }, [sender, showAvatar]);
 
@@ -95,10 +107,14 @@ const Message = (props) => {
     <Card className={is_sender ? styles.senderMessage : styles.recipientMessage}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
-          {showAvatar && ( // Conditionally render avatar based on the prop, this stops repetitive Avatars
+          {showAvatar && (
             <Link to={`/profiles/${sender_profile_id}`}>
               <Avatar src={sender_profile_image} height={55} />
-              <small className="text-muted">{senderUsername}</small>
+              {loadingUsername ? (
+                <small className="text-muted">Loading...</small>
+              ) : (
+                <small className="text-muted">{senderUsername}</small>
+              )}
             </Link>
           )}
           <div className="d-flex align-items-center">
@@ -132,6 +148,7 @@ const Message = (props) => {
                     size="sm"
                     onClick={handleShowDeleteModal}
                     style={{ marginLeft: "10px" }}
+                    data-testid="delete-button-card"
                   >
                     Delete
                   </Button>
@@ -158,9 +175,8 @@ const Message = (props) => {
           <Card.Text>{content}</Card.Text>
         )}
 
-        {/* Confirmation Modal */}
         <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
-          <Modal.Header closeButton>
+          <Modal.Header closeButton aria-label="Close modal">
             <Modal.Title>Confirm Delete</Modal.Title>
           </Modal.Header>
           <Modal.Body>Are you sure you want to delete this message?</Modal.Body>
@@ -168,7 +184,7 @@ const Message = (props) => {
             <Button variant="secondary" onClick={handleCloseDeleteModal}>
               Cancel
             </Button>
-            <Button variant="danger" onClick={handleDelete}>
+            <Button variant="danger" onClick={handleDelete} data-testid="delete-button-modal">
               Delete
             </Button>
           </Modal.Footer>
