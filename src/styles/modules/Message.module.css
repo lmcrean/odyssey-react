@@ -8,3 +8,14 @@
     color: var(--color-primary-text);
   }
   
+
+  .senderMessage {
+    background-color: var(--color-secondary-background);
+    filter: brightness(1.2) hue-rotate(20deg) contrast(0.8);
+    color: var(--color-primary-text);
+  }
+  
+  .recipientMessage {
+    background-color: var(--color-secondary-background);
+    color: var(--color-primary-text);
+  }

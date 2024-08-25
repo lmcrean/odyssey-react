@@ -70,7 +70,7 @@ const Message = (props) => {
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
 
   return (
-    <Card className={styles.Message}>
+    <Card className={is_sender ? styles.senderMessage : styles.recipientMessage}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${sender}`}>
