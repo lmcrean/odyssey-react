@@ -54,7 +54,7 @@ function PostsPage({ message, filter = "" }) {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <Col className="py-2 p-0 p-lg-2" lg={7} xl={8}>
         <Banner />
         <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
@@ -95,7 +95,7 @@ function PostsPage({ message, filter = "" }) {
           </Container>
         )}
       </Col>
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+      <Col md={5} xl={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
       </Col>
     </Row>
