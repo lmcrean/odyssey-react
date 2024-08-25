@@ -22,6 +22,7 @@ const Message = (props) => {
     date,
     time,
     setMessages,
+    showAvatar,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -73,9 +74,11 @@ const Message = (props) => {
     <Card className={is_sender ? styles.senderMessage : styles.recipientMessage}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
-          <Link to={`/profiles/${sender}`}>
-            <Avatar src={sender_profile_image} height={55} />
-          </Link>
+          {showAvatar && ( // Conditionally render avatar based on the prop, this stops repetitive Avatars
+            <Link to={`/profiles/${sender}`}>
+              <Avatar src={sender_profile_image} height={55} />
+            </Link>
+          )}
           <div className="d-flex align-items-center">
             <span
               onMouseEnter={handleMouseEnter}

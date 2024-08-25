@@ -1,5 +1,3 @@
-// src/pages/messaging/MessageDetail.js
-
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
@@ -45,7 +43,7 @@ function MessageDetail() {
         const { data } = await axiosReq.get(`/users/${id}/`);
         setRecipientUsername(data.username);
       } catch (err) {
-        
+        console.error("Failed to fetch recipient username:", err);
       }
     };
 
@@ -85,14 +83,29 @@ function MessageDetail() {
           <>
             {messages.results.length ? (
               <InfiniteScroll
-                children={Object.entries(groupedMessages).map(([date, msgs]) => (
-                  <div key={date}>
-                    <div className="date-separator">{date}</div>
-                    {msgs.map((message) => (
-                      <Message key={message.id} {...message} setMessages={setMessages} />
-                    ))}
-                  </div>
-                ))}
+                children={Object.entries(groupedMessages).map(([date, msgs]) => {
+                  let previousSender = null;  // Track the previous sender
+                  return (
+                    <div key={date}>
+                      <div className="date-separator">{date}</div>
+                      {msgs.map((message, index) => {
+                        // Determine whether to show the avatar based on consecutive messages
+                        const showAvatar = previousSender !== message.sender;
+                        previousSender = message.sender; // Update previous sender
+
+                        return (
+                          <Message
+                            key={message.id}
+                            {...message}
+                            recipientUsername={recipientUsername}
+                            setMessages={setMessages}
+                            showAvatar={showAvatar}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                })}
                 dataLength={messages.results.length}
                 loader={<Asset spinner />}
                 hasMore={!!messages.next}
