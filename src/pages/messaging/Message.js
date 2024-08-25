@@ -30,6 +30,23 @@ const Message = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newContent, setNewContent] = useState(content);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [senderUsername, setSenderUsername] = useState(""); // State to store the sender's username
+
+  // Fetch the sender's username
+  useEffect(() => {
+    const fetchSenderUsername = async () => {
+      try {
+        const { data } = await axiosRes.get(`/users/${sender}/`);
+        setSenderUsername(data.username); // Set the sender's username
+      } catch (err) {
+        console.error("Failed to fetch sender username:", err);
+      }
+    };
+
+    if (showAvatar) {
+      fetchSenderUsername(); // Fetch the username only if the avatar is displayed
+    }
+  }, [sender, showAvatar]);
 
   useEffect(() => [currentUser]);
 
@@ -77,6 +94,7 @@ const Message = (props) => {
           {showAvatar && ( // Conditionally render avatar based on the prop, this stops repetitive Avatars
             <Link to={`/profiles/${sender}`}>
               <Avatar src={sender_profile_image} height={55} />
+              <small className="text-muted">{senderUsername}</small>
             </Link>
           )}
           <div className="d-flex align-items-center">
