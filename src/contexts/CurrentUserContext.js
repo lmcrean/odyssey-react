@@ -21,15 +21,13 @@ export const CurrentUserProvider = ({ children }) => {
     
     // If there's no access token, don't attempt to fetch user data
     if (!accessToken) {
-      console.log("No access token found. User is not signed in.");
-      return;
+            return;
     }
 
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
       setCurrentUser(data);
-      console.log("PASS. Current user data:", data);
-    } catch (err) {
+          } catch (err) {
       console.error("Failed to fetch current user data:", err.response?.data || err.message);
     }
   };
@@ -51,8 +49,7 @@ export const CurrentUserProvider = ({ children }) => {
             });
             config.headers["Authorization"] = `Bearer ${response.data.access}`;
             localStorage.setItem('access_token', response.data.access);
-            console.log("PASS. Token refreshed:", response.data);
-          } catch (err) {
+                      } catch (err) {
             console.error("Token refresh failed:", err.response?.data || err.message);
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
@@ -90,8 +87,7 @@ export const CurrentUserProvider = ({ children }) => {
               });
               axios.defaults.headers["Authorization"] = `Bearer ${response.data.access}`;
               localStorage.setItem('access_token', response.data.access);
-              console.log("Token refreshed after 401:", response.data);
-              return axios(err.config);
+                            return axios(err.config);
             } catch (err) {
               console.error("Token refresh failed after 401:", err.response?.data || err.message);
               setCurrentUser((prevCurrentUser) => {
