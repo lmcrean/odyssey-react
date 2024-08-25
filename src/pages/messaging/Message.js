@@ -1,5 +1,3 @@
-// src/pages/messaging/Message.js
-
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/modules/Message.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -17,6 +15,7 @@ const Message = (props) => {
   const {
     id,
     sender,
+    sender_profile_id,
     sender_profile_image,
     content,
     date,
@@ -38,6 +37,7 @@ const Message = (props) => {
       try {
         const { data } = await axiosRes.get(`/users/${sender}/`);
         setSenderUsername(data.username); // Set the sender's username
+        console.log('Fetched Sender Username:', data.username);
       } catch (err) {
         console.error("Failed to fetch sender username:", err);
       }
@@ -49,8 +49,12 @@ const Message = (props) => {
   }, [sender, showAvatar]);
 
   useEffect(() => [currentUser]);
+  const is_sender = currentUser?.profile_id === sender_profile_id;
 
-  const is_sender = currentUser?.profile_id === sender;
+  // Debugging logs
+  console.log("Current User Profile ID:", currentUser?.profile_id);
+  console.log("Sender Profile ID:", sender_profile_id);
+  console.log("Is Sender:", is_sender);
 
   const handleDelete = async () => {
     try {
@@ -92,7 +96,7 @@ const Message = (props) => {
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           {showAvatar && ( // Conditionally render avatar based on the prop, this stops repetitive Avatars
-            <Link to={`/profiles/${sender}`}>
+            <Link to={`/profiles/${sender_profile_id}`}>
               <Avatar src={sender_profile_image} height={55} />
               <small className="text-muted">{senderUsername}</small>
             </Link>
@@ -102,9 +106,7 @@ const Message = (props) => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              {showFullTimestamp
-                ? `${date} ${time}`
-                : time}
+              {showFullTimestamp ? `${date} ${time}` : time}
             </span>
             {is_sender && (
               <>

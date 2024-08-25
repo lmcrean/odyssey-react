@@ -26,6 +26,7 @@ function MessageDetail() {
     const fetchMessages = async () => {
       try {
         const { data } = await axiosReq.get(`/messages/${id}/`);
+        console.log('Messages API Response:', data.results); // Debugging log to verify response structure
         setMessages({ results: data.results });
         setHasLoaded(true);
       } catch (err) {
@@ -46,7 +47,7 @@ function MessageDetail() {
         console.error("Failed to fetch recipient username:", err);
       }
     };
-
+  
     fetchRecipientUsername();
   }, [id]);
 
@@ -97,6 +98,9 @@ function MessageDetail() {
                           <Message
                             key={message.id}
                             {...message}
+                            sender={message.sender} 
+                            sender_profile_id={message.sender}
+                            recipient={message.recipient}
                             recipientUsername={recipientUsername}
                             setMessages={setMessages}
                             showAvatar={showAvatar}
