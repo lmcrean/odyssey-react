@@ -58,9 +58,6 @@ const UsernameForm = () => {
       // Handle the error case
       setErrors(err.response?.data);
       setCustomError("Please try another username"); // Custom error message
-  
-      // Log the error for debugging (optional)
-      console.log(err.response);
     }
   };
 

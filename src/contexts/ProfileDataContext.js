@@ -72,7 +72,7 @@ export const ProfileDataProvider = ({ children }) => {
         const { data } = await axiosReq.get(
           "/profiles/?ordering=-followers_count"
         );
-        console.log(data); // Log the data to inspect the URLs being returned
+
         setProfileData((prevState) => ({
           ...prevState,
           popularProfiles: data,

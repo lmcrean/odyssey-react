@@ -44,7 +44,6 @@ const Message = (props) => {
         const response = await axiosRes.get(`/users/${sender}/`);
         if (response && response.data && response.data.username) {
           setSenderUsername(response.data.username);
-          console.log('Fetched Sender Username:', response.data.username);
         } else {
           throw new Error('Invalid response data');
         }
@@ -60,13 +59,10 @@ const Message = (props) => {
     }
   }, [sender, showAvatar]);
 
-  useEffect(() => [currentUser]);
-  const is_sender = currentUser?.profile_id === sender_profile_id;
-
-  // Debugging logs
-  console.log("Current User Profile ID:", currentUser?.profile_id);
-  console.log("Sender Profile ID:", sender_profile_id);
-  console.log("Is Sender:", is_sender);
+  // Safeguard comparison to avoid potential issues with undefined/null values
+  const is_sender = currentUser && currentUser.pk && sender_profile_id
+    ? currentUser.pk.toString() === sender_profile_id.toString()
+    : false;
 
   const handleDelete = async () => {
     try {

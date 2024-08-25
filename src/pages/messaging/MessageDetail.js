@@ -26,7 +26,7 @@ function MessageDetail() {
     const fetchMessages = async () => {
       try {
         const { data } = await axiosReq.get(`/messages/${id}/`);
-        console.log('Messages API Response:', data.results); // Debugging log to verify response structure
+
         setMessages({ results: data.results });
         setHasLoaded(true);
       } catch (err) {
