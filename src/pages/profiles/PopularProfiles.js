@@ -6,7 +6,7 @@ import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
-import styles from "../../styles/PopularProfiles.module.css";
+import styles from "../../styles/modules/PopularProfiles.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const PopularProfiles = ({ mobile }) => {

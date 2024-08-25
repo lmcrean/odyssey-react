@@ -11,8 +11,8 @@ import Container from "react-bootstrap/Container";
 
 import { Link, useHistory } from "react-router-dom";
 
-import styles from "../../styles/SignInUpForm.module.css";
-import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/modules/SignInUpForm.module.css";
+import btnStyles from "../../styles/modules/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { setTokenTimestamp } from "../../utils/utils";

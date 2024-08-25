@@ -1,8 +1,8 @@
 // src/pages/profiles/Profile.js
 
 import React from "react";
-import styles from "../../styles/Profile.module.css";
-import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/modules/Profile.module.css";
+import btnStyles from "../../styles/modules/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";

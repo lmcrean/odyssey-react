@@ -1,7 +1,7 @@
 // src/pages/messaging/Message.js
 
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/Message.module.css";
+import styles from "../../styles/modules/Message.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";

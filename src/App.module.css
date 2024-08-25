@@ -8,7 +8,7 @@
 @media screen and (min-width: 769px) {
   .Main {
     flex: 1;
-    margin-left: 80px;
+    margin-left: 100px !important;
   }
 }
 

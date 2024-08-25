@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/NavBarDesktop.module.css";
+import styles from "../styles/modules/NavBarDesktop.module.css";
 import { NavLink } from "react-router-dom";
 import {
   useCurrentUser,
