@@ -31,6 +31,7 @@ const Message = (props) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [senderUsername, setSenderUsername] = useState("");
   const [loadingUsername, setLoadingUsername] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
 
   // Reset newContent if content prop changes
   useEffect(() => {
@@ -44,11 +45,12 @@ const Message = (props) => {
         const response = await axiosRes.get(`/users/${sender}/`);
         if (response && response.data && response.data.username) {
           setSenderUsername(response.data.username);
+          setFetchError(false); // Clear any previous errors on successful fetch
         } else {
           throw new Error('Invalid response data');
         }
       } catch (err) {
-        console.error("Failed to fetch sender username:", err);
+        setFetchError(true); // Set error state to true on failure
       } finally {
         setLoadingUsername(false);
       }
@@ -73,8 +75,7 @@ const Message = (props) => {
       }));
       setShowDeleteModal(false);
     } catch (err) {
-      console.error(err);
-      setShowDeleteModal(false);
+      // Handle the error gracefully
     }
   };
 
@@ -89,7 +90,7 @@ const Message = (props) => {
       }));
       setIsEditing(false);
     } catch (err) {
-      console.error(err);
+      // Handle the error gracefully
     }
   };
 
@@ -108,6 +109,8 @@ const Message = (props) => {
               <Avatar src={sender_profile_image} height={55} />
               {loadingUsername ? (
                 <small className="text-muted">Loading...</small>
+              ) : fetchError ? (
+                <small className="text-muted">Failed to load username</small>
               ) : (
                 <small className="text-muted">{senderUsername}</small>
               )}

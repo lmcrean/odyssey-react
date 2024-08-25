@@ -44,12 +44,14 @@ function MessageDetail() {
         const { data } = await axiosReq.get(`/users/${id}/`);
         setRecipientUsername(data.username);
       } catch (err) {
-        console.error("Failed to fetch recipient username:", err);
+        // Graceful error handling
+        setRecipientUsername("Unknown user"); // Fallback if the fetch fails
       }
     };
   
     fetchRecipientUsername();
   }, [id]);
+  
 
   const handleDeleteChat = async () => {
     try {

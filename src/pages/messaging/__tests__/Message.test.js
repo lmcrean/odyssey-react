@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'; // Added act here
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import Message from '../Message';
 import { useCurrentUser } from '../../../contexts/CurrentUserContext';
 import { axiosRes } from '../../../api/axiosDefaults';
@@ -25,7 +25,8 @@ describe('Message Component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    useCurrentUser.mockReturnValue({ profile_id: 1 }); // Default mock for current user
+    // Mock for current user with profile_id 1
+    useCurrentUser.mockReturnValue({ pk: 1 });
   });
 
   it('fetches sender username', async () => {
@@ -40,7 +41,7 @@ describe('Message Component', () => {
           <Message
             id={1}
             sender={1}
-            sender_profile_id={1}
+            sender_profile_id={1} // This matches currentUser.pk
             sender_profile_image="profile_image_url"
             content="Test message"
             date="01 Jan 2023"
@@ -55,10 +56,11 @@ describe('Message Component', () => {
     expect(await screen.findByText('sender_username')).toBeInTheDocument();
   });
 
-  it('handles fetch sender username failure gracefully', async () => {
+  it('handles fetch sender username failure gracefully without logging console errors', async () => {
     // Mock rejected response for failure scenario
     axiosRes.get.mockRejectedValueOnce(new Error('Failed to fetch sender username'));
 
+    // Suppress console.error for this test
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     await act(async () => {
@@ -67,7 +69,7 @@ describe('Message Component', () => {
           <Message
             id={1}
             sender={1}
-            sender_profile_id={1}
+            sender_profile_id={1} // This matches currentUser.pk
             sender_profile_image="profile_image_url"
             content="Test message"
             date="01 Jan 2023"
@@ -79,29 +81,34 @@ describe('Message Component', () => {
       );
     });
 
-    await waitFor(() => {
-      expect(consoleSpy).toHaveBeenCalledWith('Failed to fetch sender username:', expect.any(Error));
-    });
+    // Check that the fallback message "Failed to load username" is displayed
+    expect(await screen.findByText('Failed to load username')).toBeInTheDocument();
 
+    // Restore console.error after the test
     consoleSpy.mockRestore();
   });
 
   it('opens and closes the delete modal properly', async () => {
-    render(
-      <MemoryRouter>
-        <Message
-          id={1}
-          sender={1}
-          sender_profile_id={1}
-          sender_profile_image="profile_image_url"
-          content="Test message"
-          date="01 Jan 2023"
-          time="12:00"
-          setMessages={setMessagesMock}
-          showAvatar={true}
-        />
-      </MemoryRouter>
-    );
+    // Set currentUser to be the sender by setting profile_id = sender_profile_id
+    useCurrentUser.mockReturnValue({ pk: 1 }); // Set pk to match sender_profile_id
+
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <Message
+            id={1}
+            sender={1} // Set sender to match currentUser.pk
+            sender_profile_id={1} // Matches the mock currentUser pk value
+            sender_profile_image="profile_image_url"
+            content="Test message"
+            date="01 Jan 2023"
+            time="12:00"
+            setMessages={setMessagesMock}
+            showAvatar={true}
+          />
+        </MemoryRouter>
+      );
+    });
 
     // Simulate clicking the card's Delete button to show the modal
     fireEvent.click(screen.getByTestId('delete-button-card'));
