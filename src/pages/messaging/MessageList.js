@@ -67,6 +67,8 @@ function MessageList({ message, filter = "" }) {
                         <Avatar src={message.recipient_profile_image} height={55} />
                         <div className="ml-3">
                           <p className={styles.MessageUsername}>{message.username}</p>
+                          <p className={styles.LastMessage}>{message.last_message}</p>
+                          <p className={styles.LastMessageTime}>{message.last_message_time}</p>
                         </div>
                       </Media>
                     </Link>

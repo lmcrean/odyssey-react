@@ -1,18 +1,29 @@
 .MessageItem {
-    background-color: var(--color-secondary-background);
-    color: var(--color-primary-text);
-  }
-  
-  .MessageUsername {
-    color: var(--color-primary-text);
-  }
-  
-  .SearchIcon {
-    color: var(--color-secondary-text);
-  }
-  
-  .SearchBar {
-    background-color: var(--color-secondary-background);
-    color: var(--color-primary-text);
-  }
-  
+  background-color: var(--color-secondary-background);
+  color: var(--color-primary-text);
+  padding: 10px;
+  border-bottom: 1px solid var(--color-secondary-text);
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.MessageItem:hover {
+  background-color: var(--color-background);
+}
+
+.MessageUsername {
+  color: var(--color-primary-text);
+  font-weight: bold;
+}
+
+.LastMessage {
+  color: var(--color-secondary-text);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.LastMessageTime {
+  color: var(--color-secondary-text);
+  font-size: 0.8rem;
+  margin: 0;
+}
