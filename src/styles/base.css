@@ -36,7 +36,16 @@ body {
     background-color: var(--color-button-primary) !important;
     color: var(--color-primary-text);
     font-family: var(--font-primary);
-    border: 0px;
+    border: 0px !important;
+  }
+
+ button.close, button span {
+    background-color: var(--color-button-ignore) !important;
+    color: var(--color-primary-text) !important;
+    border-radius: 4px;
+    font-weight: 300;
+    text-shadow: none;
+    ;
   }
 
   .Button:hover:active,
@@ -81,4 +90,13 @@ body {
   background-color: var(--color-secondary-background);
   filter: brightness(120%);
   color: var(--color-secondary-text);
+}
+
+.modal-header, .modal-body, .modal-footer {
+  background-color: var(--color-secondary-background);
+  color: var(--color-secondary-text);
+  border-bottom: none;
+  border-top: none;
+  text-align: center;
+  justify-content: center;
 }
