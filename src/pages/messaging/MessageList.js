@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Media from "react-bootstrap/Media";
 import { useLocation, Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -21,7 +20,7 @@ function MessageList({ message, filter = "" }) {
   const [messages, setMessages] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
-  const [query, setQuery] = useState("");
+  const [query] = useState("");
   const currentUser = useCurrentUser();
 
   useEffect(() => {
