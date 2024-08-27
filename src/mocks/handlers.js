@@ -22,4 +22,16 @@ export const handlers = [
   rest.post(`${baseURL}dj-rest-auth/logout/`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),
+
+  rest.get(`${baseURL}users/:userId/`, (req, res, ctx) => {
+    const { userId } = req.params;
+    return res(
+      ctx.json({
+        pk: parseInt(userId),
+        username: `user${userId}`,
+        profile_id: parseInt(userId),
+        profile_image: "https://res.cloudinary.com/dgjrrvdbl/image/upload/v1/media/../default_profile_dqcubz",
+      })
+    );
+  }),
 ];
