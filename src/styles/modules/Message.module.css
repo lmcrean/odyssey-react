@@ -1,21 +1,26 @@
 .Message {
-    background-color: var(--color-secondary-background);
-    color: var(--color-primary-text);
-  }
-  
-  .EditTextarea {
-    background-color: var(--color-secondary-background);
-    color: var(--color-primary-text);
-  }
-  
+  background-color: var(--color-secondary-background);
+  color: var(--color-primary-text);
+}
 
-  .senderMessage {
-    background-color: var(--color-secondary-background);
-    filter: brightness(1.2) hue-rotate(20deg) contrast(0.8);
-    color: var(--color-primary-text);
-  }
-  
-  .recipientMessage {
-    background-color: var(--color-secondary-background);
-    color: var(--color-primary-text);
-  }
+.EditTextarea {
+  background-color: var(--color-secondary-background);
+  color: var(--color-primary-text);
+}
+
+.senderMessage {
+  background-color: var(--color-secondary-background);
+  filter: brightness(1.2) hue-rotate(20deg) contrast(0.8);
+  color: var(--color-primary-text);
+}
+
+.recipientMessage {
+  background-color: var(--color-secondary-background);
+  color: var(--color-primary-text);
+}
+
+.MessageImage {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 8px;
+}
