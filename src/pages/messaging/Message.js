@@ -7,6 +7,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Image from "react-bootstrap/Image";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -18,6 +19,7 @@ const Message = (props) => {
     sender_profile_id,
     sender_profile_image,
     content,
+    image,
     date,
     time,
     setMessages,
@@ -171,7 +173,12 @@ const Message = (props) => {
             </Button>
           </>
         ) : (
-          <Card.Text>{content}</Card.Text>
+          <>
+            <Card.Text>{content}</Card.Text>
+            {image && (
+              <Image src={image} alt="Message attachment" fluid className={styles.MessageImage} />
+            )}
+          </>
         )}
 
         <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
