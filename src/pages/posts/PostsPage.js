@@ -54,6 +54,8 @@ function PostsPage({ message, filter = "" }) {
       history.push("/");
     } else if (tab === "following") {
       history.push("/feed");
+    } else if (tab === "liked") {
+      history.push("/liked");
     }
   };
 
@@ -75,6 +77,12 @@ function PostsPage({ message, filter = "" }) {
               onClick={() => handleTabChange("following")}
             >
               Following
+            </Button>
+            <Button
+              variant={pathname === "/liked" ? "primary" : "secondary"}
+              onClick={() => handleTabChange("liked")}
+            >
+              Liked
             </Button>
           </ButtonGroup>
         )}
