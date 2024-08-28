@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/modules/Message.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import Card from "react-bootstrap/Card";
-import Media from "react-bootstrap/Media";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Image from "react-bootstrap/Image";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 const Message = (props) => {
   const {
@@ -35,35 +33,32 @@ const Message = (props) => {
   const [loadingUsername, setLoadingUsername] = useState(true);
   const [fetchError, setFetchError] = useState(false);
 
-  // Reset newContent if content prop changes
   useEffect(() => {
     setNewContent(content);
   }, [content]);
 
-  // Fetch the sender's username
   useEffect(() => {
     const fetchSenderUsername = async () => {
-      try {
-        const response = await axiosRes.get(`/users/${sender}/`);
-        if (response && response.data && response.data.username) {
-          setSenderUsername(response.data.username);
-          setFetchError(false); // Clear any previous errors on successful fetch
-        } else {
-          throw new Error('Invalid response data');
+      if (showAvatar) {
+        try {
+          const response = await axiosRes.get(`/users/${sender}/`);
+          if (response && response.data && response.data.username) {
+            setSenderUsername(response.data.username);
+            setFetchError(false);
+          } else {
+            throw new Error('Invalid response data');
+          }
+        } catch (err) {
+          setFetchError(true);
+        } finally {
+          setLoadingUsername(false);
         }
-      } catch (err) {
-        setFetchError(true); // Set error state to true on failure
-      } finally {
-        setLoadingUsername(false);
       }
     };
-  
-    if (showAvatar) {
-      fetchSenderUsername();
-    }
+
+    fetchSenderUsername();
   }, [sender, showAvatar]);
 
-  // Safeguard comparison to avoid potential issues with undefined/null values
   const is_sender = currentUser && currentUser.pk && sender_profile_id
     ? currentUser.pk.toString() === sender_profile_id.toString()
     : false;
@@ -77,7 +72,7 @@ const Message = (props) => {
       }));
       setShowDeleteModal(false);
     } catch (err) {
-      // Handle the error gracefully
+      console.error("Error deleting message:", err);
     }
   };
 
@@ -92,72 +87,26 @@ const Message = (props) => {
       }));
       setIsEditing(false);
     } catch (err) {
-      // Handle the error gracefully
+      console.error("Error editing message:", err);
     }
   };
 
-  const handleMouseEnter = () => setShowFullTimestamp(true);
-  const handleMouseLeave = () => setShowFullTimestamp(false);
-
-  const handleShowDeleteModal = () => setShowDeleteModal(true);
-  const handleCloseDeleteModal = () => setShowDeleteModal(false);
-
   return (
-    <Card className={is_sender ? styles.senderMessage : styles.recipientMessage}>
-      <Card.Body>
-        <Media className="align-items-center justify-content-between">
-          {showAvatar && (
-            <Link to={`/profiles/${sender_profile_id}`}>
-              <Avatar src={sender_profile_image} height={55} />
-              {loadingUsername ? (
-                <small className="text-muted">Loading...</small>
-              ) : fetchError ? (
-                <small className="text-muted">Failed to load username</small>
-              ) : (
-                <small className="text-muted">{senderUsername}</small>
-              )}
-            </Link>
-          )}
-          <div className="d-flex align-items-center">
-            <span
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              {showFullTimestamp ? `${date} ${time}` : time}
-            </span>
-            {is_sender && (
-              <>
-                <OverlayTrigger
-                  placement="top"
-                  overlay={<Tooltip>Edit</Tooltip>}
-                >
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    onClick={() => setIsEditing(true)}
-                    style={{ marginLeft: "10px" }}
-                  >
-                    Edit
-                  </Button>
-                </OverlayTrigger>
-                <OverlayTrigger
-                  placement="top"
-                  overlay={<Tooltip>Delete</Tooltip>}
-                >
-                  <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={handleShowDeleteModal}
-                    style={{ marginLeft: "10px" }}
-                    data-testid="delete-button-card"
-                  >
-                    Delete
-                  </Button>
-                </OverlayTrigger>
-              </>
+    <div className={`${styles.Message} ${is_sender ? styles.senderMessage : styles.recipientMessage}`}>
+      <div className={styles.MessageTriangle}></div>
+      <div className={styles.MessageContent}>
+        {showAvatar && (
+          <Link to={`/profiles/${sender_profile_id}`} className={styles.AvatarLink}>
+            <Avatar src={sender_profile_image} height={40} />
+            {loadingUsername ? (
+              <small className={styles.Username}>Loading...</small>
+            ) : fetchError ? (
+              <small className={styles.Username}>Failed to load username</small>
+            ) : (
+              <small className={styles.Username}>{senderUsername}</small>
             )}
-          </div>
-        </Media>
+          </Link>
+        )}
         {isEditing ? (
           <>
             <textarea
@@ -165,38 +114,63 @@ const Message = (props) => {
               onChange={(e) => setNewContent(e.target.value)}
               className={styles.EditTextarea}
             />
-            <Button onClick={handleEdit} className="mt-2" variant="success" size="sm">
-              Save
-            </Button>
-            <Button onClick={() => setIsEditing(false)} className="mt-2 ml-2" variant="secondary" size="sm">
-              Cancel
-            </Button>
+            <div className={styles.EditButtons}>
+              <Button onClick={handleEdit} variant="success" size="sm">
+                Save
+              </Button>
+              <Button onClick={() => setIsEditing(false)} variant="secondary" size="sm">
+                Cancel
+              </Button>
+            </div>
           </>
         ) : (
           <>
-            <Card.Text>{content}</Card.Text>
+            <p>{content}</p>
             {image && (
               <Image src={image} alt="Message attachment" fluid className={styles.MessageImage} />
             )}
           </>
         )}
+        <div className={styles.MessageMeta}>
+          <span
+            className={styles.Timestamp}
+            onMouseEnter={() => setShowFullTimestamp(true)}
+            onMouseLeave={() => setShowFullTimestamp(false)}
+          >
+            {showFullTimestamp ? `${date} ${time}` : time}
+          </span>
+          {is_sender && (
+            <div className={styles.MessageActions}>
+              <OverlayTrigger placement="top" overlay={<Tooltip>Edit</Tooltip>}>
+                <Button variant="link" size="sm" onClick={() => setIsEditing(true)}>
+                  <i className="fas fa-edit"></i>
+                </Button>
+              </OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={<Tooltip>Delete</Tooltip>}>
+                <Button variant="link" size="sm" onClick={() => setShowDeleteModal(true)} data-testid="delete-button-card">
+                  <i className="fas fa-trash-alt"></i>
+                </Button>
+              </OverlayTrigger>
+            </div>
+          )}
+        </div>
+      </div>
 
-        <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
-          <Modal.Header closeButton aria-label="Close modal">
-            <Modal.Title>Confirm Delete</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Are you sure you want to delete this message?</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseDeleteModal}>
-              Cancel
-            </Button>
-            <Button variant="danger" onClick={handleDelete} data-testid="delete-button-modal">
-              Delete
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </Card.Body>
-    </Card>
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton aria-label="Close modal">
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this message?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDelete} data-testid="delete-button-modal">
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 };
 
