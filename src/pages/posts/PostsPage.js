@@ -1,20 +1,16 @@
-// src/pages/posts/PostsPage.js
-
 import React, { useEffect, useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Post from "./Post";
 import Asset from "../../components/Asset";
-
 import appStyles from "../../App.module.css";
 import styles from "../../styles/modules/PostsPage.module.css";
-import { useLocation } from "react-router";
+import { useLocation, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
-
 import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
@@ -26,6 +22,7 @@ function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
+  const history = useHistory();
 
   const [query, setQuery] = useState("");
 
@@ -38,7 +35,7 @@ function PostsPage({ message, filter = "" }) {
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
-        
+        console.log(err);
       }
     };
 
@@ -52,11 +49,35 @@ function PostsPage({ message, filter = "" }) {
     };
   }, [filter, query, pathname, currentUser]);
 
+  const handleTabChange = (tab) => {
+    if (tab === "for-you") {
+      history.push("/");
+    } else if (tab === "following") {
+      history.push("/feed");
+    }
+  };
+
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={7} xl={8}>
         <Banner />
         <PopularProfiles mobile />
+        {currentUser && (
+          <ButtonGroup className="w-100 mb-3">
+            <Button
+              variant={pathname === "/" ? "primary" : "secondary"}
+              onClick={() => handleTabChange("for-you")}
+            >
+              For You
+            </Button>
+            <Button
+              variant={pathname === "/feed" ? "primary" : "secondary"}
+              onClick={() => handleTabChange("following")}
+            >
+              Following
+            </Button>
+          </ButtonGroup>
+        )}
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
