@@ -10,4 +10,38 @@
   .date-separator {
     color: var(--color-secondary-text);
   }
+
   
+.DateSeparator {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.DateSeparator::before,
+.DateSeparator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 42%;
+  height: 1px;
+}
+
+.DateSeparator::before {
+  left: 0;
+}
+
+.DateSeparator::after {
+  right: 0;
+}
+
+.DateBubble {
+  background-color: var(--color-secondary-background);
+  color: var(--color-secondary-text);
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+  font-size: 0.8em;
+  position: relative;
+  z-index: 1;
+}

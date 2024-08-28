@@ -13,6 +13,7 @@ import { fetchMoreData } from "../../utils/utils";
 import Message from "./Message";
 import NoResults from "../../assets/no-results.png";
 import MessageDetailSendForm from "./MessageDetailSendForm";
+import styles from "../../styles/modules/MessageDetail.module.css";
 
 function MessageDetail() {
   const { id } = useParams();
@@ -90,7 +91,9 @@ function MessageDetail() {
                   let previousSender = null;  // Track the previous sender
                   return (
                     <div key={date}>
-                      <div className="date-separator">{date}</div>
+                      <div className={`${styles.DateSeparator} d-flex align-items-center justify-content-center`}>
+                        <span className={styles.DateBubble}>{date}</span>
+                      </div>
                       {msgs.map((message, index) => {
                         // Determine whether to show the avatar based on consecutive messages
                         const showAvatar = previousSender !== message.sender;
