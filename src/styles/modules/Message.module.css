@@ -1,26 +1,98 @@
 .Message {
-  background-color: var(--color-secondary-background);
-  color: var(--color-primary-text);
-}
-
-.EditTextarea {
+  max-width: 70%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+  word-wrap: break-word;
   background-color: var(--color-secondary-background);
   color: var(--color-primary-text);
 }
 
 .senderMessage {
+  margin-left: auto;
   background-color: var(--color-secondary-background);
   filter: brightness(1.2) hue-rotate(20deg) contrast(0.8);
   color: var(--color-primary-text);
 }
 
 .recipientMessage {
+  margin-right: auto;
+}
+
+.MessageTriangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+}
+
+.senderMessage .MessageTriangle {
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--color-secondary-background) transparent transparent;
+  right: -10px;
+  filter: brightness(1.2) hue-rotate(20deg) contrast(0.8);
+}
+
+.recipientMessage .MessageTriangle {
+  border-width: 0 0 10px 10px;
+  border-color: transparent transparent transparent var(--color-secondary-background);
+  left: -10px;
+}
+
+.MessageContent {
+  position: relative;
+}
+
+.EditTextarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  margin-bottom: 5px;
   background-color: var(--color-secondary-background);
   color: var(--color-primary-text);
+}
+
+.EditButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
 }
 
 .MessageImage {
   max-width: 100%;
   border-radius: 8px;
   margin-top: 8px;
+}
+
+.MessageMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  font-size: 0.8em;
+}
+
+.Timestamp {
+  color: var(--color-secondary-text);
+}
+
+.MessageActions {
+  display: flex;
+  gap: 5px;
+}
+
+.AvatarLink {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.Username {
+  margin-left: 5px;
+  font-weight: bold;
 }
