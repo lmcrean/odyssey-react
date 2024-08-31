@@ -1,5 +1,12 @@
+@media screen and (max-width: 768px) {
+  .Message {
+    min-width: 75% !important;
+  }
+}
+
 .Message {
-  max-width: 70%;
+  max-width: 75%;
+  min-width: 55%;
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 10px;
@@ -14,31 +21,30 @@
   background-color: var(--color-secondary-background);
   filter: brightness(1.2) hue-rotate(20deg) contrast(0.8);
   color: var(--color-primary-text);
+  right: 10px;
+}
+
+.Message.senderMessage.Begin {
+  border-radius: 10px 0px 10px 10px !important;
+}
+
+.Message.recipientMessage.Begin {
+  border-radius: 0px 10px 10px 10px !important;
+}
+
+/* Ensure the triangle is visible for messages with Begin class */
+.Begin .MessageTriangle {
+  display: block !important;
+}
+
+/* Hide the triangle for messages without Begin class */
+.Message:not(.Begin) .MessageTriangle {
+  display: none !important;
 }
 
 .recipientMessage {
   margin-right: auto;
-}
-
-.MessageTriangle {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  position: absolute;
-  top: 0;
-}
-
-.senderMessage .MessageTriangle {
-  border-width: 0 10px 10px 0;
-  border-color: transparent var(--color-secondary-background) transparent transparent;
-  right: -10px;
-  filter: brightness(1.2) hue-rotate(20deg) contrast(0.8);
-}
-
-.recipientMessage .MessageTriangle {
-  border-width: 0 0 10px 10px;
-  border-color: transparent transparent transparent var(--color-secondary-background);
-  left: -10px;
+  left: 10px;
 }
 
 .MessageContent {
@@ -48,7 +54,6 @@
 .EditTextarea {
   width: 100%;
   padding: 5px;
-  border: 1px solid var(--color-border);
   border-radius: 5px;
   margin-bottom: 5px;
   background-color: var(--color-secondary-background);

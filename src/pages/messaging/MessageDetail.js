@@ -88,7 +88,6 @@ function MessageDetail() {
             {messages.results.length ? (
               <InfiniteScroll
                 children={Object.entries(groupedMessages).map(([date, msgs]) => {
-                  let previousSender = null;  // Track the previous sender
                   return (
                     <div key={date}>
                       <div className={`${styles.DateSeparator} d-flex align-items-center justify-content-center`}>
@@ -96,20 +95,22 @@ function MessageDetail() {
                       </div>
                       {msgs.map((message, index) => {
                         // Determine whether to show the avatar based on consecutive messages
-                        const showAvatar = previousSender !== message.sender;
-                        previousSender = message.sender; // Update previous sender
-
+                        const isPreviousFromSameSender = index > 0 && messages.results[index - 1].sender === message.sender;
+                        const isBegin = !isPreviousFromSameSender;
                         return (
-                          <Message
-                            key={message.id}
-                            {...message}
-                            sender={message.sender} 
-                            sender_profile_id={message.sender}
-                            recipient={message.recipient}
-                            recipientUsername={recipientUsername}
-                            setMessages={setMessages}
-                            showAvatar={showAvatar}
-                          />
+                          <div key={message.id} className={`${styles.MessageWrapper} ${message.is_sender ? styles.SenderWrapper : styles.RecipientWrapper}`}>
+                            <Message
+                              {...message}
+                              sender={message.sender} 
+                              sender_profile_id={message.sender}
+                              recipient={message.recipient}
+                              recipientUsername={recipientUsername}
+                              showAvatar={!isPreviousFromSameSender}
+                              isPreviousFromSameSender={isPreviousFromSameSender}
+                              setMessages={setMessages}
+                            />
+                            <div className={`${styles.MessageTriangle} ${message.is_sender ? styles.SenderMessage : styles.RecipientMessage}`} style={{ display: isBegin ? 'block' : 'none' }}></div>
+                          </div>
                         );
                       })}
                     </div>

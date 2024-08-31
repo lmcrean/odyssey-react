@@ -45,3 +45,53 @@
   position: relative;
   z-index: 1;
 }
+
+
+/*Message Triangle, this is the little triangle that appears on the side of a message that follows from the other user, making the MessageContent appear like a speech bubble. */
+
+.MessageWrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.SenderWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.RecipientWrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.MessageTriangle {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  z-index: 999;
+}
+
+.SenderMessage {
+  border-left: 10px solid var(--color-secondary-background);
+  border-top: 0px solid transparent;
+  border-bottom: 20px solid transparent;
+  filter: brightness(1.2) hue-rotate(20deg) contrast(0.8);
+  right: 1px;
+  border-radius: 20px;
+}
+
+.RecipientMessage {
+  border-right: 10px solid var(--color-secondary-background);
+  border-top: 0px solid transparent;
+  border-bottom: 20px solid transparent;
+  left: 1px;
+}
+
+.MessageTriangle .SenderMessage {
+  right: 0px;
+}
+
+.MessageTriangle .RecipientMessage {
+  left: 0px;
+}

@@ -22,6 +22,7 @@ const Message = (props) => {
     time,
     setMessages,
     showAvatar,
+    isPreviousFromSameSender,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -91,9 +92,11 @@ const Message = (props) => {
     }
   };
 
+  const isBegin = !isPreviousFromSameSender;
+  const messageClasses = `${styles.Message} ${is_sender ? styles.senderMessage : styles.recipientMessage} ${isBegin ? styles.Begin : ''}`;
+
   return (
-    <div className={`${styles.Message} ${is_sender ? styles.senderMessage : styles.recipientMessage}`}>
-      <div className={styles.MessageTriangle}></div>
+    <div className={messageClasses}>
       <div className={styles.MessageContent}>
         {showAvatar && (
           <Link to={`/profiles/${sender_profile_id}`} className={styles.AvatarLink}>

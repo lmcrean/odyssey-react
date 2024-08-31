@@ -92,5 +92,7 @@ button {
   background-color: var(--color-info);
 }
 
-
-
+.infinite-scroll-component {
+  overflow: hidden !important;
+  padding: 20px;
+}
