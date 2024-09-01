@@ -5,8 +5,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faImage, faTimes } from '@fortawesome/free-solid-svg-icons';
+import styles from "../../styles/modules/MessageDetailSendForm.module.css";
 
 function MessageDetailSendForm({ setMessages }) {
   const { id } = useParams();
@@ -16,6 +18,7 @@ function MessageDetailSendForm({ setMessages }) {
   });
   const { content, image } = formData;
   const [errors, setErrors] = useState({});
+  const [imagePreview, setImagePreview] = useState(null);
   const imageInput = useRef(null);
 
   const handleChange = (event) => {
@@ -27,10 +30,23 @@ function MessageDetailSendForm({ setMessages }) {
 
   const handleImageChange = (event) => {
     if (event.target.files.length) {
+      const selectedFile = event.target.files[0];
       setFormData({
         ...formData,
-        image: event.target.files[0],
+        image: selectedFile,
       });
+      setImagePreview(URL.createObjectURL(selectedFile));
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setFormData({
+      ...formData,
+      image: null,
+    });
+    setImagePreview(null);
+    if (imageInput?.current) {
+      imageInput.current.value = "";
     }
   };
 
@@ -58,6 +74,7 @@ function MessageDetailSendForm({ setMessages }) {
       }));
   
       setFormData({ content: "", image: null });
+      setImagePreview(null);
       if (imageInput?.current) {
         imageInput.current.value = "";
       }
@@ -68,9 +85,22 @@ function MessageDetailSendForm({ setMessages }) {
   };
 
   return (
-    <Container>
+    <Container className={styles.MessageSendForm}>
       <Form onSubmit={handleSubmit}>
-        <Form.Group>
+        {imagePreview && (
+          <div className={styles.ImagePreviewContainer}>
+            <Image src={imagePreview} alt="Preview" className={styles.ImagePreview} />
+            <Button 
+              variant="danger" 
+              size="sm" 
+              onClick={handleRemoveImage} 
+              className={styles.RemoveImageButton}
+            >
+              <FontAwesomeIcon icon={faTimes} />
+            </Button>
+          </div>
+        )}
+        <Form.Group className={styles.FormGroup}>
           <Form.Control
             as="textarea"
             rows={3}
@@ -78,18 +108,30 @@ function MessageDetailSendForm({ setMessages }) {
             value={content}
             onChange={handleChange}
             placeholder="Type your message here..."
+            className={styles.MessageInput}
           />
         </Form.Group>
 
-        <Form.Group>
+        <div className={styles.FormActions}>
+          <Button 
+            as="label" 
+            htmlFor="image-upload" 
+            variant="secondary" 
+            className={styles.BrowseButton}
+          >
+            <FontAwesomeIcon icon={faImage} /> Add Image
+          </Button>
           <Form.File
             id="image-upload"
             accept="image/*"
             onChange={handleImageChange}
             ref={imageInput}
-            label={image ? "Image selected" : "Upload Image"}
+            className={styles.HiddenFileInput}
           />
-        </Form.Group>
+          <Button variant="primary" type="submit" className={styles.SendButton}>
+            <FontAwesomeIcon icon={faPaperPlane} /> Send
+          </Button>
+        </div>
 
         {errors?.content?.map((message, idx) => (
           <Alert variant="warning" key={idx}>
@@ -101,12 +143,6 @@ function MessageDetailSendForm({ setMessages }) {
             {message}
           </Alert>
         ))}
-
-        <div className="d-flex justify-content-between">
-          <Button variant="primary" type="submit">
-            <FontAwesomeIcon icon={faPaperPlane} /> Send
-          </Button>
-        </div>
       </Form>
     </Container>
   );
