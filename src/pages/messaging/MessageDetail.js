@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import Container from "react-bootstrap/Container";
@@ -7,12 +7,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import appStyles from "../../App.module.css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import Message from "./Message";
 import NoResults from "../../assets/no-results.png";
 import MessageDetailSendForm from "./MessageDetailSendForm";
+import MessageDetailHeader from "./MessageDetailHeader";
 import styles from "../../styles/modules/MessageDetail.module.css";
 
 function MessageDetail() {
@@ -27,7 +27,6 @@ function MessageDetail() {
     const fetchMessages = async () => {
       try {
         const { data } = await axiosReq.get(`/messages/${id}/`);
-
         setMessages({ results: data.results });
         setHasLoaded(true);
       } catch (err) {
@@ -45,14 +44,16 @@ function MessageDetail() {
         const { data } = await axiosReq.get(`/users/${id}/`);
         setRecipientUsername(data.username);
       } catch (err) {
-        // Graceful error handling
-        setRecipientUsername("Unknown user"); // Fallback if the fetch fails
+        setRecipientUsername("Unknown user");
       }
     };
   
     fetchRecipientUsername();
   }, [id]);
   
+  
+
+
 
   const handleDeleteChat = async () => {
     try {
@@ -81,12 +82,17 @@ function MessageDetail() {
   const groupedMessages = groupMessagesByDate(messages.results);
 
   return (
-    <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        {hasLoaded ? (
-          <>
-            {messages.results.length ? (
-              <InfiniteScroll
+    <Container className={styles.MessageDetail}>
+      <MessageDetailHeader 
+        recipientUsername={recipientUsername} 
+        onDeleteClick={handleShowModal}
+      />
+      <Row>
+        <Col className="py-2 p-0 p-lg-2" lg={8}>
+          {hasLoaded ? (
+            <>
+              {messages.results.length ? (
+                <InfiniteScroll
                 children={Object.entries(groupedMessages).map(([date, msgs]) => {
                   return (
                     <div key={date}>
@@ -99,8 +105,9 @@ function MessageDetail() {
                         const isBegin = !isPreviousFromSameSender;
                         return (
                           <div key={message.id} className={`${styles.MessageWrapper} ${message.is_sender ? styles.SenderWrapper : styles.RecipientWrapper}`}>
-                            <Message
-                              {...message}
+                        <Message
+                          key={message.id}
+                          {...message}
                               sender={message.sender} 
                               sender_profile_id={message.sender}
                               recipient={message.recipient}
@@ -116,36 +123,28 @@ function MessageDetail() {
                     </div>
                   );
                 })}
-                dataLength={messages.results.length}
-                loader={<Asset spinner />}
-                hasMore={!!messages.next}
-                next={() => fetchMoreData(messages, setMessages)}
-              />
-            ) : (
-              <Container className={appStyles.Content}>
-                <Asset src={NoResults} message="No messages found." />
-              </Container>
-            )}
-          </>
-        ) : (
-          <Container className={appStyles.Content}>
-            <Asset spinner />
-          </Container>
-        )}
+                  dataLength={messages.results.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!messages.next}
+                  next={() => fetchMoreData(messages, setMessages)}
+                />
+              ) : (
+                <Container className={styles.Content}>
+                  <Asset src={NoResults} message="No messages found." />
+                </Container>
+              )}
+            </>
+          ) : (
+            <Container className={styles.Content}>
+              <Asset spinner />
+            </Container>
+          )}
+        </Col>
+      </Row>
+      <Container className={styles.FormContainer}>
         <MessageDetailSendForm setMessages={setMessages} />
-      </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        <h2>Chat with {recipientUsername}</h2>
-        <Link to="/messages">
-          <Button variant="primary">
-            <i className="fas fa-arrow-left"></i> Back to Messages
-          </Button>
-        </Link><br></br>
-        <Button variant="danger" className="ml-2 mt-5" onClick={handleShowModal}>
-          Delete Chat
-        </Button>
-      </Col>
-      {/* Confirmation Modal */}
+      </Container>
+
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
@@ -160,7 +159,7 @@ function MessageDetail() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </Row>
+    </Container>
   );
 }
 

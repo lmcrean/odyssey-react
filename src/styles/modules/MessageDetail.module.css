@@ -1,17 +1,18 @@
 .MessageDetail {
-    background-color: var(--color-secondary-background);
-    color: var(--color-primary-text);
-  }
-  
-  .MessageUsername {
-    color: var(--color-primary-text);
-  }
-  
-  .date-separator {
-    color: var(--color-secondary-text);
-  }
+  color: var(--color-primary-text);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 100px); /* Adjust for NavbarMobile height */
+}
 
-  
+.MessageUsername {
+  color: var(--color-primary-text);
+}
+
+.date-separator {
+  color: var(--color-secondary-text);
+}
+
 .DateSeparator {
   text-align: center;
   margin: 20px 0;
@@ -43,11 +44,7 @@
   display: inline-block;
   font-size: 0.8em;
   position: relative;
-  z-index: 1;
 }
-
-
-/*Message Triangle, this is the little triangle that appears on the side of a message that follows from the other user, making the MessageContent appear like a speech bubble. */
 
 .MessageWrapper {
   position: relative;
@@ -95,4 +92,23 @@
 
 .MessageTriangle .RecipientMessage {
   left: 0px;
+}
+
+.FormContainer {
+  position: sticky;
+  bottom: 56px; /* Adjust for NavbarMobile height */
+  background-color: var(--color-secondary-background);
+  padding: 10px 0;
+  border-radius: 20px 20px 0 0;
+  filter: brightness(1.2) hue-rotate(20deg) contrast(0.8);
+}
+
+@media screen and (min-width: 769px) {
+  .MessageDetail {
+    height: 100vh; /* Full height for desktop */
+  }
+
+  .FormContainer {
+    bottom: 0; /* No adjustment needed for desktop */
+  }
 }

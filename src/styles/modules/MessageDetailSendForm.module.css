@@ -1,6 +1,7 @@
 .MessageSendForm {
   padding: 15px;
-  border-top: 1px solid var(--color-secondary-text);
+  z-index: 1000;
+  border-radius: 20px 20px 0 0;
 }
 
 .FormGroup {
@@ -9,9 +10,16 @@
 
 .MessageInput {
   resize: none;
-  background-color: var(--color-secondary-background);
+  background-color: var(--color-secondary-background) !important;
   color: var(--color-primary-text);
   border: 1px solid var(--color-secondary-text);
+  border-radius: 20px;
+}
+
+.MessageInput:focus { /*send to base.css */
+  background-color: var(--color-background) !important;
+  box-shadow: 0 0 0 .1em var(--color-accent);
+  border-color: none;
 }
 
 .FormActions {
