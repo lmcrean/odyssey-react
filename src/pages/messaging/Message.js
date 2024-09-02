@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "../../styles/modules/Message.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Button from "react-bootstrap/Button";
@@ -33,6 +33,8 @@ const Message = (props) => {
   const [senderUsername, setSenderUsername] = useState("");
   const [loadingUsername, setLoadingUsername] = useState(true);
   const [fetchError, setFetchError] = useState(false);
+  const [newImage, setNewImage] = useState(null);
+  const imageInput = useRef(null);
 
   useEffect(() => {
     setNewContent(content);
@@ -79,16 +81,27 @@ const Message = (props) => {
 
   const handleEdit = async () => {
     try {
-      const { data } = await axiosRes.patch(`/messages/${id}/update/`, { content: newContent });
+      const formData = new FormData();
+      formData.append('content', newContent);
+      if (newImage) {
+        formData.append('image', newImage);
+      }
+      const { data } = await axiosRes.patch(`/messages/${id}/update/`, formData);
       setMessages((prevMessages) => ({
         ...prevMessages,
         results: prevMessages.results.map((message) =>
-          message.id === id ? { ...message, content: data.content } : message
+          message.id === id ? { ...message, content: data.content, image: data.image } : message
         ),
       }));
       setIsEditing(false);
     } catch (err) {
       console.error("Error editing message:", err);
+    }
+  };
+
+  const handleImageChange = (event) => {
+    if (event.target.files.length) {
+      setNewImage(event.target.files[0]);
     }
   };
 
@@ -116,6 +129,22 @@ const Message = (props) => {
               value={newContent}
               onChange={(e) => setNewContent(e.target.value)}
               className={styles.EditTextarea}
+            />
+            {(image || newImage) && (
+              <figure onClick={() => imageInput.current.click()} className={styles.ImageContainer}>
+                <Image src={newImage ? URL.createObjectURL(newImage) : image} alt="Message attachment" fluid className={styles.MessageImage} />
+                <div className={styles.ImageOverlay}>
+                  <span>Click to change image</span>
+                </div>
+              </figure>
+            )}
+            <input
+              type="file"
+              id="image-upload"
+              ref={imageInput}
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ display: 'none' }}
             />
             <div className={styles.EditButtons}>
               <Button onClick={handleEdit} variant="success" size="sm">
