@@ -137,7 +137,7 @@ function PostEditForm() {
           >
             <h2 className="text-center mb-4">Edit your goal in progress</h2>
             <Form.Group className="text-center">
-              <figure onClick={() => imageInput.current.click()} style={{cursor: 'pointer'}}>
+              <figure onClick={() => imageInput.current.click()} style={{cursor: 'pointer', position: 'relative'}}>
                 <Image className={appStyles.Image} src={image} rounded />
                 <div className={styles.ImageOverlay}>
                   <span>Click to change image</span>
