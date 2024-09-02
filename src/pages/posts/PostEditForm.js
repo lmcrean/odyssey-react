@@ -37,7 +37,7 @@ function PostEditForm() {
 
         is_owner ? setPostData({ title, content, image }) : history.push("/");
       } catch (err) {
-        
+        console.log(err);
       }
     };
 
@@ -76,7 +76,7 @@ function PostEditForm() {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
     } catch (err) {
-      
+      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -137,23 +137,19 @@ function PostEditForm() {
           >
             <h2 className="text-center mb-4">Edit your goal in progress</h2>
             <Form.Group className="text-center">
-              <figure>
+              <figure onClick={() => imageInput.current.click()} style={{cursor: 'pointer'}}>
                 <Image className={appStyles.Image} src={image} rounded />
+                <div className={styles.ImageOverlay}>
+                  <span>Click to change image</span>
+                </div>
               </figure>
-              <div>
-                <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                  htmlFor="image-upload"
-                >
-                  Change the image
-                </Form.Label>
-              </div>
 
               <Form.File
                 id="image-upload"
                 accept="image/*"
                 onChange={handleChangeImage}
                 ref={imageInput}
+                style={{ display: 'none' }}
               />
             </Form.Group>
             {errors?.image?.map((message, idx) => (
