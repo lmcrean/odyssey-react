@@ -28,7 +28,7 @@
 .IconButton:hover, .IconButton:focus {
   background-color: var(--color-secondary-text);
   border-color: var(--color-secondary-text);
-  color: var(--color-secondary-background);
+  color: var(--color-accent);
 }
 
 @media (max-width: 767px) {
