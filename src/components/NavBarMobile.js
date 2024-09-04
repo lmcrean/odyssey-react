@@ -1,3 +1,5 @@
+// src/components/NavBarMobile.js
+
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
@@ -9,11 +11,9 @@ import {
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
-// import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { removeTokenTimestamp } from "../utils/utils";
 import axios from "axios";
-
 
 const NavBarMobile = () => {
   const currentUser = useCurrentUser();
@@ -34,37 +34,41 @@ const NavBarMobile = () => {
   const loggedInIcons = (
     <>
       <NavLink
+        exact
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/"
       >
         <i className="fas fa-home"></i>
-        <span className={styles.NavText}>Home Feed</span>
+        <span>Home Feed</span>
       </NavLink>
       <NavLink
-      className={styles.NavLink}
-      activeClassName={styles.Active}
-      to="/posts/create"
-    >
-      <i className="far fa-plus-square"></i>
-      <span className={styles.NavText}>Add</span>
-    </NavLink>
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/posts/create"
+      >
+        <i className="far fa-plus-square"></i>
+        <span>Add</span>
+      </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/messages"
       >
         <i className="fas fa-envelope"></i>
-        <div>Messages</div>
+        <span>Messages</span>
       </NavLink>
       <NavLink
         className={styles.NavLink}
+        activeClassName={styles.Active}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+        <Avatar src={currentUser?.profile_image} height={40} />
+        <span>{currentUser?.username}</span>
       </NavLink>
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <i className="fas fa-sign-out-alt"></i>Sign out
+        <i className="fas fa-sign-out-alt"></i>
+        <span>Sign out</span>
       </NavLink>
     </>
   );
@@ -77,7 +81,7 @@ const NavBarMobile = () => {
         to="/signin"
       >
         <i className="fas fa-sign-in-alt"></i>
-        <span className={styles.NavText}>Sign in</span>
+        <span>Sign in</span>
       </NavLink>
       <NavLink
         to="/signup"
@@ -85,7 +89,7 @@ const NavBarMobile = () => {
         activeClassName={styles.Active}
       >
         <i className="fas fa-user-plus"></i>
-        <span className={styles.NavText}>Sign up</span>
+        <span>Sign up</span>
       </NavLink>
     </>
   );
@@ -99,7 +103,7 @@ const NavBarMobile = () => {
           aria-controls="basic-navbar-nav"
         />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="w-100 d-flex justify-content-between">
+          <Nav className="w-100 justify-content-around">
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>

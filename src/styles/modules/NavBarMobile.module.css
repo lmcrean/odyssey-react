@@ -1,3 +1,5 @@
+/* src/styles/modules/NavBarMobile.module.css */
+
 .NavBarMobile {
   background-color: var(--color-secondary-background);
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
@@ -12,12 +14,12 @@
   justify-content: center;
   padding: 10px 0;
   width: 60px;
+  transition: color 0.3s ease;
 }
 
-.NavText {
+.NavLink span {
   font-size: 12px;
   margin-top: 5px;
-  color: var(--color-secondary-text);
 }
 
 .NavLink i {
@@ -25,9 +27,15 @@
 }
 
 .NavLink:hover {
-  color: var(--color-info);
+  color: var(--color-primary-text);
 }
 
 .Active {
-  color: var(--color-info);
+  color: var(--color-accent);
+  background-color: var(--color-secondary-background);
+  border-radius: 20px;
+}
+
+.Active:hover {
+  color: var(--color-primary-text);
 }
