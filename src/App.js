@@ -39,7 +39,7 @@ function App() {
   return (
     <div className={styles.App}>
       {/* Conditionally render Navbar based on window width */}
-      {size.width <= 768 ? <NavBarMobile /> : <NavBarDesktop />}
+
       <Container className={styles.Main}>
       <Switch>
         <Route exact path="/" render={() => <PostsPage message="No results found. Adjust the search keyword." />} />
@@ -60,6 +60,7 @@ function App() {
         <Route render={() => <NotFound />} />
       </Switch>
       </Container>
+      {size.width <= 768 ? <NavBarMobile /> : <NavBarDesktop />}
     </div>
   );
 }

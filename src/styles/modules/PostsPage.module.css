@@ -1,9 +1,33 @@
-.SearchBar input {
-  background-color: var(--color-secondary-background) !important;
+.SearchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
   border-radius: 20px;
-  color: var(--color-secondary-text) !important;
+}
+
+.SearchBar input {
+  background-color: var(--color-secondary-background);
+  border-radius: 20px;
+  color: var(--color-secondary-text);
   padding-left: 40px;
   margin-bottom: 16px;
+}
+
+.SearchBar .input-group-text {
+  background-color: var(--color-secondary-background);
+  border: none;
+  color: var(--color-secondary-text);
+  position: absolute;
+  z-index: 4;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-bottom: 5px;
+}
+
+.SearchBar .input-group {
+  position: relative;
 }
 
 .SearchIcon {
@@ -11,7 +35,6 @@
   font-size: 1.2rem;
   padding: 9px;
   padding-left: 15px;
-  color: var(--color-secondary-text);
 }
 
 .SearchIcon:hover {

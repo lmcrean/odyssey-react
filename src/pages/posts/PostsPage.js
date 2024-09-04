@@ -19,6 +19,8 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Banner from "../../components/Banner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { InputGroup } from "react-bootstrap";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -107,18 +109,24 @@ function PostsPage({ message, filter = "" }) {
             </Button>
           </ButtonGroup>
         )}
-        <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
         >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Search posts"
-          />
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text>
+                <FontAwesomeIcon icon={faSearch} />
+              </InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              type="text"
+              className="mr-sm-2"
+              placeholder="Search posts"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </InputGroup>
         </Form>
 
         {hasLoaded ? (
