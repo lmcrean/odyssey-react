@@ -17,6 +17,8 @@ import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Banner from "../../components/Banner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -27,6 +29,8 @@ function PostsPage({ message, filter = "" }) {
   const [query, setQuery] = useState("");
 
   const currentUser = useCurrentUser();
+
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -49,6 +53,19 @@ function PostsPage({ message, filter = "" }) {
     };
   }, [filter, query, pathname, currentUser]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.pageYOffset > 300) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleTabChange = (tab) => {
     if (tab === "for-you") {
       history.push("/");
@@ -57,6 +74,10 @@ function PostsPage({ message, filter = "" }) {
     } else if (tab === "liked") {
       history.push("/liked");
     }
+  };
+
+  const handleBackToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -127,6 +148,15 @@ function PostsPage({ message, filter = "" }) {
       <Col md={5} xl={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
       </Col>
+      {showBackToTop && (
+        <Button
+          className={styles.BackToTopButton}
+          onClick={handleBackToTop}
+          variant="secondary"
+        >
+          <FontAwesomeIcon icon={faArrowUp} />
+        </Button>
+      )}
     </Row>
   );
 }
