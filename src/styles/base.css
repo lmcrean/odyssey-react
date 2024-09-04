@@ -2,6 +2,21 @@
 /* base.css */
 /* This file does generic styling for colors and typefaces */
 
+
+/* Disable tap highlight on mobile devices */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection for specific elements */
+input, textarea, [contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
 /* Body and Typography */
 body {
     background-color: var(--color-background);
@@ -47,6 +62,12 @@ body {
     text-shadow: none;
     ;
   }
+
+.input-group-text {
+  background-color: var(--color-background) !important;
+  border: 1px solid #ced4da;
+  border-radius: 20px;
+}
 
   .Button:hover:active,
 .Button:active,
