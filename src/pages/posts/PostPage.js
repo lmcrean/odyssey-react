@@ -14,18 +14,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import PostSkeleton from "../../components/PostSkeleton";
 
 function PostPage() {
   const { id } = useParams();
   const [hasLoaded, setHasLoaded] = useState(false);
-  const { cachedPosts } = usePostCache();
+  const { cachedPosts, cachePost } = usePostCache();
   const [post, setPost] = useState(() => {
-    const cachedPost = cachedPosts[id];
-    if (cachedPost) {
-      console.log('Using cached post:', id);
-      return { results: [cachedPost] };
-    }
-    return { results: [] };
+    return cachedPosts[id] ? { results: [cachedPosts[id]] } : null;
   });
 
   const currentUser = useCurrentUser();
@@ -33,88 +29,80 @@ function PostPage() {
   const [comments, setComments] = useState({ results: [] });
 
   useEffect(() => {
-    const handleMount = async () => {
-      try {
-        const [{ data: post }, { data: comments }] = await Promise.all([
-          axiosReq.get(`/posts/${id}`),
-          axiosReq.get(`/comments/?post=${id}`),
-        ]);
-        setPost({ results: [post] });
-        setComments(comments);
-        setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-  
-    handleMount();
-  }, [id]);
-  
-  useEffect(() => {
     const fetchPostData = async () => {
       try {
-        if (!post.results.length) {
-          console.log('Fetching post from API:', id);
-          const { data } = await axiosReq.get(`/posts/${id}/`);
-          setPost({ results: [data] });
-        } else {
-          console.log('Using cached post data:', id);
-        }
-        const { data: commentsData } = await axiosReq.get(`/comments/?post=${id}`);
+        const [{ data: fetchedPost }, { data: commentsData }] = await Promise.all([
+          axiosReq.get(`/posts/${id}/`),
+          axiosReq.get(`/comments/?post=${id}`)
+        ]);
+        setPost({ results: [fetchedPost] });
         setComments(commentsData);
+        cachePost(fetchedPost);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
-  
-    fetchPostData();
-  }, [id, post.results]);
+
+    if (!post) {
+      fetchPostData();
+    } else {
+      // If we have cached post data, just fetch comments
+      const fetchComments = async () => {
+        try {
+          const { data: commentsData } = await axiosReq.get(`/comments/?post=${id}`);
+          setComments(commentsData);
+          setHasLoaded(true);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchComments();
+    }
+  }, [id, post, cachePost]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfiles mobile />
-        {hasLoaded ? (
-          <>
-            <Post {...post.results[0]} setPosts={setPost} postPage />
-            <Container className={appStyles.Content}>
-              {currentUser ? (
-                <CommentCreateForm
-                  profile_id={currentUser.profile_id}
-                  profileImage={profile_image}
-                  post={id}
+        {post ? (
+          <Post {...post.results[0]} setPosts={setPost} postPage />
+        ) : (
+          <PostSkeleton />
+        )}
+        <Container className={appStyles.Content}>
+          {currentUser ? (
+            <CommentCreateForm
+              profile_id={currentUser.profile_id}
+              profileImage={profile_image}
+              post={id}
+              setPost={setPost}
+              setComments={setComments}
+            />
+          ) : comments.results.length ? (
+            "Comments"
+          ) : null}
+          {comments.results.length ? (
+            <InfiniteScroll
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
                   setPost={setPost}
                   setComments={setComments}
                 />
-              ) : comments.results.length ? (
-                "Comments"
-              ) : null}
-              {comments.results.length ? (
-                <InfiniteScroll
-                  children={comments.results.map((comment) => (
-                    <Comment
-                      key={comment.id}
-                      {...comment}
-                      setPost={setPost}
-                      setComments={setComments}
-                    />
-                  ))}
-                  dataLength={comments.results.length}
-                  loader={<Asset spinner />}
-                  hasMore={!!comments.next}
-                  next={() => fetchMoreData(comments, setComments)}
-                />
-              ) : currentUser ? (
-                <span>No comments yet, be the first to comment!</span>
-              ) : (
-                <span>No comments... yet</span>
-              )}
-            </Container>
-          </>
-        ) : (
-          <Asset spinner />
-        )}
+              ))}
+              dataLength={comments.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            />
+          ) : currentUser ? (
+            <span>No comments yet, be the first to comment!</span>
+          ) : (
+            <span>No comments... yet</span>
+          )}
+        </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
