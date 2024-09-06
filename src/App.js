@@ -29,6 +29,9 @@ import 'tailwindcss/tailwind.css';
 import NavBarMobile from "./components/NavBarMobile"; 
 import NavBarDesktop from "./components/NavBarDesktop";
 import useWindowSize from "./hooks/useWindowSize";
+import "./api/axiosDefaults";
+import { PostCacheProvider } from './contexts/PostCacheContext';
+
 
 
 function App() {
@@ -37,6 +40,7 @@ function App() {
   const profile_id = currentUser?.profile_id || "";
 
   return (
+    <PostCacheProvider>
     <div className={styles.App}>
       {/* Conditionally render Navbar based on window width */}
 
@@ -62,6 +66,7 @@ function App() {
       </Container>
       {size.width <= 768 ? <NavBarMobile /> : <NavBarDesktop />}
     </div>
+    </PostCacheProvider>
   );
 }
 

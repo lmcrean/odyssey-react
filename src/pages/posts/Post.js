@@ -3,6 +3,7 @@
 import React from "react";
 import styles from "../../styles/modules/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { usePostCache } from '../../contexts/PostCacheContext';
 
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
@@ -13,6 +14,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+
 
 const Post = (props) => {
   const {
@@ -34,6 +36,13 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const { cachePost } = usePostCache();
+
+  const handlePostClick = () => {
+    cachePost(props);
+    console.log('Post clicked, cached:', id);
+    history.push(`/posts/${id}`);
+  };
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -99,7 +108,7 @@ const Post = (props) => {
           </div>
         </Media>
       </Card.Body>
-      <Link to={`/posts/${id}`}>
+      <Link to={`/posts/${id}`} onClick={handlePostClick}>
         <Card.Img className={styles.PostImage} src={image} alt={title} />
       </Link>
       <Card.Body>
