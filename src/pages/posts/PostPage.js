@@ -18,7 +18,6 @@ import PostSkeleton from "../../components/PostSkeleton";
 
 function PostPage() {
   const { id } = useParams();
-  const [hasLoaded, setHasLoaded] = useState(false);
   const { cachedPosts, cachePost } = usePostCache();
   const [post, setPost] = useState(() => {
     return cachedPosts[id] ? { results: [cachedPosts[id]] } : null;
@@ -38,7 +37,6 @@ function PostPage() {
         setPost({ results: [fetchedPost] });
         setComments(commentsData);
         cachePost(fetchedPost);
-        setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
@@ -52,7 +50,6 @@ function PostPage() {
         try {
           const { data: commentsData } = await axiosReq.get(`/comments/?post=${id}`);
           setComments(commentsData);
-          setHasLoaded(true);
         } catch (err) {
           console.log(err);
         }
