@@ -32,6 +32,7 @@ import useWindowSize from "./hooks/useWindowSize";
 import "./api/axiosDefaults";
 import { PostCacheProvider } from './contexts/PostCacheContext';
 import { AnimationLoadingProvider } from "./contexts/AnimationLoadingContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 
 
@@ -43,6 +44,7 @@ function App() {
   return (
     <PostCacheProvider>
     <AnimationLoadingProvider>
+    <ThemeProvider>
     <div className={styles.App}>
       <Container className={styles.Main}>
       <Switch>
@@ -66,6 +68,7 @@ function App() {
       </Container>
       {size.width <= 768 ? <NavBarMobile /> : <NavBarDesktop />} {/* Conditionally render Navbar based on window width */}
     </div>
+    </ThemeProvider>
     </AnimationLoadingProvider>
     </PostCacheProvider>
   );

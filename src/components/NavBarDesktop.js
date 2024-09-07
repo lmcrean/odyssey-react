@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../styles/modules/NavBarDesktop.module.css";
 import { NavLink } from "react-router-dom";
 import {
@@ -7,12 +7,20 @@ import {
 } from "../contexts/CurrentUserContext";import Avatar from "./Avatar";
 import { removeTokenTimestamp } from "../utils/utils";
 import axios from "axios";
+import { ThemeContext } from "../contexts/ThemeContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 
 const NavBarDesktop = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const { lightMode, setLightMode } = useContext(ThemeContext);
   const logoURL = "https://res.cloudinary.com/dh5lpihx1/image/upload/v1724410546/media/images/logo_buvyq3.png";
+
+  const toggleTheme = () => {
+    setLightMode(!lightMode);
+  };
 
   const handleSignOut = async () => {
     try {
@@ -101,6 +109,9 @@ const NavBarDesktop = () => {
       ) : (
         loggedOutIcons
       )}
+    <button onClick={toggleTheme} className={styles.ThemeToggle}>
+      <FontAwesomeIcon icon={lightMode ? faMoon : faSun} />
+    </button>
     </nav>
   );
 };
