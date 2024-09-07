@@ -15,6 +15,7 @@ import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import PostSkeleton from "../../components/PostSkeleton";
+import CommentSkeleton from "../../components/CommentSkeleton";
 
 function PostPage() {
   const { id } = useParams();
@@ -26,6 +27,7 @@ function PostPage() {
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
+  const [commentsLoading, setCommentsLoading] = useState(true);
 
   useEffect(() => {
     const fetchPostData = async () => {
@@ -37,8 +39,10 @@ function PostPage() {
         setPost({ results: [fetchedPost] });
         setComments(commentsData);
         cachePost(fetchedPost);
+        setCommentsLoading(false);
       } catch (err) {
         console.log(err);
+        setCommentsLoading(false);
       }
     };
 
@@ -50,8 +54,10 @@ function PostPage() {
         try {
           const { data: commentsData } = await axiosReq.get(`/comments/?post=${id}`);
           setComments(commentsData);
+          setCommentsLoading(false);
         } catch (err) {
           console.log(err);
+          setCommentsLoading(false);
         }
       };
       fetchComments();
@@ -79,7 +85,13 @@ function PostPage() {
           ) : comments.results.length ? (
             "Comments"
           ) : null}
-          {comments.results.length ? (
+          {commentsLoading ? (
+            <>
+              <CommentSkeleton />
+              <CommentSkeleton />
+              <CommentSkeleton />
+            </>
+          ) : comments.results.length ? (
             <InfiniteScroll
               children={comments.results.map((comment) => (
                 <Comment
