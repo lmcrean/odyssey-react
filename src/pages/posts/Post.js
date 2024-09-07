@@ -1,7 +1,8 @@
 // src/pages/posts/Post.js
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/modules/Post.module.css";
+import animationStyles from "../../styles/modules/animations/LikeAnimation.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { usePostCache } from '../../contexts/PostCacheContext';
 
@@ -14,6 +15,8 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 
 const Post = (props) => {
   const {
@@ -37,6 +40,10 @@ const Post = (props) => {
   const history = useHistory();
   const { cachePost } = usePostCache();
 
+  const [isLiking, setIsLiking] = useState(false);
+  const [isUnliking, setIsUnliking] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+
   const handlePostClick = () => {
     cachePost(props);
     console.log('Post clicked, cached:', id);
@@ -58,6 +65,8 @@ const Post = (props) => {
 
   const handleLike = async () => {
     try {
+      setIsLiking(true);
+      setShowOverlay(true);
       const { data } = await axiosRes.post("/likes/", { post: id });
       setPosts((prevPosts) => ({
         ...prevPosts,
@@ -67,6 +76,10 @@ const Post = (props) => {
             : post;
         }),
       }));
+      setTimeout(() => {
+        setIsLiking(false);
+        setShowOverlay(false);
+      }, 800);
     } catch (err) {
       console.log(err);
     }
@@ -74,6 +87,8 @@ const Post = (props) => {
 
   const handleUnlike = async () => {
     try {
+      setIsUnliking(true);
+      setShowOverlay(true);
       if (!currentUser) {
         // If there's no current user, they're not authorized to unlike
         return;
@@ -87,6 +102,10 @@ const Post = (props) => {
             : post;
         }),
       }));
+      setTimeout(() => {
+        setIsUnliking(false);
+        setShowOverlay(false);
+      }, 800);
     } catch (err) {
       console.log(err);
     }
@@ -112,7 +131,13 @@ const Post = (props) => {
         </Media>
       </Card.Body>
       <Link to={`/posts/${id}`} onClick={handlePostClick}>
-        <Card.Img className={styles.PostImage} src={image} alt={title} />
+        <div className={`${animationStyles.postImageWrapper} ${showOverlay ? animationStyles.showOverlay : ''}`}>
+          <Card.Img className={styles.PostImage} src={image} alt={title} />
+          <FontAwesomeIcon 
+            icon={solidHeart} 
+            className={`${animationStyles.likeIcon} ${isLiking ? animationStyles.likeAnimation : ''} ${isUnliking ? animationStyles.unlikeAnimation : ''}`} 
+          />
+        </div>
       </Link>
       <Card.Body>
         {title && <Card.Title className={styles.PostTitle}>{title}</Card.Title>}

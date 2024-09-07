@@ -34,9 +34,14 @@ h5 {
 
 .PostImage {
   border-radius: 50px;
-  padding: 30px;
 }
 
 .PostTitle, .PostText {
   color: var(--color-secondary-text);
+}
+
+.PostImageContainer {
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
 }
