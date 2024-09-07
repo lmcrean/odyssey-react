@@ -17,6 +17,8 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { useAnimationLoading } from '../../contexts/AnimationLoadingContext';
+
 
 const Post = (props) => {
   const {
@@ -43,6 +45,9 @@ const Post = (props) => {
   const [isLiking, setIsLiking] = useState(false);
   const [isUnliking, setIsUnliking] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
+
+  const { isAnimationLoaded, loadingProgress } = useAnimationLoading();
+
 
   const handlePostClick = () => {
     cachePost(props);
@@ -113,6 +118,11 @@ const Post = (props) => {
 
   return (
     <Card className={styles.Post}>
+      {!isAnimationLoaded && (
+        <div className={styles.loadingNotice}>
+          Loading animations: {Math.round(loadingProgress)}%
+        </div>
+      )}
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
@@ -131,12 +141,14 @@ const Post = (props) => {
         </Media>
       </Card.Body>
       <Link to={`/posts/${id}`} onClick={handlePostClick}>
-        <div className={`${animationStyles.postImageWrapper} ${showOverlay ? animationStyles.showOverlay : ''}`}>
+        <div className={`${animationStyles.postImageWrapper} ${showOverlay && isAnimationLoaded ? animationStyles.showOverlay : ''}`}>
           <Card.Img className={styles.PostImage} src={image} alt={title} />
-          <FontAwesomeIcon 
-            icon={solidHeart} 
-            className={`${animationStyles.likeIcon} ${isLiking ? animationStyles.likeAnimation : ''} ${isUnliking ? animationStyles.unlikeAnimation : ''}`} 
-          />
+          {isAnimationLoaded && (
+            <FontAwesomeIcon 
+              icon={solidHeart} 
+              className={`${animationStyles.likeIcon} ${isLiking ? animationStyles.likeAnimation : ''} ${isUnliking ? animationStyles.unlikeAnimation : ''}`} 
+            />
+          )}
         </div>
       </Link>
       <Card.Body>
