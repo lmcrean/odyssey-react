@@ -33,6 +33,8 @@ import "./api/axiosDefaults";
 import { PostCacheProvider } from './contexts/PostCacheContext';
 import { AnimationLoadingProvider } from "./contexts/AnimationLoadingContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import './styles/themeTransitions.css';
+import { AutoThemeTransition } from './components/AutoThemeTransition';
 
 
 
@@ -45,7 +47,8 @@ function App() {
     <PostCacheProvider>
     <AnimationLoadingProvider>
     <ThemeProvider>
-    <div className={styles.App}>
+    <AutoThemeTransition>
+    <div className={styles.App} data-theme-transition>
       <Container className={styles.Main}>
       <Switch>
         <Route exact path="/" render={() => <PostsPage message="No results found. Adjust the search keyword." />} />
@@ -68,6 +71,7 @@ function App() {
       </Container>
       {size.width <= 768 ? <NavBarMobile /> : <NavBarDesktop />} {/* Conditionally render Navbar based on window width */}
     </div>
+    </AutoThemeTransition>
     </ThemeProvider>
     </AnimationLoadingProvider>
     </PostCacheProvider>

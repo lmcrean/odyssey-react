@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useCallback } from 'react';
 
 export const ThemeContext = createContext();
 
@@ -8,13 +8,9 @@ export const ThemeProvider = ({ children }) => {
     return savedMode ? JSON.parse(savedMode) : false;
   });
 
-  useEffect(() => {
-    localStorage.setItem('lightMode', JSON.stringify(lightMode));
-    applyTheme(lightMode);
-  }, [lightMode]);
-
-  const applyTheme = (isLight) => {
+  const applyTheme = useCallback((isLight) => {
     const root = document.documentElement;
+
     if (isLight) {
       root.style.setProperty('--color-background', '#FFFFFF');
       root.style.setProperty('--color-secondary-background', '#F0F0F0');
@@ -26,11 +22,20 @@ export const ThemeProvider = ({ children }) => {
       root.style.setProperty('--color-primary-text', '#f0e7e7');
       root.style.setProperty('--color-secondary-text', '#B3B3B3');
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('lightMode', JSON.stringify(lightMode));
+    applyTheme(lightMode);
+  }, [lightMode, applyTheme]);
 
   return (
     <ThemeContext.Provider value={{ lightMode, setLightMode }}>
       {children}
     </ThemeContext.Provider>
   );
+};
+
+export const useThemeTransition = () => {
+  return { 'data-theme-transition': true };
 };
