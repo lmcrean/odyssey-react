@@ -89,7 +89,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    border-radius: 5px important;
+    border-radius: 5px !important;
   }
 
 [contenteditable="true"] {

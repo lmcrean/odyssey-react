@@ -39,3 +39,21 @@
 .Active:hover {
   color: var(--color-primary-text);
 }
+
+.ProfileDropdown {
+  display: flex;
+  align-items: center;
+}
+
+.ProfileDropdown .dropdown-toggle::after {
+  display: none;
+}
+
+.ProfileDropdown .dropdown-menu {
+  min-width: 100%;
+  text-align: center;
+}
+
+.ProfileDropdown .dropdown-item {
+  padding: 0.5rem 1rem;
+}

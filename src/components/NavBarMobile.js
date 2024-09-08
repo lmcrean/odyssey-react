@@ -1,24 +1,25 @@
-// src/components/NavBarMobile.js
-
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import styles from "../styles/modules/NavBarMobile.module.css";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 import Avatar from "./Avatar";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { removeTokenTimestamp } from "../utils/utils";
 import axios from "axios";
+import styles from "../styles/modules/NavBarMobile.module.css";
 
 const NavBarMobile = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-
+  const { lightMode, setLightMode } = useContext(ThemeContext);
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {
@@ -29,6 +30,10 @@ const NavBarMobile = () => {
     } catch (err) {
       // Handle error
     }
+  };
+
+  const toggleTheme = () => {
+    setLightMode(!lightMode);
   };
 
   const loggedInIcons = (
@@ -70,6 +75,10 @@ const NavBarMobile = () => {
         <i className="fas fa-sign-out-alt"></i>
         <span>Sign out</span>
       </NavLink>
+      <button className={styles.NavLink} onClick={toggleTheme}>
+        <FontAwesomeIcon icon={lightMode ? faMoon : faSun} />
+        <span>{lightMode ? "Dark Mode" : "Light Mode"}</span>
+      </button>
     </>
   );
 
@@ -91,6 +100,10 @@ const NavBarMobile = () => {
         <i className="fas fa-user-plus"></i>
         <span>Sign up</span>
       </NavLink>
+      <button className={styles.NavLink} onClick={toggleTheme}>
+        <FontAwesomeIcon icon={lightMode ? faMoon : faSun} />
+        <span>{lightMode ? "Dark Mode" : "Light Mode"}</span>
+      </button>
     </>
   );
 
