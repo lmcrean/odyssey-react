@@ -14,17 +14,24 @@ export const CurrentUserProvider = ({ children }) => {
 
   const handleMount = async () => {
     const accessToken = localStorage.getItem("accessToken");
+    console.log("handleMount - accessToken:", accessToken ? "exists" : "not found");
     if (!accessToken) {
-      // If there's no access token, we assume no user is logged in
+      console.log("No access token found, assuming user is not logged in");
       return;
     }
 
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
+      console.log("User data fetched successfully:", data);
       setCurrentUser(data);
     } catch (err) {
-      console.log("User not logged in");
-      // We don't need to log an error here as it's an expected state
+      console.log("Error fetching user data:", err.response?.status, err.response?.data);
+      // If the error is due to an invalid token, we should remove it
+      if (err.response?.status === 401) {
+        console.log("Removing invalid token");
+        localStorage.removeItem("accessToken");
+        removeTokenTimestamp();
+      }
     }
   };
 
@@ -35,19 +42,23 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     const requestInterceptor = axiosReq.interceptors.request.use(
       async (config) => {
+        console.log("Request interceptor - checking if token should refresh");
         if (shouldRefreshToken()) {
+          console.log("Token should refresh, attempting refresh");
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
+            console.log("Token refreshed successfully");
           } catch (err) {
-            // If refresh fails, we assume the user is not logged in
+            console.log("Token refresh failed:", err.response?.status, err.response?.data);
             setCurrentUser(null);
             removeTokenTimestamp();
-            return config;
+            localStorage.removeItem("accessToken");
           }
         }
         return config;
       },
       (err) => {
+        console.log("Request interceptor error:", err);
         return Promise.reject(err);
       }
     );
@@ -55,21 +66,24 @@ export const CurrentUserProvider = ({ children }) => {
     const responseInterceptor = axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
+        console.log("Response interceptor - error status:", err.response?.status);
         if (err.response?.status === 401) {
+          console.log("401 error, attempting token refresh");
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
+            console.log("Token refreshed successfully in response interceptor");
+            return axios(err.config);
           } catch (refreshErr) {
-            // If refresh fails, we assume the user is not logged in
+            console.log("Token refresh failed in response interceptor:", refreshErr.response?.status, refreshErr.response?.data);
             setCurrentUser(null);
             removeTokenTimestamp();
+            localStorage.removeItem("accessToken");
           }
-          return axios(err.config);
         }
         return Promise.reject(err);
       }
     );
 
-    // Cleanup function to remove interceptors
     return () => {
       axiosReq.interceptors.request.eject(requestInterceptor);
       axiosRes.interceptors.response.eject(responseInterceptor);
