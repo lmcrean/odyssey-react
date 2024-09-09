@@ -30,14 +30,25 @@ function SignInForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     try {
+      console.log("Attempting to sign in with:", signInData);
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      console.log("Sign in successful, received data:", data);
+      localStorage.setItem("accessToken", data.access_token);
+      localStorage.setItem("refreshToken", data.refresh_token);
+      try {
+        setTokenTimestamp(data);
+      } catch (tokenError) {
+        console.log("Error setting token timestamp:", tokenError);
+        // Continue with the sign-in process even if setting the timestamp fails
+      }
       setCurrentUser(data.user);
-      setTokenTimestamp(data);
-      history.push("/"); // Redirect after successful sign-in
+      console.log("Redirecting to /");
+      history.push("/");
     } catch (err) {
-      setErrors(err.response?.data);
+      console.log("Sign in error:", err);
+      setErrors(err.response?.data || {});
     }
   };
 
