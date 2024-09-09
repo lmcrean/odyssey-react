@@ -1,3 +1,5 @@
+// MessageDetailSendForm.test.js
+
 import React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
 import { axiosReq } from "../../../api/axiosDefaults";
@@ -19,6 +21,9 @@ jest.mock('react-router-dom', () => ({
 jest.mock('@fortawesome/react-fontawesome', () => ({
   FontAwesomeIcon: () => <span>Icon</span>,
 }));
+
+// Mock URL.createObjectURL
+global.URL.createObjectURL = jest.fn(() => 'mocked-url');
 
 describe("MessageDetailSendForm", () => {
   beforeEach(() => {
@@ -59,7 +64,7 @@ describe("MessageDetailSendForm", () => {
 
     // Simulate selecting an image file
     const file = new File(["image-content"], "test-image.jpg", { type: "image/jpeg" });
-    const fileInput = screen.getByLabelText(/Upload Image/i);
+    const fileInput = screen.getByLabelText(/Add Image/i);
     fireEvent.change(fileInput, { target: { files: [file] } });
 
     // Simulate clicking the send button
