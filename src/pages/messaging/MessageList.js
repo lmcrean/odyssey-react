@@ -15,6 +15,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
+import MessageListSkeleton from "../../components/MessageListSkeleton";
 
 function MessageList({ message, filter = "" }) {
   const [messages, setMessages] = useState({ results: [] });
@@ -53,7 +54,7 @@ function MessageList({ message, filter = "" }) {
 
         {hasLoaded ? (
           <>
-            {messages.results.length > 0 ? (
+            {messages.results.length ? (
               <InfiniteScroll
                 dataLength={messages.results.length}
                 loader={<Asset spinner />}
@@ -82,9 +83,7 @@ function MessageList({ message, filter = "" }) {
             )}
           </>
         ) : (
-          <Container className={appStyles.Content}>
-            <Asset spinner />
-          </Container>
+          <MessageListSkeleton />
         )}
       </Col>
     </Row>
