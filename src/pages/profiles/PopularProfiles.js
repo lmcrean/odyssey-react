@@ -8,6 +8,7 @@ import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
 import styles from "../../styles/modules/PopularProfiles.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import PopularProfilesSkeleton from "../../components/PopularProfilesSkeleton";
 
 const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
@@ -21,7 +22,7 @@ const PopularProfiles = ({ mobile }) => {
     >
       {popularProfiles.results.length ? (
         <>
-          <p className={styles.PopularProfilesTitle}>Most followed profiles.</p>
+          <p className={styles.PopularProfilesTitle}>Most followed profiles</p>
           {mobile ? (
             <div className="d-flex justify-content-around">
               {popularProfiles.results
@@ -39,7 +40,6 @@ const PopularProfiles = ({ mobile }) => {
           ) : (
             popularProfiles.results
               .filter((profile) => profile.id !== currentUser?.profile_id)
-              .slice(0, 10)
               .map((profile) => (
                 <Profile
                   key={profile.id}
@@ -50,7 +50,7 @@ const PopularProfiles = ({ mobile }) => {
           )}
         </>
       ) : (
-        <Asset spinner />
+        <PopularProfilesSkeleton />
       )}
     </Container>
   );
