@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
-import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
+import { removeTokenTimestamp, shouldRefreshToken, setTokenTimestamp } from "../utils/utils";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -14,7 +14,10 @@ export const CurrentUserProvider = ({ children }) => {
 
   const handleMount = async () => {
     const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
     console.log("handleMount - accessToken:", accessToken ? "exists" : "not found");
+    console.log("handleMount - refreshToken:", refreshToken ? "exists" : "not found");
+    
     if (!accessToken) {
       console.log("No access token found, assuming user is not logged in");
       return;
@@ -26,10 +29,10 @@ export const CurrentUserProvider = ({ children }) => {
       setCurrentUser(data);
     } catch (err) {
       console.log("Error fetching user data:", err.response?.status, err.response?.data);
-      // If the error is due to an invalid token, we should remove it
       if (err.response?.status === 401) {
         console.log("Removing invalid token");
         localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
         removeTokenTimestamp();
       }
     }
@@ -46,13 +49,19 @@ export const CurrentUserProvider = ({ children }) => {
         if (shouldRefreshToken()) {
           console.log("Token should refresh, attempting refresh");
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            const refreshToken = localStorage.getItem("refreshToken");
+            console.log("Refresh token:", refreshToken ? "exists" : "not found");
+            const { data } = await axios.post("/dj-rest-auth/token/refresh/", { refresh: refreshToken });
+            console.log("Token refresh response:", data);
+            localStorage.setItem("accessToken", data.access);
+            setTokenTimestamp(data);
             console.log("Token refreshed successfully");
           } catch (err) {
             console.log("Token refresh failed:", err.response?.status, err.response?.data);
             setCurrentUser(null);
             removeTokenTimestamp();
             localStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken");
           }
         }
         return config;
@@ -70,7 +79,12 @@ export const CurrentUserProvider = ({ children }) => {
         if (err.response?.status === 401) {
           console.log("401 error, attempting token refresh");
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            const refreshToken = localStorage.getItem("refreshToken");
+            console.log("Refresh token:", refreshToken ? "exists" : "not found");
+            const { data } = await axios.post("/dj-rest-auth/token/refresh/", { refresh: refreshToken });
+            console.log("Token refresh response:", data);
+            localStorage.setItem("accessToken", data.access);
+            setTokenTimestamp(data);
             console.log("Token refreshed successfully in response interceptor");
             return axios(err.config);
           } catch (refreshErr) {
@@ -78,6 +92,7 @@ export const CurrentUserProvider = ({ children }) => {
             setCurrentUser(null);
             removeTokenTimestamp();
             localStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken");
           }
         }
         return Promise.reject(err);
