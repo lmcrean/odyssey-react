@@ -23,6 +23,7 @@ import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
+import ProfileSkeleton from "../../components/ProfileSkeleton";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -170,7 +171,7 @@ function ProfilePage() {
               {mainProfilePosts}
             </>
           ) : (
-            <Asset spinner />
+            <ProfileSkeleton />
           )}
         </Container>
       </Col>
