@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import Container from "react-bootstrap/Container";
@@ -14,6 +14,7 @@ import NoResults from "../../assets/no-results.png";
 import MessageDetailSendForm from "./MessageDetailSendForm";
 import MessageDetailHeader from "./MessageDetailHeader";
 import styles from "../../styles/modules/MessageDetail.module.css";
+import MessageDetailSkeleton from "../../components/MessageDetailsSkeleton";
 
 function MessageDetail() {
   const { id } = useParams();
@@ -27,6 +28,7 @@ function MessageDetail() {
     const fetchMessages = async () => {
       try {
         const { data } = await axiosReq.get(`/messages/${id}/`);
+
         setMessages({ results: data.results });
         setHasLoaded(true);
       } catch (err) {
@@ -51,8 +53,6 @@ function MessageDetail() {
     fetchRecipientUsername();
   }, [id]);
   
-  
-
 
 
   const handleDeleteChat = async () => {
@@ -123,26 +123,24 @@ function MessageDetail() {
                     </div>
                   );
                 })}
-                  dataLength={messages.results.length}
-                  loader={<Asset spinner />}
-                  hasMore={!!messages.next}
-                  next={() => fetchMoreData(messages, setMessages)}
-                />
-              ) : (
+                dataLength={messages.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!messages.next}
+                next={() => fetchMoreData(messages, setMessages)}
+              />
+            ) : (
                 <Container className={styles.Content}>
-                  <Asset src={NoResults} message="No messages found." />
-                </Container>
-              )}
-            </>
-          ) : (
-            <Container className={styles.Content}>
-              <Asset spinner />
-            </Container>
-          )}
+                <Asset src={NoResults} message="No messages found." />
+              </Container>
+            )}
+          </>
+        ) : (
+          <MessageDetailSkeleton />
+        )}
         </Col>
       </Row>
       <Container className={styles.FormContainer}>
-        <MessageDetailSendForm setMessages={setMessages} />
+      <MessageDetailSendForm setMessages={setMessages} />
       </Container>
 
       <Modal show={showModal} onHide={handleCloseModal}>
