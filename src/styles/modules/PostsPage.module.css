@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 20px;
 }
@@ -55,6 +56,14 @@
   justify-content: center;
   opacity: 0.9;
   transition: opacity 0.3s;
+}
+
+.BackToTopButton > *, .FeedSwitch {
+  color: var(--color-primary-text) !important;
+}
+
+.FeedSwitch {
+  margin-bottom: 5px !important;
 }
 
 @media (max-width: 768px) {
