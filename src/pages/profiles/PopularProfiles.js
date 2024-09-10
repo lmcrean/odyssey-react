@@ -40,6 +40,7 @@ const PopularProfiles = ({ mobile }) => {
           ) : (
             popularProfiles.results
               .filter((profile) => profile.id !== currentUser?.profile_id)
+              .slice(0, 10)
               .map((profile) => (
                 <Profile
                   key={profile.id}

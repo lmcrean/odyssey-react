@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from '../styles/modules/MessageListSkeleton.module.css';
 
-const MessageListSkeleton = () => {
+const MessageListSkeleton = (props) => {
   return (
-    <div className={styles.messageListSkeleton}>
+    <div className={styles.messageListSkeleton} {...props}>
       <div className={styles.titleSkeleton}></div>
       {[...Array(5)].map((_, index) => (
         <div key={index} className={styles.messageItemSkeleton}>

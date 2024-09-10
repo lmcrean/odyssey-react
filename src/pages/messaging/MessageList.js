@@ -83,7 +83,7 @@ function MessageList({ message, filter = "" }) {
             )}
           </>
         ) : (
-          <MessageListSkeleton />
+          <MessageListSkeleton data-testid="message-list-skeleton" />
         )}
       </Col>
     </Row>
