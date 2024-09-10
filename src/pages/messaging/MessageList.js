@@ -20,6 +20,7 @@ import MessageListSkeleton from "../../components/MessageListSkeleton";
 function MessageList({ message, filter = "" }) {
   const [messages, setMessages] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
   const { pathname } = useLocation();
   const [query] = useState("");
   const currentUser = useCurrentUser();
@@ -31,9 +32,11 @@ function MessageList({ message, filter = "" }) {
 
         setMessages({ results: Array.isArray(data) ? data : [] });
         setHasLoaded(true);
+        setHasError(false);
       } catch (err) {
         console.error("Failed to fetch messages:", err);
         setHasLoaded(true);
+        setHasError(true);
       }
     };
 
@@ -54,7 +57,11 @@ function MessageList({ message, filter = "" }) {
 
         {hasLoaded ? (
           <>
-            {messages.results.length ? (
+            {hasError ? (
+              <Container className={appStyles.Content}>
+                <Asset src={NoResults} message="Error loading messages. Please try again." />
+              </Container>
+            ) : messages.results.length ? (
               <InfiniteScroll
                 dataLength={messages.results.length}
                 loader={<Asset spinner />}
@@ -62,7 +69,11 @@ function MessageList({ message, filter = "" }) {
                 next={() => fetchMoreData(messages, setMessages)}
               >
                 {messages.results.map((message) => (
-                  <div key={message.id} className={styles.MessageItem}>
+                  <div 
+                    key={message.id} 
+                    className={`${styles.MessageItem} MessageItem`}
+                    data-testid="message-item"
+                  >
                     <Link to={`/messages/${message.id}`}>
                       <Media className="align-items-center">
                         <Avatar src={message.recipient_profile_image} height={55} />
@@ -78,7 +89,7 @@ function MessageList({ message, filter = "" }) {
               </InfiniteScroll>
             ) : (
               <Container className={appStyles.Content}>
-                <Asset src={NoResults} message={message} />
+                <Asset src={NoResults} message={message || "No messages found."} />
               </Container>
             )}
           </>

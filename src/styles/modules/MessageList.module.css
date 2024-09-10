@@ -5,6 +5,7 @@
   border-bottom: 1px solid var(--color-secondary-text);
   border-radius: 20px;
   transition: background-color 0.3s ease;
+  display: block;
 }
 
 .MessageItem:hover {
@@ -26,4 +27,10 @@
   color: var(--color-secondary-text);
   font-size: 0.8rem;
   margin: 0;
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  .MessageItem {
+    -webkit-overflow-scrolling: touch;
+  }
 }
