@@ -5,7 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       
     },
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'https://3000-lmcrean-momentsclone2-chab47zjuwx.ws.codeinstitute-ide.net/',
     supportFile: false,
     screenshotOnRunFailure: true,
   },
