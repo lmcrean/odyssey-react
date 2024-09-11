@@ -117,7 +117,7 @@ const Post = (props) => {
   };
 
   return (
-    <Card className={styles.Post}>
+    <Card className={styles.Post} data-testid="post-item">
       {!isAnimationLoaded && (
         <div className={styles.loadingNotice}>
           Loading animations: {Math.round(loadingProgress)}%

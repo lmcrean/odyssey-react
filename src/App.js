@@ -49,7 +49,7 @@ function App() {
     <ThemeProvider>
     <AutoThemeTransition>
     <div className={styles.App} data-theme-transition>
-      <Container className={styles.Main}>
+      <Container className={styles.Main} data-testid="app-container">
       <Switch>
         <Route exact path="/" render={() => <PostsPage message="No results found. Adjust the search keyword." />} />
         <Route exact path="/feed" render={() => <PostsPage message="No results found. Adjust the search keyword or follow a user." filter={`owner__followed__owner__profile=${profile_id}&`} />} />
