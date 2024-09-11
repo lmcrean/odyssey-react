@@ -24,3 +24,11 @@ yarn-error.log*
 
 .netrc
 combined_repo.md
+
+browserstack.json
+tmpBstackPackages
+npm_install_debug.log
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

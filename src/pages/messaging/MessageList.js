@@ -1,6 +1,4 @@
-// src/pages/messaging/MessageList.js
-
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -27,17 +25,18 @@ function MessageList({ message, filter = "" }) {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      try {
-        const { data } = await axiosReq.get(`/messages/?${filter}search=${query}`);
+    try {
+      const { data } = await axiosReq.get(`/messages/?${filter}search=${query}`);
+      console.log("Fetched messages:", data);
 
-        setMessages({ results: Array.isArray(data) ? data : [] });
-        setHasLoaded(true);
-        setHasError(false);
-      } catch (err) {
-        console.error("Failed to fetch messages:", err);
-        setHasLoaded(true);
-        setHasError(true);
-      }
+      setMessages({ results: Array.isArray(data) ? data : [] });
+      setHasLoaded(true);
+      setHasError(false);
+    } catch (err) {
+      console.error("Failed to fetch messages:", err);
+      setHasLoaded(true);
+      setHasError(true);
+    }
     };
 
     setHasLoaded(false);
@@ -89,7 +88,7 @@ function MessageList({ message, filter = "" }) {
               </InfiniteScroll>
             ) : (
               <Container className={appStyles.Content}>
-                <Asset src={NoResults} message={message || "No messages found."} />
+                <Asset src={NoResults} message={message || "No messages found."} data-testid="no-messages-found" />
               </Container>
             )}
           </>
