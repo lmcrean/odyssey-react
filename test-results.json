@@ -1,0 +1,1356 @@
+{
+  "config": {
+    "configFile": "/workspace/moments-clone-2/playwright.config.js",
+    "rootDir": "/workspace/moments-clone-2/playwright",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 16
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/workspace/moments-clone-2/screenshots",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/workspace/moments-clone-2/playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/workspace/moments-clone-2/screenshots",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/workspace/moments-clone-2/playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/workspace/moments-clone-2/screenshots",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/workspace/moments-clone-2/playwright",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.47.0",
+    "workers": 16,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "auth.spec.js",
+      "file": "auth.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "User Authentication",
+          "file": "auth.spec.js",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "User can sign in with dj-rest-auth",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31296,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Authentication successful. User data: {\n  pk: 29,\n  username: 'user',\n  email: '',\n  first_name: '',\n  last_name: '',\n  profile_id: 28,\n  profile_image: 'https://res.cloudinary.com/dh5lpihx1/image/upload/v1/media/images/default_profile_dqcubz.jpg'\n}\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:38.554Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/auth-User-Authentication-User-can-sign-in-with-dj-rest-auth-chromium/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d5ed79a6b333c2ba7209-9380ce221e28beaddf58",
+              "file": "auth.spec.js",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "User can sign in with dj-rest-auth",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "status": "timedOut",
+                      "duration": 32292,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/auth.spec.js",
+                            "column": 42,
+                            "line": 9
+                          },
+                          "message": "Error: apiRequestContext.post: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → POST https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   content-type: application/json\u001b[22m\n\u001b[2m  -   content-length: 42\u001b[22m\n\n\n\u001b[0m \u001b[90m  7 |\u001b[39m   test(\u001b[32m'User can sign in with dj-rest-auth'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page\u001b[33m,\u001b[39m request }) \u001b[33m=>\u001b[39m {\n \u001b[90m  8 |\u001b[39m     \u001b[90m// 1. Attempt to sign in\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 |\u001b[39m     \u001b[36mconst\u001b[39m signInResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mpost(\u001b[32m`${API_URL}/dj-rest-auth/login/`\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 10 |\u001b[39m       data\u001b[33m:\u001b[39m {\n \u001b[90m 11 |\u001b[39m         username\u001b[33m:\u001b[39m \u001b[32m'user'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 12 |\u001b[39m         password\u001b[33m:\u001b[39m \u001b[32m'qwerqwer*'\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/auth.spec.js:9:42\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:38.849Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/auth-User-Authentication-User-can-sign-in-with-dj-rest-auth-firefox/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d5ed79a6b333c2ba7209-47b0e9d0cec9eb36a683",
+              "file": "auth.spec.js",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "User can sign in with dj-rest-auth",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "status": "timedOut",
+                      "duration": 31884,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/auth.spec.js",
+                            "column": 42,
+                            "line": 9
+                          },
+                          "message": "Error: apiRequestContext.post: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → POST https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   content-type: application/json\u001b[22m\n\u001b[2m  -   content-length: 42\u001b[22m\n\n\n\u001b[0m \u001b[90m  7 |\u001b[39m   test(\u001b[32m'User can sign in with dj-rest-auth'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page\u001b[33m,\u001b[39m request }) \u001b[33m=>\u001b[39m {\n \u001b[90m  8 |\u001b[39m     \u001b[90m// 1. Attempt to sign in\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 |\u001b[39m     \u001b[36mconst\u001b[39m signInResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mpost(\u001b[32m`${API_URL}/dj-rest-auth/login/`\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 10 |\u001b[39m       data\u001b[33m:\u001b[39m {\n \u001b[90m 11 |\u001b[39m         username\u001b[33m:\u001b[39m \u001b[32m'user'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 12 |\u001b[39m         password\u001b[33m:\u001b[39m \u001b[32m'qwerqwer*'\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/auth.spec.js:9:42\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:38.858Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/auth-User-Authentication-User-can-sign-in-with-dj-rest-auth-webkit/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d5ed79a6b333c2ba7209-025647a7bef6c46b97b7",
+              "file": "auth.spec.js",
+              "line": 7,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "message_list.spec.js",
+      "file": "message_list.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Message list tests",
+          "file": "message_list.spec.js",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Message list loads correctly after sign in on mobile",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "status": "timedOut",
+                      "duration": 31217,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/message_list.spec.js",
+                            "column": 20,
+                            "line": 45
+                          },
+                          "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n  \u001b[2m- navigating to \"https://3000-lmcrean-momentsclone2-chab47zjuwx.ws.codeinstitute-ide.net/messages\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m         \u001b[90m// 5. Navigate to messages page\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 45 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://3000-lmcrean-momentsclone2-chab47zjuwx.ws.codeinstitute-ide.net/messages'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 46 |\u001b[39m         \n \u001b[90m 47 |\u001b[39m         \u001b[90m// 6. Wait for content to load\u001b[39m\n \u001b[90m 48 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h2:has-text(\"Your Messages\")'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/message_list.spec.js:45:20\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:38.955Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/message_list-Message-list--55ae5-tly-after-sign-in-on-mobile-chromium/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "64e584e9b41d16317a85-6479d0c112d4f7975ef5",
+              "file": "message_list.spec.js",
+              "line": 7,
+              "column": 5
+            },
+            {
+              "title": "Message list loads correctly after sign in on mobile",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "status": "timedOut",
+                      "duration": 31203,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/message_list.spec.js",
+                            "column": 46,
+                            "line": 11
+                          },
+                          "message": "Error: apiRequestContext.post: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → POST https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   content-type: application/json\u001b[22m\n\u001b[2m  -   content-length: 42\u001b[22m\n\n\n\u001b[0m \u001b[90m  9 |\u001b[39m\n \u001b[90m 10 |\u001b[39m         \u001b[90m// 1. Perform sign in\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m         \u001b[36mconst\u001b[39m signInResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mpost(\u001b[32m'https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m             data\u001b[33m:\u001b[39m {\n \u001b[90m 13 |\u001b[39m                 username\u001b[33m:\u001b[39m \u001b[32m'user'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 14 |\u001b[39m                 password\u001b[33m:\u001b[39m \u001b[32m'qwerqwer*'\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/message_list.spec.js:11:46\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:38.952Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/message_list-Message-list--55ae5-tly-after-sign-in-on-mobile-firefox/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "64e584e9b41d16317a85-3d1f6ffcbda13e57170d",
+              "file": "message_list.spec.js",
+              "line": 7,
+              "column": 5
+            },
+            {
+              "title": "Message list loads correctly after sign in on mobile",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "status": "timedOut",
+                      "duration": 31098,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/message_list.spec.js",
+                            "column": 46,
+                            "line": 11
+                          },
+                          "message": "Error: apiRequestContext.post: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → POST https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   content-type: application/json\u001b[22m\n\u001b[2m  -   content-length: 42\u001b[22m\n\n\n\u001b[0m \u001b[90m  9 |\u001b[39m\n \u001b[90m 10 |\u001b[39m         \u001b[90m// 1. Perform sign in\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m         \u001b[36mconst\u001b[39m signInResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mpost(\u001b[32m'https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m             data\u001b[33m:\u001b[39m {\n \u001b[90m 13 |\u001b[39m                 username\u001b[33m:\u001b[39m \u001b[32m'user'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 14 |\u001b[39m                 password\u001b[33m:\u001b[39m \u001b[32m'qwerqwer*'\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/message_list.spec.js:11:46\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:40.049Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/message_list-Message-list--55ae5-tly-after-sign-in-on-mobile-webkit/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "64e584e9b41d16317a85-cfc2ce3fbe8ec16889c2",
+              "file": "message_list.spec.js",
+              "line": 7,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "setup_confirm.spec.js",
+      "file": "setup_confirm.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "has title",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "status": "passed",
+                  "duration": 7699,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2024-09-11T15:08:39.561Z",
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/workspace/moments-clone-2/screenshots/setup_confirm-has-title-chromium/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a38d0c22f8fe658bb9a6-eb602786aa07cd45b93e",
+          "file": "setup_confirm.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "has title",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "status": "passed",
+                  "duration": 21693,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2024-09-11T15:08:39.153Z",
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/workspace/moments-clone-2/screenshots/setup_confirm-has-title-firefox/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a38d0c22f8fe658bb9a6-710d39a478b940cdae40",
+          "file": "setup_confirm.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "has title",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "status": "passed",
+                  "duration": 15593,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2024-09-11T15:08:56.754Z",
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/workspace/moments-clone-2/screenshots/setup_confirm-has-title-webkit/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a38d0c22f8fe658bb9a6-06725c884819fe64f385",
+          "file": "setup_confirm.spec.js",
+          "line": 4,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "user_journey.spec.js",
+      "file": "user_journey.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "User Journey - mobile",
+          "file": "user_journey.spec.js",
+          "line": 13,
+          "column": 8,
+          "specs": [
+            {
+              "title": "Landing Page - mobile",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "status": "timedOut",
+                      "duration": 33403,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 43
+                          },
+                          "message": "Error: page.screenshot: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n\n\u001b[0m \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m       \u001b[90m// Take a screenshot of the fully loaded page\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 43 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m`screenshots/user-journey/landing_page_loaded_${device.name}.png`\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 44 |\u001b[39m\n \u001b[90m 45 |\u001b[39m       \u001b[90m// Check if the page is scrollable\u001b[39m\n \u001b[90m 46 |\u001b[39m       \u001b[36mconst\u001b[39m scrollHeight \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m document\u001b[33m.\u001b[39mdocumentElement\u001b[33m.\u001b[39mscrollHeight)\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:43:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for mobile\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for mobile\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:39.555Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---mobile-Landing-Page---mobile-chromium/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-305faee65347b421ccf8",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "Landing Page - mobile",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "status": "timedOut",
+                      "duration": 31101,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for mobile\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for mobile\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:38.749Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---mobile-Landing-Page---mobile-firefox/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-d24c192c97641a45bba5",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "Landing Page - mobile",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "status": "timedOut",
+                      "duration": 31006,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for mobile\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for mobile\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:09:17.357Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---mobile-Landing-Page---mobile-webkit/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-34de89cf0a1834dacf04",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "User Journey - tablet",
+          "file": "user_journey.spec.js",
+          "line": 13,
+          "column": 8,
+          "specs": [
+            {
+              "title": "Landing Page - tablet",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "status": "timedOut",
+                      "duration": 35382,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 43
+                          },
+                          "message": "Error: page.screenshot: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n\n\u001b[0m \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m       \u001b[90m// Take a screenshot of the fully loaded page\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 43 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m`screenshots/user-journey/landing_page_loaded_${device.name}.png`\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 44 |\u001b[39m\n \u001b[90m 45 |\u001b[39m       \u001b[90m// Check if the page is scrollable\u001b[39m\n \u001b[90m 46 |\u001b[39m       \u001b[36mconst\u001b[39m scrollHeight \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m document\u001b[33m.\u001b[39mdocumentElement\u001b[33m.\u001b[39mscrollHeight)\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:43:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for tablet\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for tablet\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:38.457Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-386a18d7dd80a0ad19c0",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "Landing Page - tablet",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "status": "timedOut",
+                      "duration": 32308,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for tablet\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for tablet\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:39.254Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---tablet-Landing-Page---tablet-firefox/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-ae7d5887730091281646",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "Landing Page - tablet",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "status": "timedOut",
+                      "duration": 32502,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for tablet\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for tablet\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:09:17.548Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---tablet-Landing-Page---tablet-webkit/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-5a63d8027c53e70d406d",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "User Journey - laptop",
+          "file": "user_journey.spec.js",
+          "line": 13,
+          "column": 8,
+          "specs": [
+            {
+              "title": "Landing Page - laptop",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "status": "timedOut",
+                      "duration": 35493,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\u001b[2m  -   locator resolved to 27 elements. Proceeding with the first one: <div data-testid=\"post-item\" class=\"Post_Post__2gIna card\">…</div>\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for laptop\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for laptop\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:38.747Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-5cbb8e8166f0436875ad",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "Landing Page - laptop",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "status": "timedOut",
+                      "duration": 31403,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for laptop\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for laptop\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:38.453Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---laptop-Landing-Page---laptop-firefox/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-58d4110ac6e1b8262251",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "Landing Page - laptop",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "status": "timedOut",
+                      "duration": 32401,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for laptop\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for laptop\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:09:17.449Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---laptop-Landing-Page---laptop-webkit/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-260e0f2cbb6c6edfd344",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "User Journey - desktop",
+          "file": "user_journey.spec.js",
+          "line": 13,
+          "column": 8,
+          "specs": [
+            {
+              "title": "Landing Page - desktop",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "status": "timedOut",
+                      "duration": 35404,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\u001b[2m  -   locator resolved to 27 elements. Proceeding with the first one: <div data-testid=\"post-item\" class=\"Post_Post__2gIna card\">…</div>\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for desktop\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for desktop\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:38.658Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-29b4c99a20d8e819da9a",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "Landing Page - desktop",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "status": "timedOut",
+                      "duration": 32194,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 36
+                          },
+                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for desktop\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for desktop\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:08:39.054Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---desktop-Landing-Page---desktop-firefox/test-failed-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-5735ed939df3942a01a7",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            },
+            {
+              "title": "Landing Page - desktop",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "status": "timedOut",
+                      "duration": 36796,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
+                            "column": 18,
+                            "line": 43
+                          },
+                          "message": "Error: page.screenshot: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n\n\u001b[0m \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m       \u001b[90m// Take a screenshot of the fully loaded page\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 43 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m`screenshots/user-journey/landing_page_loaded_${device.name}.png`\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 44 |\u001b[39m\n \u001b[90m 45 |\u001b[39m       \u001b[90m// Check if the page is scrollable\u001b[39m\n \u001b[90m 46 |\u001b[39m       \u001b[36mconst\u001b[39m scrollHeight \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m document\u001b[33m.\u001b[39mdocumentElement\u001b[33m.\u001b[39mscrollHeight)\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:43:18\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Visiting the page for desktop\n"
+                        },
+                        {
+                          "text": "Checking for basic page structure\n"
+                        },
+                        {
+                          "text": "Waiting for content to load for desktop\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-11T15:09:15.252Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c8202825c79d05bd1ef8-411fcb1aec2f76cfdb0d",
+              "file": "user_journey.spec.js",
+              "line": 14,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2024-09-11T15:08:35.824Z",
+    "duration": 76507.22499999999,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 18,
+    "flaky": 0
+  }
+}

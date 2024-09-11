@@ -74,7 +74,7 @@ module.exports = defineConfig({
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
+  //   url: 'https://3000-lmcrean-momentsclone2-chab47zjuwx.ws.codeinstitute-ide.net/',
   //   reuseExistingServer: !process.env.CI,
   // },
 });
