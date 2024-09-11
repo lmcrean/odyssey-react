@@ -79,7 +79,11 @@
     "updateSnapshots": "missing",
     "version": "1.47.0",
     "workers": 16,
-    "webServer": null
+    "webServer": {
+      "command": "npm run start",
+      "url": "https://3000-lmcrean-momentsclone2-chab47zjuwx.ws.codeinstitute-ide.net/",
+      "reuseExistingServer": true
+    }
   },
   "suites": [
     {
@@ -97,7 +101,7 @@
           "specs": [
             {
               "title": "User can sign in with dj-rest-auth",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -109,17 +113,9 @@
                   "results": [
                     {
                       "workerIndex": 0,
-                      "status": "timedOut",
-                      "duration": 31296,
-                      "error": {
-                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                      },
-                      "errors": [
-                        {
-                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 29092,
+                      "errors": [],
                       "stdout": [
                         {
                           "text": "Authentication successful. User data: {\n  pk: 29,\n  username: 'user',\n  email: '',\n  first_name: '',\n  last_name: '',\n  profile_id: 28,\n  profile_image: 'https://res.cloudinary.com/dh5lpihx1/image/upload/v1/media/images/default_profile_dqcubz.jpg'\n}\n"
@@ -127,17 +123,17 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:38.554Z",
+                      "startTime": "2024-09-11T15:48:30.658Z",
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "/workspace/moments-clone-2/screenshots/auth-User-Authentication-User-can-sign-in-with-dj-rest-auth-chromium/test-failed-1.png"
+                          "path": "/workspace/moments-clone-2/screenshots/auth-User-Authentication-User-can-sign-in-with-dj-rest-auth-chromium/test-finished-1.png"
                         }
                       ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "d5ed79a6b333c2ba7209-9380ce221e28beaddf58",
@@ -160,7 +156,7 @@
                     {
                       "workerIndex": 7,
                       "status": "timedOut",
-                      "duration": 32292,
+                      "duration": 33497,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -172,16 +168,16 @@
                         {
                           "location": {
                             "file": "/workspace/moments-clone-2/playwright/auth.spec.js",
-                            "column": 42,
-                            "line": 9
+                            "column": 16,
+                            "line": 28
                           },
-                          "message": "Error: apiRequestContext.post: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → POST https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   content-type: application/json\u001b[22m\n\u001b[2m  -   content-length: 42\u001b[22m\n\n\n\u001b[0m \u001b[90m  7 |\u001b[39m   test(\u001b[32m'User can sign in with dj-rest-auth'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page\u001b[33m,\u001b[39m request }) \u001b[33m=>\u001b[39m {\n \u001b[90m  8 |\u001b[39m     \u001b[90m// 1. Attempt to sign in\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 |\u001b[39m     \u001b[36mconst\u001b[39m signInResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mpost(\u001b[32m`${API_URL}/dj-rest-auth/login/`\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 10 |\u001b[39m       data\u001b[33m:\u001b[39m {\n \u001b[90m 11 |\u001b[39m         username\u001b[33m:\u001b[39m \u001b[32m'user'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 12 |\u001b[39m         password\u001b[33m:\u001b[39m \u001b[32m'qwerqwer*'\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/auth.spec.js:9:42\u001b[22m"
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- navigating to \"https://3000-lmcrean-momentsclone2-chab47zjuwx.ws.codeinstitute-ide.net/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 26 |\u001b[39m\n \u001b[90m 27 |\u001b[39m     \u001b[90m// 4. Set tokens in localStorage\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 28 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[33mFRONTEND_URL\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 29 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(({ accessToken\u001b[33m,\u001b[39m refreshToken }) \u001b[33m=>\u001b[39m {\n \u001b[90m 30 |\u001b[39m       localStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'accessToken'\u001b[39m\u001b[33m,\u001b[39m accessToken)\u001b[33m;\u001b[39m\n \u001b[90m 31 |\u001b[39m       localStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'refreshToken'\u001b[39m\u001b[33m,\u001b[39m refreshToken)\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/auth.spec.js:28:16\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:38.849Z",
+                      "startTime": "2024-09-11T15:48:31.754Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -214,7 +210,7 @@
                     {
                       "workerIndex": 14,
                       "status": "timedOut",
-                      "duration": 31884,
+                      "duration": 34120,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -226,16 +222,16 @@
                         {
                           "location": {
                             "file": "/workspace/moments-clone-2/playwright/auth.spec.js",
-                            "column": 42,
-                            "line": 9
+                            "column": 40,
+                            "line": 41
                           },
-                          "message": "Error: apiRequestContext.post: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → POST https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   content-type: application/json\u001b[22m\n\u001b[2m  -   content-length: 42\u001b[22m\n\n\n\u001b[0m \u001b[90m  7 |\u001b[39m   test(\u001b[32m'User can sign in with dj-rest-auth'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page\u001b[33m,\u001b[39m request }) \u001b[33m=>\u001b[39m {\n \u001b[90m  8 |\u001b[39m     \u001b[90m// 1. Attempt to sign in\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 |\u001b[39m     \u001b[36mconst\u001b[39m signInResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mpost(\u001b[32m`${API_URL}/dj-rest-auth/login/`\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 10 |\u001b[39m       data\u001b[33m:\u001b[39m {\n \u001b[90m 11 |\u001b[39m         username\u001b[33m:\u001b[39m \u001b[32m'user'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 12 |\u001b[39m         password\u001b[33m:\u001b[39m \u001b[32m'qwerqwer*'\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/auth.spec.js:9:42\u001b[22m"
+                          "message": "Error: apiRequestContext.get: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → GET https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/user/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MDcwMDQ5LCJqdGkiOiJhODY2MTA0MzVmMGE0Yzg5YmUxZGFmNjRiOWE3ZTYyZCIsInVzZXJfaWQiOjI5fQ.F-PMFM2U_t6YBQA_5b0v1G3VUs88kJyzNsg7KnT9i8s\u001b[22m\n\u001b[2m  -   cookie: my-app-auth=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MDcwMDQ5LCJqdGkiOiJhODY2MTA0MzVmMGE0Yzg5YmUxZGFmNjRiOWE3ZTYyZCIsInVzZXJfaWQiOjI5fQ.F-PMFM2U_t6YBQA_5b0v1G3VUs88kJyzNsg7KnT9i8s; my-refresh-token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyNjE1NjE0OSwianRpIjoiN2ZlYmY2NDRkNDY4NDgzMjhmN2YwNzI1YzQyYWU3OTIiLCJ1c2VyX2lkIjoyOX0.Calh2bacTfooBIs-eMaztQnRLw5ikT43WiseBGQK268; csrftoken=XImFp77uVGtslyOCCRdE1RHV6ILmJgA4yjECU6s4OFKKpHGhzIlKeki6j1IT2LBS; sessionid=dgryl7yij7h9bo4stre37m826ord9u2k\u001b[22m\n\n\n\u001b[0m \u001b[90m 39 |\u001b[39m\n \u001b[90m 40 |\u001b[39m     \u001b[90m// 6. Use access token to make an authenticated request\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mconst\u001b[39m userResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m`${API_URL}/dj-rest-auth/user/`\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m       headers\u001b[33m:\u001b[39m {\n \u001b[90m 43 |\u001b[39m         \u001b[32m'Authorization'\u001b[39m\u001b[33m:\u001b[39m \u001b[32m`Bearer ${accessToken}`\u001b[39m\n \u001b[90m 44 |\u001b[39m       }\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/auth.spec.js:41:40\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:38.858Z",
+                      "startTime": "2024-09-11T15:48:32.249Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -285,7 +281,7 @@
                     {
                       "workerIndex": 1,
                       "status": "timedOut",
-                      "duration": 31217,
+                      "duration": 31877,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -297,16 +293,16 @@
                         {
                           "location": {
                             "file": "/workspace/moments-clone-2/playwright/message_list.spec.js",
-                            "column": 20,
-                            "line": 45
+                            "column": 44,
+                            "line": 37
                           },
-                          "message": "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?\nCall log:\n  \u001b[2m- navigating to \"https://3000-lmcrean-momentsclone2-chab47zjuwx.ws.codeinstitute-ide.net/messages\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 43 |\u001b[39m\n \u001b[90m 44 |\u001b[39m         \u001b[90m// 5. Navigate to messages page\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 45 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://3000-lmcrean-momentsclone2-chab47zjuwx.ws.codeinstitute-ide.net/messages'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 46 |\u001b[39m         \n \u001b[90m 47 |\u001b[39m         \u001b[90m// 6. Wait for content to load\u001b[39m\n \u001b[90m 48 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'h2:has-text(\"Your Messages\")'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/message_list.spec.js:45:20\u001b[22m"
+                          "message": "Error: apiRequestContext.get: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → GET https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/user/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.6668.29 Safari/537.36\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MDcwMDE1LCJqdGkiOiJhZWQ3NmYyYzkxYzg0NDVlYWY2ZGY2NWI5ODgwYjczNiIsInVzZXJfaWQiOjI5fQ._4WkDkW8dUpuIzfU0hp3SSqoXGtabuZ-H4ldyV-zSi4\u001b[22m\n\u001b[2m  -   cookie: my-app-auth=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MDcwMDE1LCJqdGkiOiJhZWQ3NmYyYzkxYzg0NDVlYWY2ZGY2NWI5ODgwYjczNiIsInVzZXJfaWQiOjI5fQ._4WkDkW8dUpuIzfU0hp3SSqoXGtabuZ-H4ldyV-zSi4; my-refresh-token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyNjE1NjExNSwianRpIjoiNzI1YzQyYWFmYTdkNDQyYzk2NTIzNWExODc0NzYwNDkiLCJ1c2VyX2lkIjoyOX0.nEo5kBCBDrODauBYjMSN05DA6AXOBzQ4DMp8G-7Jzfs; csrftoken=4zUILi7vYYs8FVeYhU5uxkwf4Ksl0tAr5ydNQny14EFuzBG5kENIMCoTE9BxDmp6; sessionid=jq12vfiz3ys7x6bbzy6d2vazaqwilofn\u001b[22m\n\n\n\u001b[0m \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m         \u001b[90m// 4. Verify token validity with a test request\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m         \u001b[36mconst\u001b[39m testResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/user/'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m             headers\u001b[33m:\u001b[39m {\n \u001b[90m 39 |\u001b[39m                 \u001b[32m'Authorization'\u001b[39m\u001b[33m:\u001b[39m \u001b[32m`Bearer ${accessToken}`\u001b[39m\n \u001b[90m 40 |\u001b[39m             }\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/message_list.spec.js:37:44\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:38.955Z",
+                      "startTime": "2024-09-11T15:48:31.257Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -339,7 +335,7 @@
                     {
                       "workerIndex": 8,
                       "status": "timedOut",
-                      "duration": 31203,
+                      "duration": 32590,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -351,16 +347,16 @@
                         {
                           "location": {
                             "file": "/workspace/moments-clone-2/playwright/message_list.spec.js",
-                            "column": 46,
-                            "line": 11
+                            "column": 20,
+                            "line": 24
                           },
-                          "message": "Error: apiRequestContext.post: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → POST https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   content-type: application/json\u001b[22m\n\u001b[2m  -   content-length: 42\u001b[22m\n\n\n\u001b[0m \u001b[90m  9 |\u001b[39m\n \u001b[90m 10 |\u001b[39m         \u001b[90m// 1. Perform sign in\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m         \u001b[36mconst\u001b[39m signInResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mpost(\u001b[32m'https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m             data\u001b[33m:\u001b[39m {\n \u001b[90m 13 |\u001b[39m                 username\u001b[33m:\u001b[39m \u001b[32m'user'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 14 |\u001b[39m                 password\u001b[33m:\u001b[39m \u001b[32m'qwerqwer*'\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/message_list.spec.js:11:46\u001b[22m"
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- navigating to \"https://3000-lmcrean-momentsclone2-chab47zjuwx.ws.codeinstitute-ide.net/\", waiting until \"load\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 22 |\u001b[39m\n \u001b[90m 23 |\u001b[39m         \u001b[90m// 2. Set tokens in localStorage\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://3000-lmcrean-momentsclone2-chab47zjuwx.ws.codeinstitute-ide.net'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m         \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(({ accessToken\u001b[33m,\u001b[39m refreshToken }) \u001b[33m=>\u001b[39m {\n \u001b[90m 26 |\u001b[39m             localStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'accessToken'\u001b[39m\u001b[33m,\u001b[39m accessToken)\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m             localStorage\u001b[33m.\u001b[39msetItem(\u001b[32m'refreshToken'\u001b[39m\u001b[33m,\u001b[39m refreshToken)\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/message_list.spec.js:24:20\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:38.952Z",
+                      "startTime": "2024-09-11T15:48:31.654Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -393,7 +389,7 @@
                     {
                       "workerIndex": 15,
                       "status": "timedOut",
-                      "duration": 31098,
+                      "duration": 34306,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -405,16 +401,16 @@
                         {
                           "location": {
                             "file": "/workspace/moments-clone-2/playwright/message_list.spec.js",
-                            "column": 46,
-                            "line": 11
+                            "column": 44,
+                            "line": 37
                           },
-                          "message": "Error: apiRequestContext.post: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → POST https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   content-type: application/json\u001b[22m\n\u001b[2m  -   content-length: 42\u001b[22m\n\n\n\u001b[0m \u001b[90m  9 |\u001b[39m\n \u001b[90m 10 |\u001b[39m         \u001b[90m// 1. Perform sign in\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m         \u001b[36mconst\u001b[39m signInResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39mpost(\u001b[32m'https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/login/'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m             data\u001b[33m:\u001b[39m {\n \u001b[90m 13 |\u001b[39m                 username\u001b[33m:\u001b[39m \u001b[32m'user'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 14 |\u001b[39m                 password\u001b[33m:\u001b[39m \u001b[32m'qwerqwer*'\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/message_list.spec.js:11:46\u001b[22m"
+                          "message": "Error: apiRequestContext.get: Target page, context or browser has been closed\nCall log:\n  \u001b[2m- → GET https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/user/\u001b[22m\n\u001b[2m  -   user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15\u001b[22m\n\u001b[2m  -   accept: */*\u001b[22m\n\u001b[2m  -   accept-encoding: gzip,deflate,br\u001b[22m\n\u001b[2m  -   Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MDcwMDQ5LCJqdGkiOiJlYTRkNzZmYmVmZmY0OWIwYjNlMmIxMTZiMzFjOGRiNyIsInVzZXJfaWQiOjI5fQ.S20E50EGAHXtXqysP9i49XZsPSqX6mSoJHmYDlYpeHM\u001b[22m\n\u001b[2m  -   cookie: my-app-auth=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MDcwMDQ5LCJqdGkiOiJlYTRkNzZmYmVmZmY0OWIwYjNlMmIxMTZiMzFjOGRiNyIsInVzZXJfaWQiOjI5fQ.S20E50EGAHXtXqysP9i49XZsPSqX6mSoJHmYDlYpeHM; my-refresh-token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyNjE1NjE0OSwianRpIjoiMDI1MGM2NDZkYzRlNGE0YWJlYjEwMjBhNzYwZjFkNmQiLCJ1c2VyX2lkIjoyOX0.TVg9YKFInkqOTn1l37lGaKYfQ1CbXIKBPGuV1fn64Vw; csrftoken=GSEShyjkwJFy3C1mVQbDBZ55ml0ZV53bulH5SD8SBrTdj2pv37vbLP0eqQY6uqIT; sessionid=3cuxanuzvw8xd88km0xmbu0azleap2v4\u001b[22m\n\n\n\u001b[0m \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m         \u001b[90m// 4. Verify token validity with a test request\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m         \u001b[36mconst\u001b[39m testResponse \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m request\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'https://odyssey-api-f3455553b29d.herokuapp.com/dj-rest-auth/user/'\u001b[39m\u001b[33m,\u001b[39m {\n \u001b[90m    |\u001b[39m                                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m             headers\u001b[33m:\u001b[39m {\n \u001b[90m 39 |\u001b[39m                 \u001b[32m'Authorization'\u001b[39m\u001b[33m:\u001b[39m \u001b[32m`Bearer ${accessToken}`\u001b[39m\n \u001b[90m 40 |\u001b[39m             }\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/message_list.spec.js:37:44\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:40.049Z",
+                      "startTime": "2024-09-11T15:48:32.355Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -457,12 +453,12 @@
                 {
                   "workerIndex": 2,
                   "status": "passed",
-                  "duration": 7699,
+                  "duration": 6497,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2024-09-11T15:08:39.561Z",
+                  "startTime": "2024-09-11T15:48:31.151Z",
                   "attachments": [
                     {
                       "name": "screenshot",
@@ -495,12 +491,12 @@
                 {
                   "workerIndex": 9,
                   "status": "passed",
-                  "duration": 21693,
+                  "duration": 21008,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2024-09-11T15:08:39.153Z",
+                  "startTime": "2024-09-11T15:48:32.251Z",
                   "attachments": [
                     {
                       "name": "screenshot",
@@ -533,12 +529,12 @@
                 {
                   "workerIndex": 16,
                   "status": "passed",
-                  "duration": 15593,
+                  "duration": 19006,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2024-09-11T15:08:56.754Z",
+                  "startTime": "2024-09-11T15:48:43.858Z",
                   "attachments": [
                     {
                       "name": "screenshot",
@@ -586,7 +582,7 @@
                     {
                       "workerIndex": 3,
                       "status": "timedOut",
-                      "duration": 33403,
+                      "duration": 36388,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -598,10 +594,10 @@
                         {
                           "location": {
                             "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
-                            "column": 18,
-                            "line": 43
+                            "column": 71,
+                            "line": 39
                           },
-                          "message": "Error: page.screenshot: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n\n\u001b[0m \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m       \u001b[90m// Take a screenshot of the fully loaded page\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 43 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m`screenshots/user-journey/landing_page_loaded_${device.name}.png`\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 44 |\u001b[39m\n \u001b[90m 45 |\u001b[39m       \u001b[90m// Check if the page is scrollable\u001b[39m\n \u001b[90m 46 |\u001b[39m       \u001b[36mconst\u001b[39m scrollHeight \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m document\u001b[33m.\u001b[39mdocumentElement\u001b[33m.\u001b[39mscrollHeight)\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:43:18\u001b[22m"
+                          "message": "Error: locator.count: Test timeout of 30000ms exceeded.\n\n\u001b[0m \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 40 |\u001b[39m       expect(postCount)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m       \u001b[90m// Take a screenshot of the fully loaded page\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:39:71\u001b[22m"
                         }
                       ],
                       "stdout": [
@@ -617,14 +613,8 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:39.555Z",
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---mobile-Landing-Page---mobile-chromium/test-failed-1.png"
-                        }
-                      ]
+                      "startTime": "2024-09-11T15:48:31.754Z",
+                      "attachments": []
                     }
                   ],
                   "status": "unexpected"
@@ -650,7 +640,7 @@
                     {
                       "workerIndex": 10,
                       "status": "timedOut",
-                      "duration": 31101,
+                      "duration": 30999,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -681,7 +671,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:38.749Z",
+                      "startTime": "2024-09-11T15:48:31.455Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -712,9 +702,9 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 17,
+                      "workerIndex": 19,
                       "status": "timedOut",
-                      "duration": 31006,
+                      "duration": 31296,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -745,7 +735,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:09:17.357Z",
+                      "startTime": "2024-09-11T15:49:11.147Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -786,7 +776,7 @@
                     {
                       "workerIndex": 4,
                       "status": "timedOut",
-                      "duration": 35382,
+                      "duration": 34303,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -817,8 +807,14 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:38.457Z",
-                      "attachments": []
+                      "startTime": "2024-09-11T15:48:30.855Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---tablet-Landing-Page---tablet-chromium/test-failed-1.png"
+                        }
+                      ]
                     }
                   ],
                   "status": "unexpected"
@@ -844,7 +840,7 @@
                     {
                       "workerIndex": 11,
                       "status": "timedOut",
-                      "duration": 32308,
+                      "duration": 31603,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -875,7 +871,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:39.254Z",
+                      "startTime": "2024-09-11T15:48:32.150Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -906,9 +902,9 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 18,
+                      "workerIndex": 17,
                       "status": "timedOut",
-                      "duration": 32502,
+                      "duration": 33099,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -939,7 +935,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:09:17.548Z",
+                      "startTime": "2024-09-11T15:49:09.553Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -980,7 +976,7 @@
                     {
                       "workerIndex": 5,
                       "status": "timedOut",
-                      "duration": 35493,
+                      "duration": 37591,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -993,9 +989,9 @@
                           "location": {
                             "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
                             "column": 18,
-                            "line": 36
+                            "line": 43
                           },
-                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\u001b[2m  -   locator resolved to 27 elements. Proceeding with the first one: <div data-testid=\"post-item\" class=\"Post_Post__2gIna card\">…</div>\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
+                          "message": "Error: page.screenshot: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n\n\u001b[0m \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m       \u001b[90m// Take a screenshot of the fully loaded page\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 43 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m`screenshots/user-journey/landing_page_loaded_${device.name}.png`\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 44 |\u001b[39m\n \u001b[90m 45 |\u001b[39m       \u001b[90m// Check if the page is scrollable\u001b[39m\n \u001b[90m 46 |\u001b[39m       \u001b[36mconst\u001b[39m scrollHeight \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m document\u001b[33m.\u001b[39mdocumentElement\u001b[33m.\u001b[39mscrollHeight)\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:43:18\u001b[22m"
                         }
                       ],
                       "stdout": [
@@ -1011,7 +1007,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:38.747Z",
+                      "startTime": "2024-09-11T15:48:30.847Z",
                       "attachments": []
                     }
                   ],
@@ -1038,7 +1034,7 @@
                     {
                       "workerIndex": 12,
                       "status": "timedOut",
-                      "duration": 31403,
+                      "duration": 31606,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -1069,7 +1065,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:38.453Z",
+                      "startTime": "2024-09-11T15:48:31.648Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -1100,9 +1096,9 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 19,
+                      "workerIndex": 18,
                       "status": "timedOut",
-                      "duration": 32401,
+                      "duration": 33400,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -1133,7 +1129,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:09:17.449Z",
+                      "startTime": "2024-09-11T15:49:09.654Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -1174,7 +1170,7 @@
                     {
                       "workerIndex": 6,
                       "status": "timedOut",
-                      "duration": 35404,
+                      "duration": 35809,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -1205,7 +1201,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:38.658Z",
+                      "startTime": "2024-09-11T15:48:31.254Z",
                       "attachments": []
                     }
                   ],
@@ -1232,7 +1228,7 @@
                     {
                       "workerIndex": 13,
                       "status": "timedOut",
-                      "duration": 32194,
+                      "duration": 32101,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -1263,7 +1259,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:08:39.054Z",
+                      "startTime": "2024-09-11T15:48:32.950Z",
                       "attachments": [
                         {
                           "name": "screenshot",
@@ -1294,9 +1290,9 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 16,
+                      "workerIndex": 20,
                       "status": "timedOut",
-                      "duration": 36796,
+                      "duration": 33110,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -1309,9 +1305,9 @@
                           "location": {
                             "file": "/workspace/moments-clone-2/playwright/user_journey.spec.js",
                             "column": 18,
-                            "line": 43
+                            "line": 36
                           },
-                          "message": "Error: page.screenshot: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n\n\u001b[0m \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m       \u001b[90m// Take a screenshot of the fully loaded page\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 43 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m`screenshots/user-journey/landing_page_loaded_${device.name}.png`\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 44 |\u001b[39m\n \u001b[90m 45 |\u001b[39m       \u001b[90m// Check if the page is scrollable\u001b[39m\n \u001b[90m 46 |\u001b[39m       \u001b[36mconst\u001b[39m scrollHeight \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m document\u001b[33m.\u001b[39mdocumentElement\u001b[33m.\u001b[39mscrollHeight)\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:43:18\u001b[22m"
+                          "message": "Error: page.waitForSelector: Test timeout of 30000ms exceeded.\nCall log:\n  \u001b[2m- waiting for locator('[data-testid=post-item]') to be visible\u001b[22m\n\n\n\u001b[0m \u001b[90m 34 |\u001b[39m       \u001b[90m// Wait for content to load\u001b[39m\n \u001b[90m 35 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m`Waiting for content to load for ${device.name}`\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForSelector(\u001b[32m'[data-testid=post-item]'\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m60000\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m       \u001b[90m// Check if there are posts (at least 1)\u001b[39m\n \u001b[90m 39 |\u001b[39m       \u001b[36mconst\u001b[39m postCount \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[data-testid=post-item]'\u001b[39m)\u001b[33m.\u001b[39mcount()\u001b[33m;\u001b[39m\u001b[0m\n\n\u001b[2m    at /workspace/moments-clone-2/playwright/user_journey.spec.js:36:18\u001b[22m"
                         }
                       ],
                       "stdout": [
@@ -1327,8 +1323,14 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-11T15:09:15.252Z",
-                      "attachments": []
+                      "startTime": "2024-09-11T15:49:11.958Z",
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/workspace/moments-clone-2/screenshots/user_journey-User-Journey---desktop-Landing-Page---desktop-webkit/test-failed-1.png"
+                        }
+                      ]
                     }
                   ],
                   "status": "unexpected"
@@ -1346,11 +1348,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-09-11T15:08:35.824Z",
-    "duration": 76507.22499999999,
-    "expected": 3,
+    "startTime": "2024-09-11T15:48:28.339Z",
+    "duration": 77661.598,
+    "expected": 4,
     "skipped": 0,
-    "unexpected": 18,
+    "unexpected": 17,
     "flaky": 0
   }
 }
